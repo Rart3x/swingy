@@ -18,7 +18,14 @@ public class Map {
                 else if (i == 0 || j == 0 || i == size - 1 || j == size - 1)
                     this.map[i][j] = 1;
                 else
-                    this.map[i][j] = 0;
+                {
+                    double randomNumber = Math.random();
+
+                    if (randomNumber < 0.25)
+                        this.map[i][j] = 3;
+                    else
+                        this.map[i][j] = 0;
+                }
             }
         }
     }

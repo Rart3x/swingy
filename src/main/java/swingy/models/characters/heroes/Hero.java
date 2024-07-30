@@ -1,12 +1,9 @@
 package swingy.models.characters.heroes;
 
-import swingy.models.artefacts.Armor;
 import swingy.models.artefacts.Artefact;
-import swingy.models.artefacts.Helm;
-import swingy.models.artefacts.Weapon;
-import swingy.models.characters.Individual;
+import swingy.models.characters.AIndividual;
 
-public class Hero extends Individual {
+public class Hero extends AIndividual {
     protected Artefact armor;
     protected Artefact helm;
     protected Artefact weapon;
