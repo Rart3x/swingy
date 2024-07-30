@@ -1,10 +1,10 @@
 package swingy.models.characters.heroes;
 
-public class Sorcerer extends Hero {
-    private final String className = "Sorcerer";
+public class Mage extends Hero {
+    private final String className = "Mage";
     private int attack, defense, hitPoints;
 
-    public Sorcerer(String name)
+    public Mage(String name)
     {
         super(name);
         this.setAttack(8);

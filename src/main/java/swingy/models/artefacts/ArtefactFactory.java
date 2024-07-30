@@ -5,7 +5,7 @@ public final class ArtefactFactory {
 
     private ArtefactFactory() {}
 
-    public static Artefact getArtefact(String type, int value)
+    public static Artefact createArtefact(String type, int value)
     {
         if (!type.equals("Weapon") && !type.equals("Armor") && !type.equals("Helm"))
             throw new IllegalArgumentException("Invalid type of artefact");

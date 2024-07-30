@@ -1,5 +1,10 @@
 package swingy.models.characters;
 
+import swingy.models.artefacts.Armor;
+import swingy.models.artefacts.Artefact;
+import swingy.models.artefacts.Helm;
+import swingy.models.artefacts.Weapon;
+
 public abstract class Individual {
     private String name, type ;
     private int level;
