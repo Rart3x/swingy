@@ -7,11 +7,11 @@ import swingy.models.artefacts.Weapon;
 import swingy.models.characters.Individual;
 
 public class Hero extends Individual {
-    private Artefact armor;
-    private Artefact helm;
-    private Artefact weapon;
+    protected Artefact armor;
+    protected Artefact helm;
+    protected Artefact weapon;
 
-    private int experience;
+    protected int experience;
 
     public Hero(String name)
     {

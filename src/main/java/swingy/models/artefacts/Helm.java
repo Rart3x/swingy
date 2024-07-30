@@ -1,8 +1,8 @@
 package swingy.models.artefacts;
 
 public class Helm extends Artefact {
-    public Helm(int hitPoints)
+    public Helm(String name, int hitPoints)
     {
-        super(0, 0, hitPoints);
+        super(name, 0, 0, hitPoints);
     }
 }

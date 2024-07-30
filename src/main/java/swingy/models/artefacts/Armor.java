@@ -1,8 +1,8 @@
 package swingy.models.artefacts;
 
 public class Armor extends Artefact {
-    public Armor(int defense)
+    public Armor(String name, int defense)
     {
-        super(0, defense, 0);
+        super(name, 0, defense, 0);
     }
 }

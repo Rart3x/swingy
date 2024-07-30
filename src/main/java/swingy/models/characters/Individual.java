@@ -6,8 +6,8 @@ import swingy.models.artefacts.Helm;
 import swingy.models.artefacts.Weapon;
 
 public abstract class Individual {
-    private String name, type ;
-    private int level;
+    protected String name, type ;
+    protected int level;
 
     public Individual(String name, String type, int level)
     {

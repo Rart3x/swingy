@@ -5,16 +5,16 @@ public final class ArtefactFactory {
 
     private ArtefactFactory() {}
 
-    public static Artefact createArtefact(String type, int value)
+    public static Artefact createArtefact(String name, String type, int value)
     {
         if (!type.equals("Weapon") && !type.equals("Armor") && !type.equals("Helm"))
             throw new IllegalArgumentException("Invalid type of artefact");
 
         switch (type)
         {
-            case "Weapon" -> instance = new Weapon(value);
-            case "Armor" -> instance = new Armor(value);
-            case "Helm" -> instance = new Helm(value);
+            case "Weapon" -> instance = new Weapon(name, value);
+            case "Armor" -> instance = new Armor(name, value);
+            case "Helm" -> instance = new Helm(name, value);
         }
 
         return instance;

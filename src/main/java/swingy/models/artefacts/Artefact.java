@@ -1,19 +1,23 @@
 package swingy.models.artefacts;
 
 public class Artefact {
-    private int attack, defense, hitPoints;
+    protected int attack, defense, hitPoints;
+    protected String name;
 
-    public Artefact(int attack, int defense, int hitPoints)
+    public Artefact(String name, int attack, int defense, int hitPoints)
     {
+        this.name = name;
         this.attack = attack;
         this.defense = defense;
         this.hitPoints = hitPoints;
     }
 
+    public String getName() { return name; }
     public int getAttack() { return attack; }
     public int getDefense() { return defense; }
     public int getHitPoints() { return hitPoints; }
 
+    public void setName(String name) { this.name = name; }
     public void setAttack(int attack) { this.attack = attack; }
     public void setDefense(int defense) { this.defense = defense; }
     public void setHitPoints(int hitPoints) { this.hitPoints = hitPoints; }
