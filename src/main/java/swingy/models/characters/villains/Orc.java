@@ -1,4 +1,4 @@
-package swingy.models.characters.vilains;
+package swingy.models.characters.villains;
 
 public class Orc extends Villain {
     private final String className = "Orc";

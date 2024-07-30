@@ -1,15 +1,15 @@
-package swingy.models.characters.vilains;
+package swingy.models.characters.villains;
 
-public class Dragon extends Villain {
-    private final String className = "Dragon";
+public class Goblin extends Villain {
+    private final String className = "Goblin";
     private int attack, defense, hitPoints;
 
-    public Dragon(String name, int level)
+    public Goblin(String name, int level)
     {
         super(name, level);
-        this.setAttack(10);
-        this.setDefense(10);
-        this.setHitPoints(10);
+        this.setAttack(2);
+        this.setDefense(2);
+        this.setHitPoints(2);
     }
 
     public int getAttack() { return attack; }

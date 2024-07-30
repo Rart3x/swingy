@@ -1,4 +1,4 @@
-package swingy.models.characters.heros;
+package swingy.models.characters.heroes;
 
 public class Archer extends Hero {
     private final String className = "Archer";
@@ -6,7 +6,7 @@ public class Archer extends Hero {
 
     public Archer(String name)
     {
-        super(name,1,0);
+        super(name);
         this.setAttack(5);
         this.setDefense(5);
         this.setHitPoints(2);
