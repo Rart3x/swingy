@@ -11,14 +11,14 @@ public class HeroFactory {
 
     public static Hero createHero(String name, String heroClass)
     {
-        if (!heroClass.equals("Warrior") && !heroClass.equals("Mage") && !heroClass.equals("Archer"))
+        if (!heroClass.equals("Archer") && !heroClass.equals("Mage") && !heroClass.equals("Warrior"))
             throw new IllegalArgumentException("Invalid hero class");
 
         switch (heroClass)
         {
             case "Archer" -> instance = new Archer(name);
-            case "Warrior" -> instance = new Warrior(name);
             case "Mage" -> instance = new Mage(name);
+            case "Warrior" -> instance = new Warrior(name);
         }
 
         return instance;

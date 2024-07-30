@@ -7,14 +7,14 @@ public class VillainFactory {
 
     public static Villain createVillain(String name, String villainType, int level)
     {
-        if (!villainType.equals("Goblin") && !villainType.equals("Orc") && !villainType.equals("Dragon"))
+        if (!villainType.equals("Dragon") && !villainType.equals("Goblin") && !villainType.equals("Orc"))
             throw new IllegalArgumentException("Invalid villain type");
 
         switch (villainType)
         {
+            case "Dragon" -> instance = new Dragon(name, level);
             case "Goblin" -> instance = new Goblin(name, level);
             case "Orc" -> instance = new Orc(name, level);
-            case "Dragon" -> instance = new Dragon(name, level);
         }
 
         return instance;
