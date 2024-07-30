@@ -41,6 +41,21 @@ public class Main {
             Utils.printInfo(warrior.getWeapon().getName());
 
             map.printMap();
+            map.move("NORTH");
+            map.move("NORTH");
+            map.move("NORTH");
+            map.move("NORTH");
+            map.move("NORTH");
+            map.move("NORTH");
+            map.move("NORTH");
+            map.move("EAST");
+            map.move("EAST");
+            map.move("EAST");
+            map.move("EAST");
+            map.move("EAST");
+            map.move("EAST");
+            System.out.println();
+            map.printMap();
         }
         catch (Exception e) {
             Utils.printError(e.getMessage());

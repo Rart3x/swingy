@@ -23,6 +23,45 @@ public class Map {
         }
     }
 
+    public void     move(String direction)
+    {
+        int[] position = getPlayerPosition();
+        int x = position[0];
+        int y = position[1];
+
+
+        switch (direction) {
+            case "NORTH" -> {
+                if (y - 1 >= 0 && map[y - 1][x] != 1)
+                {
+                    map[y][x] = 0;
+                    map[y - 1][x] = 2;
+                }
+            }
+            case "SOUTH" -> {
+                if (y + 1 < size && map[y + 1][x] != 1)
+                {
+                    map[y][x] = 0;
+                    map[y + 1][x] = 2;
+                }
+            }
+            case "WEST" -> {
+                if (x - 1 >= 0 && map[y][x - 1] != 1)
+                {
+                    map[y][x] = 0;
+                    map[y][x - 1] = 2;
+                }
+            }
+            case "EAST" -> {
+                if (x + 1 < size && map[y][x + 1] != 1)
+                {
+                    map[y][x] = 0;
+                    map[y][x + 1] = 2;
+                }
+            }
+        }
+    }
+
     public void     printMap()
     {
         for (int i = 0; i < size; i++)
@@ -36,6 +75,24 @@ public class Map {
     }
 
 
+    public int[]    getPlayerPosition()
+    {
+        int[] position = new int[2];
+
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (map[i][j] == 2)
+                {
+                    position[0] = j;
+                    position[1] = i;
+                    return position;
+                }
+            }
+        }
+        return position;
+    }
     public int      getCaracter(int x, int y) { return map[y][x]; }
     public int[][]  getMap() { return map; }
     public int      getSize() { return size; }
