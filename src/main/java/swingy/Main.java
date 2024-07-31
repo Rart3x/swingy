@@ -1,5 +1,7 @@
 package swingy;
 
+import swingy.models.database.Database;
+
 import swingy.models.characters.heroes.Hero;
 
 import swingy.models.maps.Map;
@@ -12,6 +14,7 @@ public class Main {
     {
         try
         {
+            Database.createDB();
             Hero hero = Utils.selectHero();
             Map  map  = MapFactory.createMap(hero.getLevel());
 
