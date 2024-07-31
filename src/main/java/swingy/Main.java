@@ -23,7 +23,11 @@ public class Main {
 
             Utils.printYellow("\n");
 
-            map.move(archer);
+            while (true)
+            {
+                map.move(archer);
+                map = MapFactory.createMap(archer.getLevel());
+            }
         }
         catch (Exception e) {
             Utils.printError(e.getMessage());

@@ -59,67 +59,79 @@ public class Map {
                 {
                     case "NORTH" ->
                     {
-                        if (y - 1 >= 0 && map[y - 1][x] != 1)
+                        if (map[y - 1][x] == 1)
                         {
-                            if (map[y - 1][x] == 3)
-                            {
-                                Villain randomVillain = VillainFactory.createRandomVillain();
-                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
-                                Fight fight = FightFactory.createFight(hero, randomVillain);
-                                fight.fight();
-                            }
-
-                            map[y][x] = 0;
-                            map[y - 1][x] = 2;
+                            Utils.printGreen("You have survived this level.");
+                            return;
                         }
+
+                        if (map[y - 1][x] == 3)
+                        {
+                            Villain randomVillain = VillainFactory.createRandomVillain();
+                            Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                            Fight fight = FightFactory.createFight(hero, randomVillain);
+                            fight.fight();
+                        }
+
+                        map[y][x] = 0;
+                        map[y - 1][x] = 2;
                     }
                     case "SOUTH" ->
                     {
-                        if (y + 1 < size && map[y + 1][x] != 1)
+                        if (map[y + 1][x] == 1)
                         {
-                            if (map[y + 1][x] == 3)
-                            {
-                                Villain randomVillain = VillainFactory.createRandomVillain();
-                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
-                                Fight fight = FightFactory.createFight(hero, randomVillain);
-                                fight.fight();
-                            }
-
-                            map[y][x] = 0;
-                            map[y + 1][x] = 2;
+                            Utils.printGreen("You have survived this level.");
+                            return;
                         }
+
+                        if (map[y + 1][x] == 3)
+                        {
+                            Villain randomVillain = VillainFactory.createRandomVillain();
+                            Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                            Fight fight = FightFactory.createFight(hero, randomVillain);
+                            fight.fight();
+                        }
+
+                        map[y][x] = 0;
+                        map[y + 1][x] = 2;
                     }
                     case "WEST" ->
                     {
-                        if (x - 1 >= 0 && map[y][x - 1] != 1)
+                        if (map[y][x - 1] == 1)
                         {
-                            if (map[y][x - 1] == 3)
-                            {
-                                Villain randomVillain = VillainFactory.createRandomVillain();
-                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
-                                Fight fight = FightFactory.createFight(hero, randomVillain);
-                                fight.fight();
-                            }
-
-                            map[y][x] = 0;
-                            map[y][x - 1] = 2;
+                            Utils.printGreen("You have survived this level.");
+                            return;
                         }
+
+                        if (map[y][x - 1] == 3)
+                        {
+                            Villain randomVillain = VillainFactory.createRandomVillain();
+                            Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                            Fight fight = FightFactory.createFight(hero, randomVillain);
+                            fight.fight();
+                        }
+
+                        map[y][x] = 0;
+                        map[y][x - 1] = 2;
                     }
                     case "EAST" ->
                     {
-                        if (x + 1 < size && map[y][x + 1] != 1)
+                        if (map[y][x + 1] == 1)
                         {
-                            if (map[y][x + 1] == 3)
-                            {
-                                Villain randomVillain = VillainFactory.createRandomVillain();
-                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
-                                Fight fight = FightFactory.createFight(hero, randomVillain);
-                                fight.fight();
-                            }
-
-                            map[y][x] = 0;
-                            map[y][x + 1] = 2;
+                            Utils.printGreen("You have survived this level.");
+                            return;
                         }
+
+                        if (map[y][x + 1] == 3)
+                        {
+                            Villain randomVillain = VillainFactory.createRandomVillain();
+                            Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                            Fight fight = FightFactory.createFight(hero, randomVillain);
+                            fight.fight();
+                        }
+
+                        map[y][x] = 0;
+                        map[y][x + 1] = 2;
                     }
                 }
                 printMapCensured();
@@ -129,7 +141,7 @@ public class Map {
                 y = position[1];
             }
             else if (direction.equals("Q"))
-                break;
+                System.exit(0);
             else
                 Utils.printRed("Invalid direction");
         }
