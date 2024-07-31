@@ -1,5 +1,7 @@
 package swingy.models.maps;
 
+import swingy.utils.Utils;
+
 public class Map {
     private int[][] map;
     private int     size;
@@ -30,42 +32,65 @@ public class Map {
         }
     }
 
-    public void     move(String direction)
+    public void     move()
     {
         int[] position = getPlayerPosition();
         int x = position[0];
         int y = position[1];
 
+        printMapCensured();
 
-        switch (direction) {
-            case "NORTH" -> {
-                if (y - 1 >= 0 && map[y - 1][x] != 1)
+        while (true)
+        {
+            Utils.printYellow("Enter a direction (NORTH, SOUTH, WEST, EAST): Quit with Q");
+            String direction = System.console().readLine();
+
+            if (direction.equals("NORTH") || direction.equals("SOUTH") || direction.equals("WEST") || direction.equals("EAST"))
+            {
+                switch (direction)
                 {
-                    map[y][x] = 0;
-                    map[y - 1][x] = 2;
+                    case "NORTH" ->
+                    {
+                        if (y - 1 >= 0 && map[y - 1][x] != 1)
+                        {
+                            map[y][x] = 0;
+                            map[y - 1][x] = 2;
+                        }
+                    }
+                    case "SOUTH" ->
+                    {
+                        if (y + 1 < size && map[y + 1][x] != 1)
+                        {
+                            map[y][x] = 0;
+                            map[y + 1][x] = 2;
+                        }
+                    }
+                    case "WEST" ->
+                    {
+                        if (x - 1 >= 0 && map[y][x - 1] != 1)
+                        {
+                            map[y][x] = 0;
+                            map[y][x - 1] = 2;
+                        }
+                    }
+                    case "EAST" ->
+                    {
+                        if (x + 1 < size && map[y][x + 1] != 1)
+                        {
+                            map[y][x] = 0;
+                            map[y][x + 1] = 2;
+                        }
+                    }
                 }
+                printMapCensured();
+                position = getPlayerPosition();
+                x = position[0];
+                y = position[1];
             }
-            case "SOUTH" -> {
-                if (y + 1 < size && map[y + 1][x] != 1)
-                {
-                    map[y][x] = 0;
-                    map[y + 1][x] = 2;
-                }
-            }
-            case "WEST" -> {
-                if (x - 1 >= 0 && map[y][x - 1] != 1)
-                {
-                    map[y][x] = 0;
-                    map[y][x - 1] = 2;
-                }
-            }
-            case "EAST" -> {
-                if (x + 1 < size && map[y][x + 1] != 1)
-                {
-                    map[y][x] = 0;
-                    map[y][x + 1] = 2;
-                }
-            }
+            else if (direction.equals("Q"))
+                break;
+            else
+                Utils.printRed("Invalid direction");
         }
     }
 
@@ -76,6 +101,25 @@ public class Map {
             for (int j = 0; j < size; j++)
             {
                 System.out.print(map[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    public void   printMapCensured()
+    {
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (map[i][j] == 0)
+                    System.out.print(" ");
+                else if (map[i][j] == 1)
+                    System.out.print("#");
+                else if (map[i][j] == 2)
+                    System.out.print("K");
+                else if (map[i][j] == 3)
+                    System.out.print(" ");
             }
             System.out.println();
         }
