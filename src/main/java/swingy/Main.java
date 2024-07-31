@@ -17,30 +17,13 @@ import swingy.utils.Utils;
 public class Main {
     public static void main(String[] args)
     {
-        try {
+        try
+        {
             Hero archer = HeroFactory.createHero("Legolas", "Archer");
-            Hero sorcerer = HeroFactory.createHero("Gandalf", "Mage");
-            Hero warrior = HeroFactory.createHero("Conan", "Warrior");
-
-            Villain dragon = VillainFactory.createVillain("Smaug", "Dragon", 1);
-            Villain goblin = VillainFactory.createVillain("Gollum", "Goblin", 1);
-            Villain orc = VillainFactory.createVillain("Azog", "Orc", 1);
-
-            Artefact sword = ArtefactFactory.createArtefact("Excalibur", "Weapon", 1);
-            Artefact armor = ArtefactFactory.createArtefact("Adamantium armor", "Armor", 1);
-            Artefact helm = ArtefactFactory.createArtefact("Morokei", "Helm", 1);
-
             Map map = MapFactory.createMap(archer.getLevel());
 
-            archer.setArmor(armor);
-            sorcerer.setHelm(helm);
-            warrior.setWeapon(sword);
-
-            Utils.printInfo(archer.getArmor().getName());
-            Utils.printInfo(sorcerer.getHelm().getName());
-            Utils.printInfo(warrior.getWeapon().getName());
-
             map.printMap();
+
             map.move("NORTH");
             map.move("NORTH");
             map.move("NORTH");
@@ -54,7 +37,9 @@ public class Main {
             map.move("EAST");
             map.move("EAST");
             map.move("EAST");
+
             System.out.println();
+
             map.printMap();
         }
         catch (Exception e) {
