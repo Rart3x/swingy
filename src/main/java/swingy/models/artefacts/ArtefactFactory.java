@@ -19,4 +19,28 @@ public final class ArtefactFactory {
 
         return instance;
     }
+
+    public static Artefact createRandomArtefact(int villainLevel)
+    {
+        String[] artefactTypes = {"Weapon", "Armor", "Helm"};
+        String[] weaponNames = {"Sword", "Axe", "Bow", "Dagger"};
+        String[] armorNames = {"Chainmail", "Plate", "Leather", "Cloth"};
+        String[] helmNames = {"Helmet", "Crown", "Cap", "Hat"};
+
+        String type = artefactTypes[(int)(Math.random() * 3)];
+        String name = switch (type)
+        {
+            case "Weapon" -> weaponNames[(int)(Math.random() * 4)];
+            case "Armor" -> armorNames[(int)(Math.random() * 4)];
+            case "Helm" -> helmNames[(int)(Math.random() * 4)];
+            default -> "";
+        };
+
+        int min = villainLevel * 5;
+        int max = villainLevel * 10;
+
+        int value = (int)(Math.random() * (max - min + 1)) + min;
+
+        return createArtefact(name, type, value);
+    }
 }

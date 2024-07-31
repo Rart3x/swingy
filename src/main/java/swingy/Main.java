@@ -19,7 +19,7 @@ public class Main {
         try
         {
             Hero    archer = HeroFactory.createHero("Legolas", "Archer");
-            Villain dragon = VillainFactory.createVillain("Smaug", "Dragon", 10);
+            Villain dragon = VillainFactory.createVillain("Smaug", "Dragon", 5);
 
             Fight fight = FightFactory.createFight(archer, dragon);
             fight.fight();
