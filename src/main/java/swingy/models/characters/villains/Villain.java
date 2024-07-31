@@ -9,9 +9,9 @@ public class Villain extends AIndividual {
     public Villain(String name, int level, int attack, int defense, int hitPoints)
     {
         super(name, "Villain", level);
-        this.attack = attack;
-        this.defense = defense;
-        this.hitPoints = hitPoints;
+        this.attack = attack + (level * 2);
+        this.defense = defense + (level * 2);
+        this.hitPoints = hitPoints + (level * 2);
     }
 
     public void looseHitPoints(int hitPoints, String heroName)
