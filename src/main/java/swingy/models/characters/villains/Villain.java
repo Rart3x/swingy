@@ -1,6 +1,7 @@
 package swingy.models.characters.villains;
 
 import swingy.models.characters.AIndividual;
+import swingy.utils.Utils;
 
 public class Villain extends AIndividual {
     private int attack, defense, hitPoints;
@@ -13,10 +14,15 @@ public class Villain extends AIndividual {
         this.hitPoints = hitPoints;
     }
 
-    public void looseHitPoints(int hitPoints)
+    public void looseHitPoints(int hitPoints, String heroName)
     {
+        Utils.printBlue(heroName + " attacks " + this.name + " and deals " + hitPoints + " damage");
+
         if (this.hitPoints - hitPoints < 0)
+        {
+            Utils.printRed(this.name + " looses the fight and died");
             this.hitPoints = 0;
+        }
         else
             this.hitPoints -= hitPoints;
     }

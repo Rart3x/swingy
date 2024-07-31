@@ -1,6 +1,49 @@
 package swingy.utils;
 
+import swingy.models.artefacts.Artefact;
+import swingy.models.characters.heroes.Hero;
+
+import java.util.Scanner;
+
 public class Utils {
+
+    public static void lootRandomArtefact(Artefact randomArtefact, Hero hero)
+    {
+        Scanner scanner = new Scanner(System.in);
+
+        Utils.printYellow("You found a " + randomArtefact.getName() + " artefact! Do you want to equip it? (yes/no)");
+
+        String answer = scanner.nextLine();
+
+        while (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("no"))
+        {
+            Utils.printRed("Invalid input. Please enter 'yes' or 'no'.");
+            answer = scanner.nextLine();
+        }
+
+        if (answer.equalsIgnoreCase("yes"))
+        {
+            Utils.printBlue("You have equipped the " + randomArtefact.getName() + " artefact.");
+
+            switch (randomArtefact.getType())
+            {
+                case "Armor":
+                    hero.setArmor(randomArtefact);
+                    break;
+                case "Helm":
+                    hero.setHelm(randomArtefact);
+                    break;
+                case "Weapon":
+                    hero.setWeapon(randomArtefact);
+                    break;
+            }
+        }
+        else if (answer.equalsIgnoreCase("no"))
+            Utils.printInfo("You decided not to equip the " + randomArtefact.getName() + " artefact.");
+
+        scanner.close();
+    }
+
 
     public static void printInfo(String message)
     {

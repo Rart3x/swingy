@@ -27,6 +27,8 @@ public class Hero extends AIndividual {
     {
         double maxExperience = (this.level * 1000) + Math.pow((this.level - 1), 2) * 450;
 
+        Utils.printGreen(this.name + " wins the fight and gains " + experience + " experience");
+
         if ((this.experience + experience) >= maxExperience)
         {
             this.experience = (this.experience + experience) - (int)maxExperience;
@@ -43,8 +45,10 @@ public class Hero extends AIndividual {
             this.experience += experience;
     }
 
-    public void looseHitPoints(int hitPoints)
+    public void looseHitPoints(int hitPoints, String villainName)
     {
+        Utils.printBlue(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
+
         if (this.currentHitPoints - hitPoints <= 0)
             this.currentHitPoints = 0;
         else
