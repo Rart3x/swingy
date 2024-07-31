@@ -14,7 +14,7 @@ public class Villain extends AIndividual {
         this.hitPoints = hitPoints + (level * 2);
     }
 
-    public void looseHitPoints(int hitPoints, String heroName)
+    public boolean looseHitPoints(int hitPoints, String heroName)
     {
         Utils.printBlue(heroName + " attacks " + this.name + " and deals " + hitPoints + " damage");
 
@@ -22,9 +22,11 @@ public class Villain extends AIndividual {
         {
             Utils.printRed(this.name + " looses the fight and died");
             this.hitPoints = 0;
+            return true;
         }
         else
             this.hitPoints -= hitPoints;
+        return false;
     }
 
     public int getAttack() { return attack; }

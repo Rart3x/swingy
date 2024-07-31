@@ -1,0 +1,12 @@
+Name: Test
+Level: 1
+Experience Points: 0
+Attack: 5
+Defense: 5
+Hit Points: 40
+Current Hit Points: 40
+
+
+Artefacts:
+
+

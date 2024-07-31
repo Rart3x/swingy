@@ -40,7 +40,7 @@ public class Map {
         }
     }
 
-    public void     move(Hero hero)
+    public boolean move(Hero hero)
     {
         int[] position = getPlayerPosition();
         int x = position[0];
@@ -62,7 +62,7 @@ public class Map {
                         if (map[y - 1][x] == 1)
                         {
                             Utils.printGreen("You have survived this level.");
-                            return;
+                            return true;
                         }
 
                         if (map[y - 1][x] == 3)
@@ -71,6 +71,9 @@ public class Map {
                             Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
                             Fight fight = FightFactory.createFight(hero, randomVillain);
                             fight.fight();
+
+                            if (hero.getIsDead())
+                                return false;
                         }
 
                         map[y][x] = 0;
@@ -81,7 +84,7 @@ public class Map {
                         if (map[y + 1][x] == 1)
                         {
                             Utils.printGreen("You have survived this level.");
-                            return;
+                            return true;
                         }
 
                         if (map[y + 1][x] == 3)
@@ -90,6 +93,9 @@ public class Map {
                             Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
                             Fight fight = FightFactory.createFight(hero, randomVillain);
                             fight.fight();
+
+                            if (hero.getIsDead())
+                                return false;
                         }
 
                         map[y][x] = 0;
@@ -100,7 +106,7 @@ public class Map {
                         if (map[y][x - 1] == 1)
                         {
                             Utils.printGreen("You have survived this level.");
-                            return;
+                            return true;
                         }
 
                         if (map[y][x - 1] == 3)
@@ -109,6 +115,9 @@ public class Map {
                             Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
                             Fight fight = FightFactory.createFight(hero, randomVillain);
                             fight.fight();
+
+                            if (hero.getIsDead())
+                                return false;
                         }
 
                         map[y][x] = 0;
@@ -119,7 +128,7 @@ public class Map {
                         if (map[y][x + 1] == 1)
                         {
                             Utils.printGreen("You have survived this level.");
-                            return;
+                            return true;
                         }
 
                         if (map[y][x + 1] == 3)
@@ -128,6 +137,9 @@ public class Map {
                             Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
                             Fight fight = FightFactory.createFight(hero, randomVillain);
                             fight.fight();
+
+                            if (hero.getIsDead())
+                                return false;
                         }
 
                         map[y][x] = 0;
@@ -141,7 +153,7 @@ public class Map {
                 y = position[1];
             }
             else if (direction.equals("Q"))
-                System.exit(0);
+                return false;
             else
                 Utils.printRed("Invalid direction.");
         }

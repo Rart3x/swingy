@@ -147,8 +147,13 @@ public class Hero extends AIndividual {
     public Artefact getArmor() { return armor; }
     public Artefact getHelm() { return helm; }
     public Artefact getWeapon() { return weapon; }
-    public boolean  isDead() { return isDead; }
+    public boolean  getIsDead() { return isDead; }
 
+    public void setExperience(int experience) { this.experience = experience; }
+    public void setAttack(int attack) { this.attack = attack; }
+    public void setDefense(int defense) { this.defense = defense; }
+    public void setHitPoints(int hitPoints) { this.hitPoints = hitPoints; }
+    public void setCurrentHitPoints(int currentHitPoints) { this.currentHitPoints = currentHitPoints; }
     public void setArmor(Artefact armor) { this.armor = armor; }
     public void setHelm(Artefact helm) { this.helm = helm; }
     public void setWeapon(Artefact weapon) { this.weapon = weapon; }

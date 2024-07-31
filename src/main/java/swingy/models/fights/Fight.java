@@ -6,8 +6,6 @@ import swingy.models.characters.heroes.Hero;
 import swingy.models.characters.villains.Villain;
 import swingy.utils.Utils;
 
-import java.util.Scanner;
-
 public class Fight {
     private final Hero    hero;
     private final Villain villain;
@@ -28,7 +26,6 @@ public class Fight {
         while (hero.getCurrentHitPoints() > 0 || villain.getHitPoints() > 0)
         {
             villain.looseHitPoints(heroDamage, hero.getName());
-            hero.looseHitPoints(villainDamage, villain.getName());
 
             if (villain.getHitPoints() == 0)
             {
@@ -41,8 +38,12 @@ public class Fight {
                     Utils.lootRandomArtefact(randomArtefact, hero);
                 break;
             }
-            else if (hero.getCurrentHitPoints() == 0)
-                break;
+            else
+            {
+                hero.looseHitPoints(villainDamage, villain.getName());
+                if (hero.getCurrentHitPoints() == 0)
+                    break;
+            }
         }
     }
 }
