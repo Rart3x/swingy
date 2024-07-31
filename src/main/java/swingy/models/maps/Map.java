@@ -1,4 +1,4 @@
-package swingy.models.map;
+package swingy.models.maps;
 
 public class Map {
     private int[][] map;

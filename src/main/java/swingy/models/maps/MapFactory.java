@@ -1,4 +1,4 @@
-package swingy.models.map;
+package swingy.models.maps;
 
 public final class MapFactory {
     private static Map instance;
