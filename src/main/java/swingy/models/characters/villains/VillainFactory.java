@@ -19,4 +19,19 @@ public class VillainFactory {
 
         return instance;
     }
+
+    public static Villain createRandomVillain()
+    {
+        int random = (int)(Math.random() * 3);
+        int level = (int)(Math.random() * 5) + 1;
+
+        switch (random)
+        {
+            case 0 -> instance = new Dragon("Dragon", level);
+            case 1 -> instance = new Goblin("Goblin", level);
+            case 2 -> instance = new Orc("Orc", level);
+        }
+
+        return instance;
+    }
 }

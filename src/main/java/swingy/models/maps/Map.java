@@ -1,5 +1,13 @@
 package swingy.models.maps;
 
+import swingy.models.characters.villains.Villain;
+import swingy.models.characters.villains.VillainFactory;
+
+import swingy.models.characters.heroes.Hero;
+
+import swingy.models.fights.Fight;
+import swingy.models.fights.FightFactory;
+
 import swingy.utils.Utils;
 
 public class Map {
@@ -32,7 +40,7 @@ public class Map {
         }
     }
 
-    public void     move()
+    public void     move(Hero hero)
     {
         int[] position = getPlayerPosition();
         int x = position[0];
@@ -53,6 +61,14 @@ public class Map {
                     {
                         if (y - 1 >= 0 && map[y - 1][x] != 1)
                         {
+                            if (map[y - 1][x] == 3)
+                            {
+                                Villain randomVillain = VillainFactory.createRandomVillain();
+                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                                Fight fight = FightFactory.createFight(hero, randomVillain);
+                                fight.fight();
+                            }
+
                             map[y][x] = 0;
                             map[y - 1][x] = 2;
                         }
@@ -61,6 +77,14 @@ public class Map {
                     {
                         if (y + 1 < size && map[y + 1][x] != 1)
                         {
+                            if (map[y + 1][x] == 3)
+                            {
+                                Villain randomVillain = VillainFactory.createRandomVillain();
+                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                                Fight fight = FightFactory.createFight(hero, randomVillain);
+                                fight.fight();
+                            }
+
                             map[y][x] = 0;
                             map[y + 1][x] = 2;
                         }
@@ -69,6 +93,14 @@ public class Map {
                     {
                         if (x - 1 >= 0 && map[y][x - 1] != 1)
                         {
+                            if (map[y][x - 1] == 3)
+                            {
+                                Villain randomVillain = VillainFactory.createRandomVillain();
+                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                                Fight fight = FightFactory.createFight(hero, randomVillain);
+                                fight.fight();
+                            }
+
                             map[y][x] = 0;
                             map[y][x - 1] = 2;
                         }
@@ -77,12 +109,21 @@ public class Map {
                     {
                         if (x + 1 < size && map[y][x + 1] != 1)
                         {
+                            if (map[y][x + 1] == 3)
+                            {
+                                Villain randomVillain = VillainFactory.createRandomVillain();
+                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                                Fight fight = FightFactory.createFight(hero, randomVillain);
+                                fight.fight();
+                            }
+
                             map[y][x] = 0;
                             map[y][x + 1] = 2;
                         }
                     }
                 }
                 printMapCensured();
+
                 position = getPlayerPosition();
                 x = position[0];
                 y = position[1];

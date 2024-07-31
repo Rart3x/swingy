@@ -19,15 +19,11 @@ public class Main {
         try
         {
             Hero    archer = HeroFactory.createHero("Legolas", "Archer");
-            Villain dragon = VillainFactory.createVillain("Smaug", "Dragon", 5);
             Map     map    = MapFactory.createMap(archer.getLevel());
-
-            Fight fight = FightFactory.createFight(archer, dragon);
-            fight.fight();
 
             Utils.printYellow("\n");
 
-            map.move();
+            map.move(archer);
         }
         catch (Exception e) {
             Utils.printError(e.getMessage());
