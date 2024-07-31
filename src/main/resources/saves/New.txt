@@ -1,0 +1,15 @@
+Artefacts:
+Armor: Cloth
+Defense: 29
+
+
+
+
+Name: New
+Level: 6
+Experience Points: 19900
+Hero Attack: 33
+Hero Defense: 28
+Hero Hit Points: 280
+Current Hit Points: 267
+

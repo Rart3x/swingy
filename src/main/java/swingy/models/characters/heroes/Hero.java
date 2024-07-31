@@ -5,9 +5,9 @@ import swingy.models.characters.AIndividual;
 import swingy.utils.Utils;
 
 public class Hero extends AIndividual {
-    protected Artefact armor;
-    protected Artefact helm;
-    protected Artefact weapon;
+    protected Artefact armor = null;
+    protected Artefact helm = null;
+    protected Artefact weapon = null;
 
     protected int experience;
     protected int attack, defense, hitPoints;

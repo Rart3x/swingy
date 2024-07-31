@@ -1,12 +1,7 @@
-Name: Keny
-Level: 2
-Experience Points: 0
-Attack: 10
-Defense: 10
-Hit Points: 90
-Current Hit Points: 83
-
-
 Artefacts:
+Armor: Cloth
+Defense: 13
+
+
 
 

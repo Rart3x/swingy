@@ -1,6 +1,7 @@
 package swingy.utils;
 
 import swingy.models.artefacts.Artefact;
+import swingy.models.artefacts.ArtefactFactory;
 import swingy.models.characters.heroes.Hero;
 import swingy.models.characters.heroes.HeroFactory;
 
@@ -34,43 +35,51 @@ public class Utils {
         String path = "src/main/resources/saves/" + heroName + ".txt";
         Hero loadedHero = HeroFactory.createHero(heroName, "Warrior");
 
+        String armorName = "", helmName = "", weaponName = "";
+        String armorDefense = "", helmHitPoints = "", weaponAttack = "";
+
         try (BufferedReader reader = new BufferedReader(new FileReader(path)))
         {
             String line;
 
             while ((line = reader.readLine()) != null)
             {
-                if (line.startsWith("Name: ")) {
+                if (line.startsWith("Name: "))
                     loadedHero.setName(line.substring(6));
-                }
-                else if (line.startsWith("Level: ")) {
+                else if (line.startsWith("Level: "))
                     loadedHero.setLevel(Integer.parseInt(line.substring(7)));
-                }
-                else if (line.startsWith("Experience Points: ")) {
+                else if (line.startsWith("Experience Points: "))
                     loadedHero.setExperience(Integer.parseInt(line.substring(19)));
-                }
-                else if (line.startsWith("Attack: ")) {
-                    loadedHero.setAttack(Integer.parseInt(line.substring(8)));
-                }
-                else if (line.startsWith("Defense: ")) {
-                    loadedHero.setDefense(Integer.parseInt(line.substring(9)));
-                }
-                else if (line.startsWith("Hit Points: ")) {
-                    loadedHero.setHitPoints(Integer.parseInt(line.substring(12)));
-                }
-                else if (line.startsWith("Current Hit Points: ")) {
+                else if (line.startsWith("Hero Attack: "))
+                    loadedHero.setAttack(Integer.parseInt(line.substring(13)));
+                else if (line.startsWith("Hero Defense: "))
+                    loadedHero.setDefense(Integer.parseInt(line.substring(14)));
+                else if (line.startsWith("Hero Hit Points: "))
+                    loadedHero.setHitPoints(Integer.parseInt(line.substring(17)));
+                else if (line.startsWith("Current Hit Points: "))
                     loadedHero.setCurrentHitPoints(Integer.parseInt(line.substring(20)));
-                }
-//                else if (line.startsWith("Armor: ")) {
-//                    loadedHero.setArmor(ArtefactFactory.createArtefact(line.substring(7), "Armor"));
-//                }
-//                else if (line.startsWith("Helm: ")) {
-//                    loadedHero.setHelm(ArtefactFactory.createArtefact(line.substring(6), "Helm"));
-//                }
-//                else if (line.startsWith("Weapon: ")) {
-//                    loadedHero.setWeapon(ArtefactFactory.createArtefact(line.substring(8), "Weapon"));
-//                }
+                else if (line.startsWith("Armor: "))
+                    armorName = line.substring(7);
+                else if (line.startsWith("Defense: "))
+                    armorDefense = line.substring(9);
+                else if (line.startsWith("Helm: "))
+                    helmName = line.substring(6);
+                else if (line.startsWith("Hit Points: "))
+                    helmHitPoints = line.substring(12);
+                else if (line.startsWith("Weapon: "))
+                    weaponName = line.substring(8);
+                else if (line.startsWith("Attack: "))
+                    weaponAttack = line.substring(8);
             }
+
+            if (!armorName.isEmpty() && !armorDefense.isEmpty())
+                loadedHero.equipArtefact(ArtefactFactory.createArtefact(armorName, "Armor", Integer.parseInt(armorDefense)));
+
+            if (!helmName.isEmpty() && !helmHitPoints.isEmpty())
+                loadedHero.equipArtefact(ArtefactFactory.createArtefact(helmName, "Helm", Integer.parseInt(helmHitPoints)));
+
+            if (!weaponName.isEmpty() && !weaponAttack.isEmpty())
+                loadedHero.equipArtefact(ArtefactFactory.createArtefact(weaponName, "Weapon", Integer.parseInt(weaponAttack)));
         }
         return loadedHero;
     }
@@ -81,16 +90,6 @@ public class Utils {
 
         try (FileWriter writer = new FileWriter(path))
         {
-            writer.write("Name: " + hero.getName() + "\n");
-            writer.write("Level: " + hero.getLevel() + "\n");
-            writer.write("Experience Points: " + hero.getExperience() + "\n");
-            writer.write("Attack: " + hero.getAttack() + "\n");
-            writer.write("Defense: " + hero.getDefense() + "\n");
-            writer.write("Hit Points: " + hero.getHitPoints() + "\n");
-            writer.write("Current Hit Points: " + hero.getCurrentHitPoints() + "\n\n");
-
-            writer.write("\n");
-
             writer.write("Artefacts:\n");
             if (hero.getArmor() != null) {
                 writer.write("Armor: " + hero.getArmor().getName() + "\n");
@@ -110,6 +109,24 @@ public class Utils {
                 writer.write("Weapon: " + hero.getWeapon().getName() + "\n");
                 writer.write("Attack: " + hero.getWeapon().getAttack() + "\n\n");
             }
+
+            writer.write("\n");
+
+            if (hero.getArmor() != null)
+                hero.unequipArtefact(hero.getArmor());
+            if (hero.getHelm() != null)
+                hero.unequipArtefact(hero.getHelm());
+            if (hero.getWeapon() != null)
+                hero.unequipArtefact(hero.getWeapon());
+
+            writer.write("Name: " + hero.getName() + "\n");
+            writer.write("Level: " + hero.getLevel() + "\n");
+            writer.write("Experience Points: " + hero.getExperience() + "\n");
+            writer.write("Hero Attack: " + hero.getAttack() + "\n");
+            writer.write("Hero Defense: " + hero.getDefense() + "\n");
+            writer.write("Hero Hit Points: " + hero.getHitPoints() + "\n");
+            writer.write("Current Hit Points: " + hero.getCurrentHitPoints() + "\n\n");
+
         }
     }
 
