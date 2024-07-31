@@ -20,10 +20,13 @@ public class VillainFactory {
         return instance;
     }
 
-    public static Villain createRandomVillain()
+    public static Villain createRandomVillain(int heroLevel)
     {
         int random = (int)(Math.random() * 3);
-        int level = (int)(Math.random() * 5) + 1;
+
+        int minLevel = Math.max(1, heroLevel - 3);
+        int maxLevel = Math.min(100, heroLevel + 3);
+        int level = (int)(Math.random() * (maxLevel - minLevel + 1)) + minLevel;
 
         switch (random)
         {
