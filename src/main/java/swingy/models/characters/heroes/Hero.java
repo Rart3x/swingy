@@ -11,6 +11,7 @@ public class Hero extends AIndividual {
 
     protected int experience;
     protected int attack, defense, hitPoints;
+    protected int currentHitPoints;
 
     public Hero(String name, int attack, int defense, int hitPoints)
     {
@@ -19,6 +20,7 @@ public class Hero extends AIndividual {
         this.attack = attack;
         this.defense = defense;
         this.hitPoints = hitPoints;
+        this.currentHitPoints = hitPoints;
     }
 
     public void gainExperience(int experience)
@@ -30,6 +32,11 @@ public class Hero extends AIndividual {
             this.experience = (this.experience + experience) - (int)maxExperience;
             this.level += 1;
 
+            this.attack += 5;
+            this.defense += 5;
+            this.hitPoints += 50;
+            this.currentHitPoints += 50;
+
             Utils.printGreen(this.name + " leveled up to level " + this.level);
         }
         else
@@ -38,10 +45,22 @@ public class Hero extends AIndividual {
 
     public void looseHitPoints(int hitPoints)
     {
-        if (this.hitPoints - hitPoints <= 0)
-            this.hitPoints = 0;
+        if (this.currentHitPoints - hitPoints <= 0)
+            this.currentHitPoints = 0;
         else
-            this.hitPoints -= hitPoints;
+            this.currentHitPoints -= hitPoints;
+    }
+
+
+    public void     printHeroInfos()
+    {
+        Utils.printBlue("Name: " + name);
+        Utils.printBlue("Level: " + level);
+        Utils.printBlue("Experience: " + experience);
+        Utils.printBlue("Attack: " + attack);
+        Utils.printBlue("Defense: " + defense);
+        Utils.printBlue("Hit Points: " + hitPoints);
+        Utils.printBlue("Current Hit Points: " + currentHitPoints);
     }
 
 
@@ -49,6 +68,7 @@ public class Hero extends AIndividual {
     public int      getAttack() { return attack; }
     public int      getDefense() { return defense; }
     public int      getHitPoints() { return hitPoints; }
+    public int      getCurrentHitPoints() { return currentHitPoints; }
     public Artefact getArmor() { return armor; }
     public Artefact getHelm() { return helm; }
     public Artefact getWeapon() { return weapon; }
