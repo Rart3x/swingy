@@ -20,16 +20,15 @@ public class Main {
     {
         try
         {
-            Hero    archer = HeroFactory.createHero("Legolas", "Archer");
-            Map     map    = MapFactory.createMap(archer.getLevel());
-            Artefact randomArtefact = ArtefactFactory.createRandomArtefact(1);
+            Hero hero = Utils.selectHero();
+            Map  map  = MapFactory.createMap(hero.getLevel());
 
             Utils.printYellow("\n");
 
             while (true)
             {
-                map.move(archer);
-                map = MapFactory.createMap(archer.getLevel());
+                map.move(hero);
+                map = MapFactory.createMap(hero.getLevel());
             }
         }
         catch (Exception e) {

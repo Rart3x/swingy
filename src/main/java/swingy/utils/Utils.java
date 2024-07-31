@@ -2,6 +2,7 @@ package swingy.utils;
 
 import swingy.models.artefacts.Artefact;
 import swingy.models.characters.heroes.Hero;
+import swingy.models.characters.heroes.HeroFactory;
 
 import java.util.Scanner;
 
@@ -25,6 +26,43 @@ public class Utils {
         }
         else if (answer.equalsIgnoreCase("no"))
             Utils.printInfo("You decided not to equip the " + randomArtefact.getName() + " artefact.");
+    }
+
+    public static Hero selectHero()
+    {
+        Utils.printYellow("Select a hero class: Archer, Mage, Warrior");
+        String heroClass = System.console().readLine();
+
+        while (!heroClass.equalsIgnoreCase("Archer") && !heroClass.equalsIgnoreCase("Mage") && !heroClass.equalsIgnoreCase("Warrior"))
+        {
+            Utils.printRed("Invalid hero class. Please enter 'Archer', 'Mage' or 'Warrior'.");
+            heroClass = System.console().readLine();
+        }
+
+        Utils.printYellow("Select a hero name");
+        String heroName = System.console().readLine();
+
+        Hero instance = null;
+
+        switch (heroClass)
+        {
+            case "Archer" ->
+            {
+                instance = HeroFactory.createHero(heroName, "Archer");
+                break;
+            }
+            case "Mage" ->
+            {
+                instance = HeroFactory.createHero(heroName, "Mage");
+                break;
+            }
+            case "Warrior" ->
+            {
+                instance = HeroFactory.createHero(heroName, "Warrior");
+                break;
+            }
+        }
+        return instance;
     }
 
 
