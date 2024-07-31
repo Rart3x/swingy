@@ -55,6 +55,71 @@ public class Hero extends AIndividual {
             this.currentHitPoints -= hitPoints;
     }
 
+    public void equipArtefact(Artefact artefact)
+    {
+        switch (artefact.getType())
+        {
+            case "Armor" ->
+            {
+                if (this.armor != null)
+                {
+                    this.defense -= this.armor.getDefense();
+                    Utils.printBlue(this.name + " unequips " + this.armor.getName());
+                }
+                this.armor = artefact;
+                this.defense += artefact.getDefense();
+                Utils.printBlue(this.name + " equips " + artefact.getName());
+            }
+            case "Helm" ->
+            {
+                if (this.helm != null)
+                {
+                    this.hitPoints -= this.helm.getHitPoints();
+                    Utils.printBlue(this.name + " unequips " + this.helm.getName());
+                }
+                this.helm = artefact;
+                this.hitPoints += artefact.getHitPoints();
+                Utils.printBlue(this.name + " equips " + artefact.getName());
+            }
+            case "Weapon" ->
+            {
+                if (this.weapon != null)
+                {
+                    this.attack -= this.weapon.getAttack();
+                    Utils.printBlue(this.name + " unequips " + this.weapon.getName());
+                }
+                this.weapon = artefact;
+                this.attack += artefact.getAttack();
+                Utils.printBlue(this.name + " equips " + artefact.getName());
+            }
+        }
+    }
+
+    public void unequipArtefact(Artefact artefact)
+    {
+        switch (artefact.getType())
+        {
+            case "Armor" ->
+            {
+                this.defense -= this.armor.getDefense();
+                Utils.printBlue(this.name + " unequips " + this.armor.getName());
+                this.armor = null;
+            }
+            case "Helm" ->
+            {
+                this.hitPoints -= this.helm.getHitPoints();
+                Utils.printBlue(this.name + " unequips " + this.helm.getName());
+                this.helm = null;
+            }
+            case "Weapon" ->
+            {
+                this.attack -= this.weapon.getAttack();
+                Utils.printBlue(this.name + " unequips " + this.weapon.getName());
+                this.weapon = null;
+            }
+        }
+    }
+
 
     public void     printHeroInfos()
     {

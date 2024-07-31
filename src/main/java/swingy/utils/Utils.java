@@ -21,19 +21,7 @@ public class Utils {
         if (answer.equalsIgnoreCase("yes"))
         {
             Utils.printBlue("You have equipped the " + randomArtefact.getName() + " artefact.");
-
-            switch (randomArtefact.getType())
-            {
-                case "Armor":
-                    hero.setArmor(randomArtefact);
-                    break;
-                case "Helm":
-                    hero.setHelm(randomArtefact);
-                    break;
-                case "Weapon":
-                    hero.setWeapon(randomArtefact);
-                    break;
-            }
+            hero.equipArtefact(randomArtefact);
         }
         else if (answer.equalsIgnoreCase("no"))
             Utils.printInfo("You decided not to equip the " + randomArtefact.getName() + " artefact.");

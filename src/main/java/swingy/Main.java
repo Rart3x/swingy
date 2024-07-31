@@ -1,5 +1,7 @@
 package swingy;
 
+import swingy.models.artefacts.Artefact;
+import swingy.models.artefacts.ArtefactFactory;
 import swingy.models.characters.heroes.Hero;
 import swingy.models.characters.heroes.HeroFactory;
 
@@ -20,6 +22,7 @@ public class Main {
         {
             Hero    archer = HeroFactory.createHero("Legolas", "Archer");
             Map     map    = MapFactory.createMap(archer.getLevel());
+            Artefact randomArtefact = ArtefactFactory.createRandomArtefact(1);
 
             Utils.printYellow("\n");
 
