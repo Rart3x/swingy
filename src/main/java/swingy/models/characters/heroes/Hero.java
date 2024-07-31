@@ -13,6 +13,8 @@ public class Hero extends AIndividual {
     protected int attack, defense, hitPoints;
     protected int currentHitPoints;
 
+    protected boolean isDead = false;
+
     public Hero(String name, int attack, int defense, int hitPoints)
     {
         super(name, "Hero", 1);
@@ -50,7 +52,11 @@ public class Hero extends AIndividual {
         Utils.printBlue(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
 
         if (this.currentHitPoints - hitPoints <= 0)
+        {
+            Utils.printRed(this.name + " looses the fight and died");
             this.currentHitPoints = 0;
+            this.isDead = true;
+        }
         else
             this.currentHitPoints -= hitPoints;
     }
@@ -141,10 +147,10 @@ public class Hero extends AIndividual {
     public Artefact getArmor() { return armor; }
     public Artefact getHelm() { return helm; }
     public Artefact getWeapon() { return weapon; }
+    public boolean  isDead() { return isDead; }
 
     public void setArmor(Artefact armor) { this.armor = armor; }
     public void setHelm(Artefact helm) { this.helm = helm; }
     public void setWeapon(Artefact weapon) { this.weapon = weapon; }
-
-
+    public void setIsDead(boolean isDead) { this.isDead = isDead; }
 }

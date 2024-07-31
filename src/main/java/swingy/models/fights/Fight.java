@@ -25,7 +25,7 @@ public class Fight {
 
         Artefact randomArtefact = ArtefactFactory.createRandomArtefact(villain.getLevel());
 
-        while (hero.getHitPoints() > 0 || villain.getHitPoints() > 0)
+        while (hero.getCurrentHitPoints() > 0 || villain.getHitPoints() > 0)
         {
             villain.looseHitPoints(heroDamage, hero.getName());
             hero.looseHitPoints(villainDamage, villain.getName());
@@ -41,7 +41,7 @@ public class Fight {
                     Utils.lootRandomArtefact(randomArtefact, hero);
                 break;
             }
-            else if (hero.getHitPoints() == 0)
+            else if (hero.getCurrentHitPoints() == 0)
                 break;
         }
     }

@@ -143,7 +143,7 @@ public class Map {
             else if (direction.equals("Q"))
                 System.exit(0);
             else
-                Utils.printRed("Invalid direction");
+                Utils.printRed("Invalid direction.");
         }
     }
 
