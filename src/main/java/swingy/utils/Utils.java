@@ -46,7 +46,6 @@ public class Utils {
     }
 
 
-
     public static void lootRandomArtefact(Artefact randomArtefact, Hero hero)
     {
         Utils.printYellow("You found a " + randomArtefact.getName() + " artefact! Do you want to equip it? (yes/no)");
@@ -171,11 +170,14 @@ public class Utils {
     {
         Hero instance = null;
 
-        Utils.printYellow("Do you want to create a new hero or load an existing one? (new/load)");
+        Utils.printYellow("Do you want to create a new hero or load an existing one? (new/load/exit)");
         String answer = System.console().readLine();
 
         while (!answer.equalsIgnoreCase("new") && !answer.equalsIgnoreCase("load"))
         {
+            if (answer.equalsIgnoreCase("exit"))
+                System.exit(0);
+
             Utils.printRed("Invalid input. Please enter 'new' or 'load'.");
             answer = System.console().readLine();
         }
@@ -187,7 +189,12 @@ public class Utils {
             try
             {
                 instance = Database.loadHeroFromDB(heroName);
-                return instance;
+                if (instance == null)
+                {
+                    Utils.printError("Hero not found.");
+                    return selectHero();
+                }
+                    return instance;
             }
             catch (Exception e)
             {

@@ -277,5 +277,4 @@ public class Database {
         }
         return hero;
     }
-
 }
