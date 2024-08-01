@@ -173,7 +173,10 @@ public class Utils {
         Utils.printYellow("Do you want to create a new hero or load an existing one? (new/load/exit)");
         String answer = System.console().readLine();
 
-        while (!answer.equalsIgnoreCase("new") && !answer.equalsIgnoreCase("load"))
+        if (answer.equalsIgnoreCase("exit"))
+            System.exit(0);
+
+        while (!answer.equalsIgnoreCase("new") && !answer.equalsIgnoreCase("load") && !answer.equalsIgnoreCase("exit"))
         {
             if (answer.equalsIgnoreCase("exit"))
                 System.exit(0);
@@ -216,9 +219,12 @@ public class Utils {
 
         switch (heroClass)
         {
-            case "Archer" -> { instance = HeroFactory.createHero(heroName, "Archer"); }
-            case "Mage" -> { instance = HeroFactory.createHero(heroName, "Mage"); }
-            case "Warrior" -> { instance = HeroFactory.createHero(heroName, "Warrior"); }
+            case "Archer" :
+            { instance = HeroFactory.createHero(heroName, "Archer"); }
+            case "Mage" :
+            { instance = HeroFactory.createHero(heroName, "Mage"); }
+            case "Warrior" :
+            { instance = HeroFactory.createHero(heroName, "Warrior"); }
         }
         return instance;
     }

@@ -1,6 +1,5 @@
 package swingy.models.database;
 
-import swingy.models.artefacts.Armor;
 import swingy.models.artefacts.Artefact;
 import swingy.models.characters.heroes.Hero;
 import swingy.models.characters.heroes.HeroFactory;
@@ -241,12 +240,12 @@ public class Database {
 
                         switch (artefactType)
                         {
-                            case "Armor" ->
-                                    armor = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
-                            case "Helm" ->
-                                    helm = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
-                            case "Weapon" ->
-                                    weapon = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
+                            case "Armor":
+                                armor = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
+                            case "Helm":
+                                helm = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
+                            case "Weapon":
+                                weapon = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
                         }
                     }
 

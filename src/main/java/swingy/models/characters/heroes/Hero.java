@@ -1,31 +1,53 @@
 package swingy.models.characters.heroes;
 
+import javax.validation.constraints.*;
+
 import swingy.models.artefacts.Artefact;
 import swingy.models.characters.AIndividual;
 import swingy.utils.Utils;
 
 public class Hero extends AIndividual {
-    protected Artefact armor = null;
-    protected Artefact helm = null;
-    protected Artefact weapon = null;
+    @NotNull(message = "Name cannot be empty")
+    protected String name;
 
+    @NotNull(message = "Subclass cannot be empty")
     protected String subClass;
 
+    @Min(value = 0, message = "Experience cannot be negative")
+    @Max(value = Integer.MAX_VALUE, message = "Experience exceeds maximum allowed value")
     protected int experience;
-    protected int attack, defense, hitPoints;
+
+    @NotNull(message = "Attack cannot be null")
+    @Min(value = 0, message = "Attack cannot be negative")
+    protected int attack;
+
+    @NotNull(message = "Defense cannot be null")
+    @Min(value = 0, message = "Defense cannot be negative")
+    protected int defense;
+
+    @NotNull(message = "Hit Points cannot be null")
+    @Min(value = 0, message = "Hit Points cannot be negative")
+    protected int hitPoints;
+
+    @NotNull(message = "Current Hit Points cannot be null")
+    @Min(value = 0, message = "Current Hit Points cannot be negative")
     protected int currentHitPoints;
+
+    protected Artefact armor;
+    protected Artefact helm;
+    protected Artefact weapon;
 
     protected boolean isDead = false;
 
     public Hero(String name, String className, int attack, int defense, int hitPoints)
     {
         super(name, "Hero", 1);
+        this.name = "";
         this.experience = 0;
         this.attack = attack;
         this.defense = defense;
         this.hitPoints = hitPoints;
         this.currentHitPoints = hitPoints;
-        this.subClass = className;
     }
 
     public void gainExperience(int experience)
@@ -68,21 +90,21 @@ public class Hero extends AIndividual {
     {
         switch (artefact.getType())
         {
-            case "Armor" ->
+            case "Armor":
             {
                 if (this.armor != null)
                     this.defense -= this.armor.getDefense();
                 this.armor = artefact;
                 this.defense += artefact.getDefense();
             }
-            case "Helm" ->
+            case "Helm":
             {
                 if (this.helm != null)
                     this.hitPoints -= this.helm.getHitPoints();
                 this.helm = artefact;
                 this.hitPoints += artefact.getHitPoints();
             }
-            case "Weapon" ->
+            case "Weapon":
             {
                 if (this.weapon != null)
                     this.attack -= this.weapon.getAttack();
@@ -96,17 +118,17 @@ public class Hero extends AIndividual {
     {
         switch (artefact.getType())
         {
-            case "Armor" ->
+            case "Armor":
             {
                 this.defense -= this.armor.getDefense();
                 this.armor = null;
             }
-            case "Helm" ->
+            case "Helm":
             {
                 this.hitPoints -= this.helm.getHitPoints();
                 this.helm = null;
             }
-            case "Weapon" ->
+            case "Weapon":
             {
                 this.attack -= this.weapon.getAttack();
                 this.weapon = null;

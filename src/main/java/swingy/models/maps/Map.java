@@ -57,7 +57,7 @@ public class Map {
             {
                 switch (direction)
                 {
-                    case "NORTH" ->
+                    case "NORTH":
                     {
                         if (map[y - 1][x] == 1)
                         {
@@ -82,7 +82,7 @@ public class Map {
                         map[y][x] = 0;
                         map[y - 1][x] = 2;
                     }
-                    case "SOUTH" ->
+                    case "SOUTH":
                     {
                         if (map[y + 1][x] == 1)
                         {
@@ -107,7 +107,7 @@ public class Map {
                         map[y][x] = 0;
                         map[y + 1][x] = 2;
                     }
-                    case "WEST" ->
+                    case "WEST":
                     {
                         if (map[y][x - 1] == 1)
                         {
@@ -132,7 +132,7 @@ public class Map {
                         map[y][x] = 0;
                         map[y][x - 1] = 2;
                     }
-                    case "EAST" ->
+                    case "EAST":
                     {
                         if (map[y][x + 1] == 1)
                         {

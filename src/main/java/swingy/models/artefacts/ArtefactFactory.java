@@ -12,9 +12,12 @@ public final class ArtefactFactory {
 
         switch (type)
         {
-            case "Weapon" -> instance = new Weapon(name, value);
-            case "Armor" -> instance = new Armor(name, value);
-            case "Helm" -> instance = new Helm(name, value);
+            case "Weapon":
+                instance = new Weapon(name, value);
+            case "Armor":
+                instance = new Armor(name, value);
+            case "Helm":
+                instance = new Helm(name, value);
         }
 
         return instance;
@@ -28,13 +31,18 @@ public final class ArtefactFactory {
         String[] helmNames = {"Helmet", "Crown", "Cap", "Hat"};
 
         String type = artefactTypes[(int)(Math.random() * 3)];
-        String name = switch (type)
+        String name;
+        switch (type)
         {
-            case "Weapon" -> weaponNames[(int)(Math.random() * 4)];
-            case "Armor" -> armorNames[(int)(Math.random() * 4)];
-            case "Helm" -> helmNames[(int)(Math.random() * 4)];
-            default -> "";
-        };
+            case "Weapon":
+                name = weaponNames[(int)(Math.random() * 4)];
+            case "Armor":
+                name = armorNames[(int)(Math.random() * 4)];
+            case "Helm":
+                name = helmNames[(int)(Math.random() * 4)];
+            default :
+                name = "";
+        }
 
         int min = villainLevel * 5;
         int max = villainLevel * 10;

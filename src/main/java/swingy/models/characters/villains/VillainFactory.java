@@ -12,9 +12,12 @@ public class VillainFactory {
 
         switch (villainType)
         {
-            case "Dragon" -> instance = new Dragon(name, level);
-            case "Goblin" -> instance = new Goblin(name, level);
-            case "Orc" -> instance = new Orc(name, level);
+            case "Dragon":
+                instance = new Dragon(name, level);
+            case "Goblin":
+                instance = new Goblin(name, level);
+            case "Orc":
+                instance = new Orc(name, level);
         }
 
         return instance;
@@ -30,9 +33,12 @@ public class VillainFactory {
 
         switch (random)
         {
-            case 0 -> instance = new Dragon("Dragon", level);
-            case 1 -> instance = new Goblin("Goblin", level);
-            case 2 -> instance = new Orc("Orc", level);
+            case 0:
+                instance = new Dragon("Dragon", level);
+            case 1:
+                instance = new Goblin("Goblin", level);
+            case 2:
+                instance = new Orc("Orc", level);
         }
 
         return instance;

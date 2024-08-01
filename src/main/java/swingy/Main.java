@@ -1,5 +1,6 @@
 package swingy;
 
+import swingy.controllers.validation.Validation;
 import swingy.models.database.Database;
 
 import swingy.models.characters.heroes.Hero;
@@ -12,16 +13,16 @@ import swingy.utils.Utils;
 public class Main {
     public static void main(String[] args)
     {
+        boolean isRunning = true;
+
         try
         {
             Database.createDB();
             Hero hero = Utils.selectHero();
+
+            Validation.validateHero(hero);
+
             Map  map  = MapFactory.createMap(hero.getLevel());
-
-            Utils.printYellow("\n");
-            hero.printHeroInfos();
-
-            boolean isRunning = true;
 
             while (isRunning)
             {

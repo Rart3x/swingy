@@ -1,9 +1,5 @@
 package swingy.models.characters.heroes;
 
-import swingy.models.characters.heroes.Archer;
-import swingy.models.characters.heroes.Mage;
-import swingy.models.characters.heroes.Warrior;
-
 public class HeroFactory {
     private static Hero instance;
 
@@ -16,9 +12,12 @@ public class HeroFactory {
 
         switch (heroClass)
         {
-            case "Archer" -> instance = new Archer(name);
-            case "Mage" -> instance = new Mage(name);
-            case "Warrior" -> instance = new Warrior(name);
+            case "Archer":
+                instance = new Archer(name);
+            case "Mage":
+                instance = new Mage(name);
+            case "Warrior":
+                instance = new Warrior(name);
         }
 
         return instance;
