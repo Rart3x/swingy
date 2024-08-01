@@ -11,6 +11,42 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 public class Utils {
+    public static boolean fightOrRun()
+    {
+        Utils.printYellow("You hear a noise and turn around to see a villain. Do you want to fight or run? (fight/run)");
+
+        String answer = System.console().readLine();
+
+        while (!answer.equalsIgnoreCase("fight") && !answer.equalsIgnoreCase("run"))
+        {
+            Utils.printRed("Invalid input. Please enter 'fight' or 'run'.");
+            answer = System.console().readLine();
+        }
+
+        int randomNumber = (int)(Math.random() * 100);
+
+        if (answer.equalsIgnoreCase("run"))
+        {
+            if (randomNumber < 50)
+            {
+                Utils.printGreen("You successfully ran away.");
+                return false;
+            }
+            else
+            {
+                Utils.printRed("You failed to run away.");
+                return true;
+            }
+        }
+        else
+        {
+            Utils.printGreen("You decided to fight!");
+            return true;
+        }
+    }
+
+
+
     public static void lootRandomArtefact(Artefact randomArtefact, Hero hero)
     {
         Utils.printYellow("You found a " + randomArtefact.getName() + " artefact! Do you want to equip it? (yes/no)");

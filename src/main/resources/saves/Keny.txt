@@ -1,12 +1,15 @@
 Artefacts:
+Armor: Plate
+Defense: 41
+
 
 
 
 Name: Keny
-Level: 2
-Experience Points: 3000
-Hero Attack: 10
-Hero Defense: 10
-Hero Hit Points: 90
-Current Hit Points: 64
+Level: 3
+Experience Points: 6550
+Hero Attack: 18
+Hero Defense: 13
+Hero Hit Points: 130
+Current Hit Points: 99
 

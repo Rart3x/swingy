@@ -67,10 +67,13 @@ public class Map {
 
                         if (map[y - 1][x] == 3)
                         {
-                            Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
-                            Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
-                            Fight fight = FightFactory.createFight(hero, randomVillain);
-                            fight.fight();
+                            if (Utils.fightOrRun())
+                            {
+                                Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
+                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                                Fight fight = FightFactory.createFight(hero, randomVillain);
+                                fight.fight();
+                            }
 
                             if (hero.getIsDead())
                                 return false;
@@ -89,10 +92,13 @@ public class Map {
 
                         if (map[y + 1][x] == 3)
                         {
-                            Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
-                            Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
-                            Fight fight = FightFactory.createFight(hero, randomVillain);
-                            fight.fight();
+                            if (Utils.fightOrRun())
+                            {
+                                Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
+                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                                Fight fight = FightFactory.createFight(hero, randomVillain);
+                                fight.fight();
+                            }
 
                             if (hero.getIsDead())
                                 return false;
@@ -111,10 +117,13 @@ public class Map {
 
                         if (map[y][x - 1] == 3)
                         {
-                            Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
-                            Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
-                            Fight fight = FightFactory.createFight(hero, randomVillain);
-                            fight.fight();
+                            if (Utils.fightOrRun())
+                            {
+                                Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
+                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                                Fight fight = FightFactory.createFight(hero, randomVillain);
+                                fight.fight();
+                            }
 
                             if (hero.getIsDead())
                                 return false;
@@ -133,10 +142,13 @@ public class Map {
 
                         if (map[y][x + 1] == 3)
                         {
-                            Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
-                            Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
-                            Fight fight = FightFactory.createFight(hero, randomVillain);
-                            fight.fight();
+                            if (Utils.fightOrRun())
+                            {
+                                Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
+                                Utils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+                                Fight fight = FightFactory.createFight(hero, randomVillain);
+                                fight.fight();
+                            }
 
                             if (hero.getIsDead())
                                 return false;
