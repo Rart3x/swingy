@@ -1,7 +1,12 @@
 Artefacts:
-Armor: Cloth
-Defense: 13
 
 
 
+Name: Keny
+Level: 2
+Experience Points: 3000
+Hero Attack: 10
+Hero Defense: 10
+Hero Hit Points: 90
+Current Hit Points: 64
 

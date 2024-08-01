@@ -31,6 +31,7 @@ public class Main {
 
             if (!hero.getIsDead())
             {
+                Database.insertHero(hero);
                 Utils.saveHero(hero);
                 Utils.printGreen(hero.getName() + " hero has been saved successfully.");
             }
