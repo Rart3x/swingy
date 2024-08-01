@@ -55,7 +55,7 @@ public class Hero extends AIndividual {
     {
         double maxExperience = (this.level * 1000) + Math.pow((this.level - 1), 2) * 450;
 
-        PrintUtils.printGreen(this.name + " wins the fight and gains " + experience + " experience");
+        PrintUtils.printGreen("\n" + this.name + " wins the fight and gains " + experience + " experience");
 
         if ((this.experience + experience) >= maxExperience)
         {
@@ -97,6 +97,7 @@ public class Hero extends AIndividual {
                     this.defense -= this.armor.getDefense();
                 this.armor = artefact;
                 this.defense += artefact.getDefense();
+                break;
             }
             case "Helm":
             {
@@ -104,6 +105,7 @@ public class Hero extends AIndividual {
                     this.hitPoints -= this.helm.getHitPoints();
                 this.helm = artefact;
                 this.hitPoints += artefact.getHitPoints();
+                break;
             }
             case "Weapon":
             {
@@ -111,6 +113,7 @@ public class Hero extends AIndividual {
                     this.attack -= this.weapon.getAttack();
                 this.weapon = artefact;
                 this.attack += artefact.getAttack();
+                break;
             }
         }
     }
@@ -123,16 +126,19 @@ public class Hero extends AIndividual {
             {
                 this.defense -= this.armor.getDefense();
                 this.armor = null;
+                break;
             }
             case "Helm":
             {
                 this.hitPoints -= this.helm.getHitPoints();
                 this.helm = null;
+                break;
             }
             case "Weapon":
             {
                 this.attack -= this.weapon.getAttack();
                 this.weapon = null;
+                break;
             }
         }
     }

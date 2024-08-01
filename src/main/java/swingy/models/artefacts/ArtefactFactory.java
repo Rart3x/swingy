@@ -14,12 +14,14 @@ public final class ArtefactFactory {
         {
             case "Weapon":
                 instance = new Weapon(name, value);
+                break;
             case "Armor":
                 instance = new Armor(name, value);
+                break;
             case "Helm":
                 instance = new Helm(name, value);
+                break;
         }
-
         return instance;
     }
 
@@ -32,14 +34,18 @@ public final class ArtefactFactory {
 
         String type = artefactTypes[(int)(Math.random() * 3)];
         String name;
+
         switch (type)
         {
             case "Weapon":
                 name = weaponNames[(int)(Math.random() * 4)];
+                break;
             case "Armor":
                 name = armorNames[(int)(Math.random() * 4)];
+                break;
             case "Helm":
                 name = helmNames[(int)(Math.random() * 4)];
+                break;
             default :
                 name = "";
         }

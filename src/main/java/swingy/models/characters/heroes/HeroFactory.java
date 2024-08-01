@@ -14,10 +14,13 @@ public class HeroFactory {
         {
             case "Archer":
                 instance = new Archer(name);
+                break;
             case "Mage":
                 instance = new Mage(name);
+                break;
             case "Warrior":
                 instance = new Warrior(name);
+                break;
         }
 
         return instance;

@@ -27,21 +27,15 @@ public class Utils {
         if (answer.equalsIgnoreCase("run"))
         {
             if (randomNumber < 50)
-            {
-                PrintUtils.printGreen("You successfully ran away.");
                 return false;
-            }
             else
             {
-                PrintUtils.printRed("You failed to run away.");
+                PrintUtils.printRed("\nYou failed to run away.");
                 return true;
             }
         }
         else
-        {
-            PrintUtils.printGreen("You decided to fight!");
             return true;
-        }
     }
 
     static boolean fightOrRunResult(Hero hero)
@@ -49,7 +43,7 @@ public class Utils {
         if (Utils.fightOrRun())
         {
             Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
-            PrintUtils.printYellow("You have encountered a " + randomVillain.getName() + " villain.");
+            PrintUtils.printYellow("\nYou have encountered a " + randomVillain.getName() + " villain.\n");
             Fight fight = FightFactory.createFight(hero, randomVillain);
             fight.fight();
         }
@@ -59,7 +53,14 @@ public class Utils {
 
     public static void lootRandomArtefact(Artefact randomArtefact, Hero hero)
     {
-        PrintUtils.printYellow("You found a " + randomArtefact.getName() + " artefact! Do you want to equip it? (yes/no)");
+        PrintUtils.printYellow("\nYou found a " + randomArtefact.getName() + " artefact!");
+        if (randomArtefact.getAttack() > 0)
+            PrintUtils.printBlue("Attack: " + randomArtefact.getAttack());
+        if (randomArtefact.getDefense() > 0)
+            PrintUtils.printBlue("Defense: " + randomArtefact.getDefense());
+        if (randomArtefact.getHitPoints() > 0)
+            PrintUtils.printBlue("Hit Points: " + randomArtefact.getHitPoints());
+        PrintUtils.printYellow("\nDo you want to equip it? (yes/no)");
 
         String answer = System.console().readLine();
 
@@ -88,7 +89,7 @@ public class Utils {
         if (answer.equalsIgnoreCase("exit"))
             System.exit(0);
 
-        while (!answer.equalsIgnoreCase("new") && !answer.equalsIgnoreCase("load") && !answer.equalsIgnoreCase("exit"))
+        while (!answer.equalsIgnoreCase("new") && !answer.equalsIgnoreCase("load"))
         {
             if (answer.equalsIgnoreCase("exit"))
                 System.exit(0);
@@ -129,12 +130,8 @@ public class Utils {
         PrintUtils.printYellow("Select a hero name");
         String heroName = System.console().readLine();
 
-        switch (heroClass)
-        {
-            case "Archer" :  { instance = HeroFactory.createHero(heroName, "Archer"); }
-            case "Mage" :  { instance = HeroFactory.createHero(heroName, "Mage"); }
-            case "Warrior" :  { instance = HeroFactory.createHero(heroName, "Warrior"); }
-        }
+        instance = HeroFactory.createHero(heroName, heroClass);
+
         return instance;
     }
 

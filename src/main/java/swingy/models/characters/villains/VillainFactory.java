@@ -14,10 +14,13 @@ public class VillainFactory {
         {
             case "Dragon":
                 instance = new Dragon(name, level);
+                break;
             case "Goblin":
                 instance = new Goblin(name, level);
+                break;
             case "Orc":
                 instance = new Orc(name, level);
+                break;
         }
 
         return instance;
@@ -35,10 +38,13 @@ public class VillainFactory {
         {
             case 0:
                 instance = new Dragon("Dragon", level);
+                break;
             case 1:
                 instance = new Goblin("Goblin", level);
+                break;
             case 2:
                 instance = new Orc("Orc", level);
+                break;
         }
 
         return instance;

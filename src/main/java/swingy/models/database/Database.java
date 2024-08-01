@@ -242,10 +242,13 @@ public class Database {
                         {
                             case "Armor":
                                 armor = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
+                                break;
                             case "Helm":
                                 helm = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
+                                break;
                             case "Weapon":
                                 weapon = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
+                                break;
                         }
                     }
 
