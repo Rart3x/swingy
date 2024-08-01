@@ -1,5 +1,6 @@
 package swingy.models.database;
 
+import swingy.models.artefacts.Armor;
 import swingy.models.artefacts.Artefact;
 import swingy.models.characters.heroes.Hero;
 import swingy.models.characters.heroes.HeroFactory;
@@ -89,6 +90,17 @@ public class Database {
 
             int heroIdInDB = getHeroIdInDB(hero.getName());
 
+            Artefact armor = hero.getArmor();
+            Artefact helm = hero.getHelm();
+            Artefact weapon = hero.getWeapon();
+
+            if (armor != null)
+                hero.unequipArtefact(armor);
+            if (helm != null)
+                hero.unequipArtefact(helm);
+            if (weapon != null)
+                hero.unequipArtefact(weapon);
+
             if (connection != null)
             {
                 PreparedStatement preparedStatement;
@@ -120,13 +132,12 @@ public class Database {
             }
 
             heroIdInDB = getHeroIdInDB(hero.getName());
-
-            if (hero.getArmor() != null)
-                insertArtefact(hero.getArmor(), heroIdInDB);
-            if (hero.getHelm() != null)
-                insertArtefact(hero.getHelm(), heroIdInDB);
-            if (hero.getWeapon() != null)
-                insertArtefact(hero.getWeapon(), heroIdInDB);
+            if (armor != null)
+                insertArtefact(armor, heroIdInDB);
+            if (helm != null)
+                insertArtefact(helm, heroIdInDB);
+            if (weapon != null)
+                insertArtefact(weapon, heroIdInDB);
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
