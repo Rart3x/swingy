@@ -5,6 +5,6 @@ public class Archer extends Hero {
 
     public Archer(String name)
     {
-        super(name, 5, 5, 40);
+        super(name, "Archer", 5, 5, 40);
     }
 }

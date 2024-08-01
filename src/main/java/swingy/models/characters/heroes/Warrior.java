@@ -5,6 +5,6 @@ public class Warrior extends Hero {
 
     public Warrior(String name)
     {
-        super(name, 10, 5, 50);
+        super(name, "Warrior", 10, 5, 50);
     }
 }

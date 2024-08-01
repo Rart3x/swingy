@@ -5,6 +5,6 @@ public class Mage extends Hero {
 
     public Mage(String name)
     {
-        super(name, 8, 3, 30);
+        super(name, "Mage", 8, 3, 30);
     }
 }

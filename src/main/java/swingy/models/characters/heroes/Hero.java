@@ -9,13 +9,15 @@ public class Hero extends AIndividual {
     protected Artefact helm = null;
     protected Artefact weapon = null;
 
+    protected String subClass;
+
     protected int experience;
     protected int attack, defense, hitPoints;
     protected int currentHitPoints;
 
     protected boolean isDead = false;
 
-    public Hero(String name, int attack, int defense, int hitPoints)
+    public Hero(String name, String className, int attack, int defense, int hitPoints)
     {
         super(name, "Hero", 1);
         this.experience = 0;
@@ -23,6 +25,7 @@ public class Hero extends AIndividual {
         this.defense = defense;
         this.hitPoints = hitPoints;
         this.currentHitPoints = hitPoints;
+        this.subClass = className;
     }
 
     public void gainExperience(int experience)
@@ -123,7 +126,7 @@ public class Hero extends AIndividual {
         Utils.printBlue("Current Hit Points: " + currentHitPoints);
     }
 
-
+    public String   getSubClass() { return subClass; }
     public int      getExperience() { return experience; }
     public int      getAttack() { return attack; }
     public int      getDefense() { return defense; }
@@ -134,6 +137,7 @@ public class Hero extends AIndividual {
     public Artefact getWeapon() { return weapon; }
     public boolean  getIsDead() { return isDead; }
 
+    public void setSubClass(String subClass) { this.subClass = subClass; }
     public void setExperience(int experience) { this.experience = experience; }
     public void setAttack(int attack) { this.attack = attack; }
     public void setDefense(int defense) { this.defense = defense; }

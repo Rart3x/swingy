@@ -17,11 +17,42 @@ public class Database {
         if (connection != null)
         {
             Statement statement = connection.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS heroes (id INTEGER PRIMARY KEY, name TEXT, type TEXT, level INTEGER, experience INTEGER, attack INTEGER, defense INTEGER, hitPoints INTEGER)");
-            statement.execute("CREATE TABLE IF NOT EXISTS artefacts (" + "id INTEGER PRIMARY KEY," + "name TEXT," + "type TEXT," + "attack INTEGER," + "defense INTEGER," + "hitPoints INTEGER," + "heroId INTEGER," + "FOREIGN KEY(heroId) REFERENCES heroes(id)" + ")");
+            statement.execute("CREATE TABLE IF NOT EXISTS heroes (id INTEGER PRIMARY KEY, name TEXT, subClass TEXT, level INTEGER, experience INTEGER, attack INTEGER, defense INTEGER, hitPoints INTEGER, currentHitPoints INTEGER)");
+            statement.execute("CREATE TABLE IF NOT EXISTS artefacts (id INTEGER PRIMARY KEY, name TEXT, type TEXT, attack INTEGER, defense INTEGER, hitPoints INTEGER, heroId INTEGER, FOREIGN KEY(heroId) REFERENCES heroes(id) )");
             statement.close();
             connection.close();
         }
+    }
+
+    public static int getArtefactIdInDB(String artefactName)
+    {
+        int artefactId = -1;
+
+        try
+        {
+            Class.forName("org.sqlite.JDBC");
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+
+            if (connection != null)
+            {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM artefacts WHERE name = ?");
+                preparedStatement.setString(1, artefactName);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if (resultSet.getInt("id") != 0)
+                    artefactId = resultSet.getInt("id");
+
+                preparedStatement.close();
+                connection.close();
+
+                return artefactId;
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return artefactId;
     }
 
     public static int getHeroIdInDB(String heroName)
@@ -62,15 +93,32 @@ public class Database {
             Class.forName("org.sqlite.JDBC");
             Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 
+            int artefactIdInDB = getArtefactIdInDB(artefact.getName());
+
             if (connection != null)
             {
-                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO artefacts (name, type, attack, defense, hitPoints, heroId) VALUES (?, ?, ?, ?, ?, ?)");
-                preparedStatement.setString(1, artefact.getName());
-                preparedStatement.setString(2, artefact.getType());
-                preparedStatement.setInt(3, artefact.getAttack());
-                preparedStatement.setInt(4, artefact.getDefense());
-                preparedStatement.setInt(5, artefact.getHitPoints());
-                preparedStatement.setInt(6, heroIdInDB);
+                PreparedStatement preparedStatement;
+
+                if (artefactIdInDB != -1)
+                {
+                    preparedStatement = connection.prepareStatement("UPDATE artefacts SET type = ?, attack = ?, defense = ?, hitPoints = ?, heroId = ? WHERE name = ?");
+                    preparedStatement.setString(1, artefact.getType());
+                    preparedStatement.setInt(2, artefact.getAttack());
+                    preparedStatement.setInt(3, artefact.getDefense());
+                    preparedStatement.setInt(4, artefact.getHitPoints());
+                    preparedStatement.setInt(5, heroIdInDB);
+                    preparedStatement.setString(6, artefact.getName());
+                }
+                else
+                {
+                    preparedStatement = connection.prepareStatement("INSERT INTO artefacts (name, type, attack, defense, hitPoints, heroId) VALUES (?, ?, ?, ?, ?, ?)");
+                    preparedStatement.setString(1, artefact.getName());
+                    preparedStatement.setString(2, artefact.getType());
+                    preparedStatement.setInt(3, artefact.getAttack());
+                    preparedStatement.setInt(4, artefact.getDefense());
+                    preparedStatement.setInt(5, artefact.getHitPoints());
+                    preparedStatement.setInt(6, heroIdInDB);
+                }
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
                 connection.close();
@@ -107,24 +155,26 @@ public class Database {
 
                 if (heroIdInDB != -1)
                 {
-                    preparedStatement = connection.prepareStatement("UPDATE heroes SET level = ?, experience = ?, attack = ?, defense = ?, hitPoints = ? WHERE name = ?");
+                    preparedStatement = connection.prepareStatement("UPDATE heroes SET level = ?, experience = ?, attack = ?, defense = ?, hitPoints = ?, currentHitPoints = ? WHERE name = ?");
                     preparedStatement.setInt(1, hero.getLevel());
                     preparedStatement.setInt(2, hero.getExperience());
                     preparedStatement.setInt(3, hero.getAttack());
                     preparedStatement.setInt(4, hero.getDefense());
                     preparedStatement.setInt(5, hero.getHitPoints());
-                    preparedStatement.setString(6, hero.getName());
+                    preparedStatement.setInt(6, hero.getCurrentHitPoints());
+                    preparedStatement.setString(7, hero.getName());
                 }
                 else
                 {
-                    preparedStatement = connection.prepareStatement("INSERT INTO heroes (name, type, level, experience, attack, defense, hitPoints) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    preparedStatement = connection.prepareStatement("INSERT INTO heroes (name, subClass, level, experience, attack, defense, hitPoints, currentHitPoints) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                     preparedStatement.setString(1, hero.getName());
-                    preparedStatement.setString(2, hero.getType());
+                    preparedStatement.setString(2, hero.getSubClass());
                     preparedStatement.setInt(3, hero.getLevel());
                     preparedStatement.setInt(4, hero.getExperience());
                     preparedStatement.setInt(5, hero.getAttack());
                     preparedStatement.setInt(6, hero.getDefense());
                     preparedStatement.setInt(7, hero.getHitPoints());
+                    preparedStatement.setInt(8, hero.getCurrentHitPoints());
                 }
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
@@ -164,12 +214,13 @@ public class Database {
                     ResultSet resultSet = preparedStatement.executeQuery();
 
                     String name = resultSet.getString("name");
-                    String type = resultSet.getString("type");
+                    String subClass = resultSet.getString("subClass");
                     int level = resultSet.getInt("level");
                     int experience = resultSet.getInt("experience");
                     int attack = resultSet.getInt("attack");
                     int defense = resultSet.getInt("defense");
                     int hitPoints = resultSet.getInt("hitPoints");
+                    int currentHitPoints = resultSet.getInt("currentHitPoints");
 
                     PreparedStatement newPrepareStatement = connection.prepareStatement("SELECT * FROM artefacts WHERE heroId = ?");
                     newPrepareStatement.setInt(1, heroId);
@@ -199,20 +250,21 @@ public class Database {
                         }
                     }
 
-                    hero = HeroFactory.createHero(name, type);
+                    hero = HeroFactory.createHero(name, subClass);
 
                     hero.setAttack(attack);
                     hero.setDefense(defense);
                     hero.setHitPoints(hitPoints);
+                    hero.setCurrentHitPoints(currentHitPoints);
                     hero.setLevel(level);
                     hero.setExperience(experience);
 
                     if (armor != null)
-                        hero.setArmor(armor);
+                        hero.equipArtefact(armor);
                     if (helm != null)
-                        hero.setHelm(helm);
+                        hero.equipArtefact(helm);
                     if (weapon != null)
-                        hero.setWeapon(weapon);
+                        hero.equipArtefact(weapon);
 
                     preparedStatement.close();
                     connection.close();
