@@ -4,7 +4,7 @@ import javax.validation.constraints.*;
 
 import swingy.models.artefacts.Artefact;
 import swingy.models.characters.AIndividual;
-import swingy.utils.Utils;
+import swingy.utils.PrintUtils;
 
 public class Hero extends AIndividual {
     @NotNull(message = "Name cannot be empty")
@@ -42,7 +42,8 @@ public class Hero extends AIndividual {
     public Hero(String name, String className, int attack, int defense, int hitPoints)
     {
         super(name, "Hero", 1);
-        this.name = "";
+        this.name = name;
+        this.subClass = className;
         this.experience = 0;
         this.attack = attack;
         this.defense = defense;
@@ -54,7 +55,7 @@ public class Hero extends AIndividual {
     {
         double maxExperience = (this.level * 1000) + Math.pow((this.level - 1), 2) * 450;
 
-        Utils.printGreen(this.name + " wins the fight and gains " + experience + " experience");
+        PrintUtils.printGreen(this.name + " wins the fight and gains " + experience + " experience");
 
         if ((this.experience + experience) >= maxExperience)
         {
@@ -66,7 +67,7 @@ public class Hero extends AIndividual {
             this.hitPoints += 50;
             this.currentHitPoints += 50;
 
-            Utils.printGreen(this.name + " leveled up to level " + this.level);
+            PrintUtils.printGreen(this.name + " leveled up to level " + this.level);
         }
         else
             this.experience += experience;
@@ -74,11 +75,11 @@ public class Hero extends AIndividual {
 
     public void looseHitPoints(int hitPoints, String villainName)
     {
-        Utils.printBlue(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
+        PrintUtils.printBlue(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
 
         if (this.currentHitPoints - hitPoints <= 0)
         {
-            Utils.printRed(this.name + " looses the fight and died");
+            PrintUtils.printRed(this.name + " looses the fight and died");
             this.currentHitPoints = 0;
             this.isDead = true;
         }
@@ -139,13 +140,13 @@ public class Hero extends AIndividual {
 
     public void     printHeroInfos()
     {
-        Utils.printBlue("Name: " + name);
-        Utils.printBlue("Level: " + level);
-        Utils.printBlue("Experience: " + experience);
-        Utils.printBlue("Attack: " + attack);
-        Utils.printBlue("Defense: " + defense);
-        Utils.printBlue("Hit Points: " + hitPoints);
-        Utils.printBlue("Current Hit Points: " + currentHitPoints);
+        PrintUtils.printBlue("Name: " + name);
+        PrintUtils.printBlue("Level: " + level);
+        PrintUtils.printBlue("Experience: " + experience);
+        PrintUtils.printBlue("Attack: " + attack);
+        PrintUtils.printBlue("Defense: " + defense);
+        PrintUtils.printBlue("Hit Points: " + hitPoints);
+        PrintUtils.printBlue("Current Hit Points: " + currentHitPoints);
     }
 
     public String   getSubClass() { return subClass; }

@@ -8,6 +8,7 @@ import swingy.models.characters.heroes.Hero;
 import swingy.models.maps.Map;
 import swingy.models.maps.MapFactory;
 
+import swingy.utils.PrintUtils;
 import swingy.utils.Utils;
 
 public class Main {
@@ -33,12 +34,11 @@ public class Main {
             if (!hero.getIsDead())
             {
                 Database.insertHero(hero);
-                Utils.saveHero(hero);
-                Utils.printGreen(hero.getName() + " hero has been saved successfully.");
+                PrintUtils.printGreen(hero.getName() + " hero has been saved successfully.");
             }
         }
         catch (Exception e) {
-            Utils.printError(e.getMessage());
+            PrintUtils.printError(e.getMessage());
         }
     }
 }
