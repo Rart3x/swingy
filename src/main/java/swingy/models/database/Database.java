@@ -23,6 +23,27 @@ public class Database {
         }
     }
 
+    public static void deleteArtefact(String artefactName)
+    {
+        try
+        {
+            Class.forName("org.sqlite.JDBC");
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+
+            if (connection != null)
+            {
+                PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM artefacts WHERE name = ?");
+                preparedStatement.setString(1, artefactName);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                connection.close();
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static int getArtefactIdInDB(String artefactName)
     {
         int artefactId = -1;
@@ -89,10 +110,10 @@ public class Database {
     {
         try
         {
+            int artefactIdInDB = getArtefactIdInDB(artefact.getName());
+
             Class.forName("org.sqlite.JDBC");
             Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
-
-            int artefactIdInDB = getArtefactIdInDB(artefact.getName());
 
             if (connection != null)
             {

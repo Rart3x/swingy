@@ -53,13 +53,38 @@ public class Utils {
 
     public static void lootRandomArtefact(Artefact randomArtefact, Hero hero)
     {
-        PrintUtils.printYellow("\nYou found a " + randomArtefact.getName() + " artefact!");
-        if (randomArtefact.getAttack() > 0)
-            PrintUtils.printBlue("Attack: " + randomArtefact.getAttack());
-        if (randomArtefact.getDefense() > 0)
-            PrintUtils.printBlue("Defense: " + randomArtefact.getDefense());
-        if (randomArtefact.getHitPoints() > 0)
-            PrintUtils.printBlue("Hit Points: " + randomArtefact.getHitPoints());
+        Artefact currentArtefact = null;
+        String artefactType = randomArtefact.getType();
+
+        switch (artefactType)
+        {
+            case "Weapon":
+                currentArtefact = hero.getWeapon();
+                hero.setWeapon(randomArtefact);
+                break;
+            case "Armor":
+                currentArtefact = hero.getArmor();
+                hero.setArmor(randomArtefact);
+                break;
+            case "Helm":
+                currentArtefact = hero.getHelm();
+                hero.setHelm(randomArtefact);
+                break;
+        }
+
+        if (currentArtefact != null)
+            PrintUtils.printArtefactCompare(randomArtefact, currentArtefact);
+        else
+        {
+            PrintUtils.printBlue("\nYou found a " + randomArtefact.getName() + " artefact!");
+            if (randomArtefact.getAttack() > 0)
+                PrintUtils.printGreen("Att: " + randomArtefact.getAttack());
+            if (randomArtefact.getDefense() > 0)
+                PrintUtils.printGreen("Def: " + randomArtefact.getDefense());
+            if (randomArtefact.getHitPoints() > 0)
+                PrintUtils.printGreen("HP: " + randomArtefact.getHitPoints());
+        }
+
         PrintUtils.printYellow("\nDo you want to equip it? (yes/no)");
 
         String answer = System.console().readLine();

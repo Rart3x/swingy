@@ -114,4 +114,6 @@ public class Map {
         }
         return position;
     }
+
+    public static int[][] getMap() { return map; }
 }

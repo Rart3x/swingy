@@ -4,6 +4,7 @@ import javax.validation.constraints.*;
 
 import swingy.models.artefacts.Artefact;
 import swingy.models.characters.AIndividual;
+import swingy.models.database.Database;
 import swingy.utils.PrintUtils;
 
 public class Hero extends AIndividual {
@@ -16,6 +17,10 @@ public class Hero extends AIndividual {
     @Min(value = 0, message = "Experience cannot be negative")
     @Max(value = Integer.MAX_VALUE, message = "Experience exceeds maximum allowed value")
     protected int experience;
+
+    @Min(value = 0, message = "Level cannot be negative")
+    @Max(value = Integer.MAX_VALUE, message = "Level exceeds maximum allowed value")
+    protected double maxExperience;
 
     @NotNull(message = "Attack cannot be null")
     @Min(value = 0, message = "Attack cannot be negative")
@@ -45,6 +50,7 @@ public class Hero extends AIndividual {
         this.name = name;
         this.subClass = className;
         this.experience = 0;
+        this.maxExperience = (this.level * 1000) + Math.pow((this.level - 1), 2) * 450;
         this.attack = attack;
         this.defense = defense;
         this.hitPoints = hitPoints;
@@ -53,8 +59,6 @@ public class Hero extends AIndividual {
 
     public void gainExperience(int experience)
     {
-        double maxExperience = (this.level * 1000) + Math.pow((this.level - 1), 2) * 450;
-
         PrintUtils.printGreen("\n" + this.name + " wins the fight and gains " + experience + " experience");
 
         if ((this.experience + experience) >= maxExperience)
@@ -89,6 +93,8 @@ public class Hero extends AIndividual {
 
     public void equipArtefact(Artefact artefact)
     {
+        int id = Database.getHeroIdInDB(this.name);
+
         switch (artefact.getType())
         {
             case "Armor":
@@ -116,10 +122,13 @@ public class Hero extends AIndividual {
                 break;
             }
         }
+        Database.insertArtefact(artefact, id);
     }
 
     public void unequipArtefact(Artefact artefact)
     {
+        Database.deleteArtefact(artefact.getName());
+
         switch (artefact.getType())
         {
             case "Armor":
@@ -157,6 +166,7 @@ public class Hero extends AIndividual {
 
     public String   getSubClass() { return subClass; }
     public int      getExperience() { return experience; }
+    public double   getMaxExperience() { return maxExperience; }
     public int      getAttack() { return attack; }
     public int      getDefense() { return defense; }
     public int      getHitPoints() { return hitPoints; }
@@ -168,6 +178,7 @@ public class Hero extends AIndividual {
 
     public void setSubClass(String subClass) { this.subClass = subClass; }
     public void setExperience(int experience) { this.experience = experience; }
+    public void setMaxExperience(int maxExperience) { this.maxExperience = maxExperience; }
     public void setAttack(int attack) { this.attack = attack; }
     public void setDefense(int defense) { this.defense = defense; }
     public void setHitPoints(int hitPoints) { this.hitPoints = hitPoints; }

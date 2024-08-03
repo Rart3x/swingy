@@ -21,9 +21,12 @@ public class Main {
             Database.createDB();
             Hero hero = Utils.selectHero();
 
-            Validation.validateHero(hero);
+            if (!Validation.validateHero(hero))
+                return;
 
-            Map  map  = MapFactory.createMap(hero.getLevel());
+//            Hero hero = HeroFactory.createHero("Legolas", "Archer");
+            Map map = MapFactory.createMap(hero.getLevel());
+//            SwingWindow window = new SwingWindow(hero, map);
 
             while (isRunning)
             {

@@ -1,12 +1,9 @@
-package swingy.utils;
+package swingy.view;
 
 import swingy.models.characters.heroes.Hero;
-
 import swingy.models.maps.Map;
 
-import static swingy.utils.Utils.fightOrRunResult;
-
-public class MoveUtils {
+public class SwingMove {
     public static boolean moveUp(Hero hero, int[][] map)
     {
         int[] position = Map.getPlayerPosition();
@@ -14,13 +11,10 @@ public class MoveUtils {
         int y = position[1];
 
         if (map[y - 1][x] == 1)
-        {
-            PrintUtils.printGreen("You have survived this level.");
             return true;
-        }
 
-        if (map[y - 1][x] == 3)
-            if (fightOrRunResult(hero)) return false;
+//        if (map[y - 1][x] == 3)
+//            if (fightOrRunResult(hero)) return false;
 
         map[y][x] = 0;
         map[y - 1][x] = 2;
@@ -35,13 +29,10 @@ public class MoveUtils {
         int y = position[1];
 
         if (map[y + 1][x] == 1)
-        {
-            PrintUtils.printGreen("You have survived this level.");
             return true;
-        }
 
-        if (map[y + 1][x] == 3)
-            if (fightOrRunResult(hero)) return false;
+//        if (map[y + 1][x] == 3)
+//            if (fightOrRunResult(hero)) return false;
 
         map[y][x] = 0;
         map[y + 1][x] = 2;
@@ -56,13 +47,10 @@ public class MoveUtils {
         int y = position[1];
 
         if (map[y][x - 1] == 1)
-        {
-            PrintUtils.printGreen("You have survived this level.");
             return true;
-        }
 
-        if (map[y][x - 1] == 3)
-            if (fightOrRunResult(hero)) return false;
+//        if (map[y][x - 1] == 3)
+//            if (fightOrRunResult(hero)) return false;
 
         map[y][x] = 0;
         map[y][x - 1] = 2;
@@ -77,13 +65,10 @@ public class MoveUtils {
         int y = position[1];
 
         if (map[y][x + 1] == 1)
-        {
-            PrintUtils.printGreen("You have survived this level.");
             return true;
-        }
 
-        if (map[y][x + 1] == 3)
-            if (fightOrRunResult(hero)) return false;
+//        if (map[y][x + 1] == 3)
+//            if (fightOrRunResult(hero)) return false;
 
         map[y][x] = 0;
         map[y][x + 1] = 2;

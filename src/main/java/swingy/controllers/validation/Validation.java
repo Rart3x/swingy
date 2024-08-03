@@ -23,7 +23,7 @@ public class Validation {
         validator = factory.getValidator();
     }
 
-    public static void validateHero(Hero hero)
+    public static boolean validateHero(Hero hero)
     {
         Set<ConstraintViolation<Hero>> constraintViolations = validator.validate(hero);
 
@@ -31,6 +31,9 @@ public class Validation {
         {
             for (ConstraintViolation<Hero> violation : constraintViolations)
                 PrintUtils.printError(violation.getMessage());
+
+            return false;
         }
+        return true;
     }
 }
