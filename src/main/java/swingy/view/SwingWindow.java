@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class SwingWindow extends JFrame {
     private static final int WIDTH = 1200;
     private static final int HEIGHT = 800;
@@ -20,7 +21,9 @@ public class SwingWindow extends JFrame {
     private JPanel rightPanel = new JPanel();
 
 
-    public SwingWindow(Hero hero, Map map)
+    public SwingWindow(Hero hero, Map map) {}
+
+    public void createWindow(Hero hero, Map map)
     {
         setTitle(TITLE);
         setSize(WIDTH, HEIGHT);
@@ -70,6 +73,12 @@ public class SwingWindow extends JFrame {
         setVisible(true);
     }
 
+    public void closeWindow()
+    {
+        setVisible(false);
+        dispose();
+    }
+
     public void updateCenterPanelContent(Hero hero, Map map)
     {
         middlePanel.removeAll();
@@ -88,6 +97,7 @@ public class SwingWindow extends JFrame {
         SwingElement.createHPBar(hero, rightPanel);
         SwingElement.createXPBar(hero, rightPanel);
         SwingElement.createDirectionButtons(hero, map, middlePanel,  rightPanel);
+        SwingElement.createSwitchButton(hero, rightPanel, this);
 
         revalidate();
         repaint();

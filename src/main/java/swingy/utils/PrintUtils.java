@@ -6,7 +6,18 @@ public class PrintUtils {
 
     public static void printArtefactCompare(Artefact artefact, Artefact currentArtefact)
     {
-        printBlue("\nYou found a " + artefact.getName() + " artefact!");
+        switch (artefact.getType())
+        {
+            case "Armor":
+                printBlue("\nYou found a " + artefact.getName() + " armor!");
+                break;
+            case "Helm":
+                printBlue("\nYou found a " + artefact.getName() + " helmet!");
+                break;
+            case "Weapon":
+                printBlue("\nYou found " + artefact.getName() + "!");
+                break;
+        }
 
         if (artefact.getAttack() > 0)
         {
@@ -33,7 +44,6 @@ public class PrintUtils {
         }
     }
 
-    public static void printInfo(String message) { System.out.println("\033[34mInfo: " + message + "\033[0m"); }
     public static void printError(String message) { System.out.println("\033[31mError: " + message + "\033[0m"); }
     public static void printRed(String message) { System.out.println("\033[31m" + message + "\033[0m"); }
     public static void printGreen(String message) { System.out.println("\033[32m" + message + "\033[0m"); }

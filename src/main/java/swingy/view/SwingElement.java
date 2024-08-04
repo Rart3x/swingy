@@ -13,6 +13,12 @@ public class SwingElement {
     private static final int HEIGHT = 800;
     private static final int CENTER_WIDTH = WIDTH / 2;
 
+    public static void createSwitchButton(Hero hero, JPanel rightPanel, SwingWindow window)
+    {
+        JButton switchButton = new JButton("Switch");
+        switchButton.addActionListener(SwingListener.createSwitchListener(hero, window));
+        rightPanel.add(switchButton);
+    }
 
     public static void createDirectionButtons(Hero hero, Map map, JPanel middlePanel, JPanel rightPanel)
     {

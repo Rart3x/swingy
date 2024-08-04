@@ -4,39 +4,52 @@ import swingy.models.database.Database;
 
 import swingy.models.characters.heroes.Hero;
 
+import swingy.models.maps.Map;
+import swingy.models.maps.MapFactory;
+
 import swingy.utils.PrintUtils;
+import swingy.utils.SaveUtils;
 import swingy.utils.SelectHeroUtils;
+
+import swingy.controllers.validation.Validation;
+import swingy.view.SwingWindow;
 
 public class Main {
     public static void main(String[] args)
     {
         boolean isRunning = true;
-
+        boolean currentMode = false; // Track the current mode
         try
         {
             Database.createDB();
             Hero hero = SelectHeroUtils.selectHero();
 
-            Hero[] heros = Database.getHerosInDB();
-//
-//            if (!Validation.validateHero(hero))
-//                return;
-//
-////            Hero hero = HeroFactory.createHero("Legolas", "Archer");
-//            Map map = MapFactory.createMap(hero.getLevel());
-////            SwingWindow window = new SwingWindow(hero, map);
-//
-//            while (isRunning)
-//            {
-//                isRunning = map.move(hero);
-//                map = MapFactory.createMap(hero.getLevel());
-//            }
-//
-            if (!hero.getIsDead())
+            if (!Validation.validateHero(hero))
+                return;
+
+            Map map = MapFactory.createMap(hero.getLevel());
+            SwingWindow window = new SwingWindow(hero, map);
+
+            while (isRunning)
             {
-                Database.insertHero(hero);
-                PrintUtils.printGreen(hero.getName() + " hero has been saved successfully.");
+                if (hero.getMode() != currentMode)
+                {
+                    currentMode = hero.getMode();
+
+                    if (currentMode)
+                    {
+                        window.createWindow(hero, map);
+                    }
+                }
+
+                if (!currentMode)
+                {
+                    isRunning = map.move(hero);
+                    map = MapFactory.createMap(hero.getLevel());
+                }
             }
+
+            SaveUtils.saveHero(hero);
         }
         catch (Exception e) {
             PrintUtils.printError(e.getMessage());

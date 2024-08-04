@@ -17,14 +17,14 @@ public class SwingListener {
                 case "NORTH":
                     SwingMove.moveUp(hero, Map.getMap());
                     break;
+                case "SOUTH":
+                    SwingMove.moveDown(hero, Map.getMap());
+                    break;
                 case "WEST":
                     SwingMove.moveLeft(hero, Map.getMap());
                     break;
                 case "EAST":
                     SwingMove.moveRight(hero, Map.getMap());
-                    break;
-                case "SOUTH":
-                    SwingMove.moveDown(hero, Map.getMap());
                     break;
             }
             SwingElement.createMap(hero, map, middlePanel);
@@ -61,6 +61,15 @@ public class SwingListener {
 
             @Override
             public void keyReleased(java.awt.event.KeyEvent e) {}
+        };
+    }
+
+    public static ActionListener createSwitchListener(Hero hero, SwingWindow window)
+    {
+        return e ->
+        {
+            hero.setMode(!hero.getMode());
+            window.closeWindow();
         };
     }
 }

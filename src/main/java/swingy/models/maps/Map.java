@@ -41,7 +41,7 @@ public class Map {
 
         while (true)
         {
-            PrintUtils.printYellow("Enter a direction (NORTH, SOUTH, WEST, EAST): Quit with Q");
+            PrintUtils.printYellow("Enter a direction (NORTH, SOUTH, WEST, EAST): Switch mode with S, Quit with Q");
             String direction = System.console().readLine();
 
             if (direction.equals("NORTH") || direction.equals("SOUTH") || direction.equals("WEST") || direction.equals("EAST"))
@@ -69,6 +69,11 @@ public class Map {
                         break;
                 }
                 printMapCensured();
+            }
+            else if (direction.equalsIgnoreCase("S"))
+            {
+                hero.setMode(!hero.getMode());
+                return true;
             }
             else if (direction.equalsIgnoreCase("Q"))
                 return false;

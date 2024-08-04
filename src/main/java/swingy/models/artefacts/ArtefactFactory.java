@@ -28,9 +28,9 @@ public final class ArtefactFactory {
     public static Artefact createRandomArtefact(int villainLevel)
     {
         String[] artefactTypes = {"Weapon", "Armor", "Helm"};
-        String[] weaponNames = {"Sword", "Axe", "Bow", "Dagger"};
-        String[] armorNames = {"Chainmail", "Plate", "Leather", "Cloth"};
-        String[] helmNames = {"Helmet", "Crown", "Cap", "Hat"};
+        String[] weaponNames = {"Excalibur", "Mjolnir", "Merunes Dagon", "Sword of a Thousand Truths", "Enma", "Master Sword"};
+        String[] armorNames = {"Dragonplate", "Daedric", "Elven", "Glass"};
+        String[] helmNames = {"Iron", "Steel", "Leather", "Cloth"};
 
         String type = artefactTypes[(int)(Math.random() * 3)];
         String name;
@@ -38,7 +38,7 @@ public final class ArtefactFactory {
         switch (type)
         {
             case "Weapon":
-                name = weaponNames[(int)(Math.random() * 4)];
+                name = weaponNames[(int)(Math.random() * 6)];
                 break;
             case "Armor":
                 name = armorNames[(int)(Math.random() * 4)];
