@@ -100,7 +100,10 @@ public class Hero extends AIndividual {
             case "Armor":
             {
                 if (this.armor != null)
+                {
                     this.defense -= this.armor.getDefense();
+                    Database.deleteArtefact(this.armor.getName());
+                }
                 this.armor = artefact;
                 this.defense += artefact.getDefense();
                 break;
@@ -108,7 +111,10 @@ public class Hero extends AIndividual {
             case "Helm":
             {
                 if (this.helm != null)
+                {
                     this.hitPoints -= this.helm.getHitPoints();
+                    Database.deleteArtefact(this.helm.getName());
+                }
                 this.helm = artefact;
                 this.hitPoints += artefact.getHitPoints();
                 break;
@@ -116,7 +122,10 @@ public class Hero extends AIndividual {
             case "Weapon":
             {
                 if (this.weapon != null)
+                {
                     this.attack -= this.weapon.getAttack();
+                    Database.deleteArtefact(this.weapon.getName());
+                }
                 this.weapon = artefact;
                 this.attack += artefact.getAttack();
                 break;

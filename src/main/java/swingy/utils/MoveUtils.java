@@ -4,7 +4,7 @@ import swingy.models.characters.heroes.Hero;
 
 import swingy.models.maps.Map;
 
-import static swingy.utils.Utils.fightOrRunResult;
+import static swingy.utils.FightUtils.fightOrRunResult;
 
 public class MoveUtils {
     public static boolean moveUp(Hero hero, int[][] map)

@@ -1,15 +1,11 @@
 package swingy;
 
-import swingy.controllers.validation.Validation;
 import swingy.models.database.Database;
 
 import swingy.models.characters.heroes.Hero;
 
-import swingy.models.maps.Map;
-import swingy.models.maps.MapFactory;
-
 import swingy.utils.PrintUtils;
-import swingy.utils.Utils;
+import swingy.utils.SelectHeroUtils;
 
 public class Main {
     public static void main(String[] args)
@@ -19,21 +15,23 @@ public class Main {
         try
         {
             Database.createDB();
-            Hero hero = Utils.selectHero();
+            Hero hero = SelectHeroUtils.selectHero();
 
-            if (!Validation.validateHero(hero))
-                return;
-
-//            Hero hero = HeroFactory.createHero("Legolas", "Archer");
-            Map map = MapFactory.createMap(hero.getLevel());
-//            SwingWindow window = new SwingWindow(hero, map);
-
-            while (isRunning)
-            {
-                isRunning = map.move(hero);
-                map = MapFactory.createMap(hero.getLevel());
-            }
-
+            Hero[] heros = Database.getHerosInDB();
+//
+//            if (!Validation.validateHero(hero))
+//                return;
+//
+////            Hero hero = HeroFactory.createHero("Legolas", "Archer");
+//            Map map = MapFactory.createMap(hero.getLevel());
+////            SwingWindow window = new SwingWindow(hero, map);
+//
+//            while (isRunning)
+//            {
+//                isRunning = map.move(hero);
+//                map = MapFactory.createMap(hero.getLevel());
+//            }
+//
             if (!hero.getIsDead())
             {
                 Database.insertHero(hero);

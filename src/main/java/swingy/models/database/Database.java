@@ -106,6 +106,105 @@ public class Database {
         return heroId;
     }
 
+    public static Hero[] getHerosInDB() throws Exception
+    {
+        Hero[] heros = null;
+
+        try
+        {
+            Class.forName("org.sqlite.JDBC");
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+
+            if (connection != null)
+            {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM heroes");
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                int count = resultSet.getInt(1);
+                heros = new Hero[count];
+
+                preparedStatement = connection.prepareStatement("SELECT * FROM heroes");
+                resultSet = preparedStatement.executeQuery();
+
+                int i = 0;
+
+                while (resultSet.next())
+                {
+                    String name = resultSet.getString("name");
+                    String subClass = resultSet.getString("subClass");
+
+                    int experience = resultSet.getInt("experience");
+                    int level = resultSet.getInt("level");
+
+                    int attack = resultSet.getInt("attack");
+                    int defense = resultSet.getInt("defense");
+                    int hitPoints = resultSet.getInt("hitPoints");
+                    int currentHitPoints = resultSet.getInt("currentHitPoints");
+
+                    int heroId = getHeroIdInDB(name);
+
+                    PreparedStatement newPrepareStatement = connection.prepareStatement("SELECT * FROM artefacts WHERE heroId = ?");
+                    newPrepareStatement.setInt(1, heroId);
+                    ResultSet newResultSet = newPrepareStatement.executeQuery();
+
+                    Artefact armor = null;
+                    Artefact helm = null;
+                    Artefact weapon = null;
+
+                    while (newResultSet.next())
+                    {
+                        String artefactName = newResultSet.getString("name");
+                        String artefactType = newResultSet.getString("type");
+
+                        int artefactAttack = newResultSet.getInt("attack");
+                        int artefactDefense = newResultSet.getInt("defense");
+                        int artefactHitPoints = newResultSet.getInt("hitPoints");
+
+                        switch (artefactType)
+                        {
+                            case "Armor":
+                                armor = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
+                                break;
+                            case "Helm":
+                                helm = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
+                                break;
+                            case "Weapon":
+                                weapon = new Artefact(artefactName, artefactType, artefactAttack, artefactDefense, artefactHitPoints);
+                                break;
+                        }
+                    }
+
+                    heros[i] = HeroFactory.createHero(name, subClass);
+
+                    heros[i].setExperience(experience);
+                    heros[i].setLevel(level);
+
+                    heros[i].setAttack(attack);
+                    heros[i].setDefense(defense);
+                    heros[i].setHitPoints(hitPoints);
+                    heros[i].setCurrentHitPoints(currentHitPoints);
+
+                    if (armor != null)
+                        heros[i].equipArtefact(armor);
+                    if (helm != null)
+                        heros[i].equipArtefact(helm);
+                    if (weapon != null)
+                        heros[i].equipArtefact(weapon);
+
+                    i++;
+                }
+
+                preparedStatement.close();
+                connection.close();
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return heros;
+    }
+
     public static void insertArtefact(Artefact artefact, int heroIdInDB)
     {
         try
