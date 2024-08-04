@@ -25,7 +25,7 @@ public class SelectHeroUtils {
 
         if (answer.equalsIgnoreCase("load"))
         {
-            selectHeroPrint();
+            selectDBHeroPrint();
             PrintUtils.printYellow("\nEnter the name of the hero you want to load");
             String heroName = System.console().readLine();
 
@@ -44,7 +44,8 @@ public class SelectHeroUtils {
             }
         }
 
-        PrintUtils.printYellow("Select a hero class: Archer, Mage, Warrior");
+        PrintUtils.printYellow("Select a hero class: Archer, Mage, Warrior\n");
+        PrintUtils.printYellow("Archer: Attack 10, Defense 5, Hit Points 40\nMage: Attack 8, Defense 3, Hit Points 30\nWarrior: Attack 10, Defense 5, Hit Points 50");
         String heroClass = System.console().readLine();
 
         while (!heroClass.equalsIgnoreCase("Archer") && !heroClass.equalsIgnoreCase("Mage") && !heroClass.equalsIgnoreCase("Warrior"))
@@ -61,7 +62,7 @@ public class SelectHeroUtils {
         return instance;
     }
 
-    public static void selectHeroPrint() throws Exception
+    public static void selectDBHeroPrint() throws Exception
     {
         Hero[] heros = Database.getHerosInDB();
 
@@ -71,9 +72,7 @@ public class SelectHeroUtils {
         {
             PrintUtils.printYellow("Select a hero to load:\n");
             for (Hero hero : heros)
-            {
-                PrintUtils.printYellow(hero.getName() + " the " + hero.getSubClass() + " level " + hero.getLevel());
-            }
+                PrintUtils.printYellow(hero.getName() + " the " + hero.getSubClass() + " level " + hero.getLevel() + " attack " + hero.getAttack() + " defense " + hero.getDefense() + " hit points " + hero.getHitPoints());
         }
     }
 }
