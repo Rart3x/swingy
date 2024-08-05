@@ -24,10 +24,10 @@ public class Database {
     public static void closeDB() throws Exception
     {
         if (connection != null)
-        {
             connection.close();
+        if (preparedStatement != null)
             preparedStatement.close();
+        if (statement != null)
             statement.close();
-        }
     }
 }

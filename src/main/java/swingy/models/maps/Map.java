@@ -49,24 +49,16 @@ public class Map {
                 switch (direction)
                 {
                     case "NORTH":
-                        if (MoveUtils.moveUp(hero, map))
-                            return true;
-                        break;
+                        return MoveUtils.moveUp(hero, map);
 
                     case "SOUTH":
-                        if (MoveUtils.moveDown(hero, map))
-                            return true;
-                        break;
+                        return MoveUtils.moveDown(hero, map);
 
                     case "WEST":
-                        if (MoveUtils.moveLeft(hero, map))
-                            return true;
-                        break;
+                        return MoveUtils.moveLeft(hero, map);
 
                     case "EAST":
-                        if (MoveUtils.moveRight(hero, map))
-                            return true;
-                        break;
+                        return MoveUtils.moveRight(hero, map);
                 }
                 printMapCensured();
             }
