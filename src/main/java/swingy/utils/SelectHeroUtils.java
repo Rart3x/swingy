@@ -2,7 +2,7 @@ package swingy.utils;
 
 import swingy.models.characters.heroes.Hero;
 import swingy.models.characters.heroes.HeroFactory;
-import swingy.models.database.Database;
+import swingy.models.database.Get;
 
 public class SelectHeroUtils {
     public static Hero selectHero() throws Exception {
@@ -31,7 +31,7 @@ public class SelectHeroUtils {
 
             try
             {
-                instance = Database.loadHeroFromDB(heroName);
+                instance = Get.getHeroFromDB(heroName);
                 if (instance == null)
                 {
                     PrintUtils.printError("Hero not found.");
@@ -64,7 +64,7 @@ public class SelectHeroUtils {
 
     public static void selectDBHeroPrint() throws Exception
     {
-        Hero[] heros = Database.getHerosInDB();
+        Hero[] heros = Get.getHerosInDB();
 
         if (heros.length == 0)
             PrintUtils.printRed("No heroes found in the database.");

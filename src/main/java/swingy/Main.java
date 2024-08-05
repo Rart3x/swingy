@@ -18,7 +18,8 @@ public class Main {
     public static void main(String[] args)
     {
         boolean isRunning = true;
-        boolean currentMode = false; // Track the current mode
+        boolean currentMode = false;
+
         try
         {
             Database.createDB();
@@ -41,6 +42,8 @@ public class Main {
                         window.createWindow(hero, map);
                     }
                 }
+
+                PrintUtils.printBlue("qweqe");
 
                 if (!currentMode)
                 {

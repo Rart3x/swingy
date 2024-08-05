@@ -4,7 +4,9 @@ import javax.validation.constraints.*;
 
 import swingy.models.artefacts.Artefact;
 import swingy.models.characters.AIndividual;
-import swingy.models.database.Database;
+import swingy.models.database.Delete;
+import swingy.models.database.Get;
+import swingy.models.database.Insert;
 import swingy.utils.PrintUtils;
 
 public class Hero extends AIndividual {
@@ -94,7 +96,7 @@ public class Hero extends AIndividual {
 
     public void equipArtefact(Artefact artefact)
     {
-        int id = Database.getHeroIdInDB(this.name);
+        int id = Get.getHeroIdInDB(this.name);
 
         switch (artefact.getType())
         {
@@ -103,7 +105,7 @@ public class Hero extends AIndividual {
                 if (this.armor != null)
                 {
                     this.defense -= this.armor.getDefense();
-                    Database.deleteArtefact(this.armor.getName());
+                    Delete.deleteArtefact(this.armor.getName());
                 }
                 this.armor = artefact;
                 this.defense += artefact.getDefense();
@@ -114,7 +116,7 @@ public class Hero extends AIndividual {
                 if (this.helm != null)
                 {
                     this.hitPoints -= this.helm.getHitPoints();
-                    Database.deleteArtefact(this.helm.getName());
+                    Delete.deleteArtefact(this.helm.getName());
                 }
                 this.helm = artefact;
                 this.hitPoints += artefact.getHitPoints();
@@ -125,19 +127,19 @@ public class Hero extends AIndividual {
                 if (this.weapon != null)
                 {
                     this.attack -= this.weapon.getAttack();
-                    Database.deleteArtefact(this.weapon.getName());
+                    Delete.deleteArtefact(this.weapon.getName());
                 }
                 this.weapon = artefact;
                 this.attack += artefact.getAttack();
                 break;
             }
         }
-        Database.insertArtefact(artefact, id);
+        Insert.insertArtefact(artefact, id);
     }
 
     public void unequipArtefact(Artefact artefact)
     {
-        Database.deleteArtefact(artefact.getName());
+        Delete.deleteArtefact(artefact.getName());
 
         switch (artefact.getType())
         {
