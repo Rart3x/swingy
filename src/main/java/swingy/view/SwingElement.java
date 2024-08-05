@@ -38,47 +38,51 @@ public class SwingElement {
         rightPanel.add(southButton);
     }
 
-    public static void createMap(Hero hero, Map map, JPanel middlePanel)
-    {
+    public static void createMap(Hero hero, Map map, JPanel middlePanel) {
         middlePanel.removeAll();
 
-        int heroY = Map.getPlayerPosition()[0];
-        int heroX = Map.getPlayerPosition()[1];
+        int heroX = Map.getPlayerPosition()[0];
+        int heroY = Map.getPlayerPosition()[1];
         int size = (hero.getLevel() - 1) * 5 + 10 - (hero.getLevel() % 2);
 
-        middlePanel.setLayout(new GridLayout(size, size));
+        int VIEW_DISTANCE = 3;
+        int VIEW_SIZE = VIEW_DISTANCE * 2 + 1;
 
-        for (int i = 0; i < size; i++)
+        middlePanel.setLayout(new GridLayout(VIEW_SIZE, VIEW_SIZE));
+
+        for (int i = -VIEW_DISTANCE; i <= VIEW_DISTANCE; i++)
         {
-            for (int j = 0; j < size; j++)
+            for (int j = -VIEW_DISTANCE; j <= VIEW_DISTANCE; j++)
             {
+                int realX = heroX + i;
+                int realY = heroY + j;
+
                 Image image = null;
-                JButton button = new JButton();
 
-                button.setPreferredSize(new Dimension(CENTER_WIDTH / size, HEIGHT / size));
-                button.setEnabled(true);
-
-                if (i == heroX && j == heroY)
+                if (realX >= 0 && realX < size && realY >= 0 && realY < size)
                 {
-                    if (Objects.equals(hero.getSubClass(), "Archer"))
-                        image = WindowUtils.createImageIcon("src/main/resources/icons/bow1.png").getImage();
-                    else if (Objects.equals(hero.getSubClass(), "Mage"))
-                        image = WindowUtils.createImageIcon("src/main/resources/icons/staff1.png").getImage();
-                    else
-                        image = WindowUtils.createImageIcon("src/main/resources/icons/sword.png").getImage();
-                    button.setIcon(new ImageIcon(image));
+                    if (i == 0 && j == 0)
+                    {
+                        if (Objects.equals(hero.getSubClass(), "Archer"))
+                            image = WindowUtils.createImageIcon("src/main/resources/icons/bow1.png").getImage();
+                        else if (Objects.equals(hero.getSubClass(), "Mage"))
+                            image = WindowUtils.createImageIcon("src/main/resources/icons/staff1.png").getImage();
+                        else if (Objects.equals(hero.getSubClass(), "Warrior"))
+                            image = WindowUtils.createImageIcon("src/main/resources/icons/sword1.png").getImage();
+                    }
+                    else {
+                        image = WindowUtils.createImageIcon("src/main/resources/icons/defaultCase.png").getImage();
+                    }
                 }
-//                else if (Map.getMap()[i][j] == 1)
-//                    image = WindowUtils.createImageIcon("src/main/resources/icons/bow1.png").getImage();
-//                else if (Map.getMap()[i][j] == 2)
-//                    image = WindowUtils.createImageIcon("src/main/resources/icons/hat1.png").getImage();
-//                else
-//                    image = WindowUtils.createImageIcon("src/main/resources/icons/staff1.png").getImage();
 
+                JButton button = new JButton(new ImageIcon(image));
+                button.setPreferredSize(new Dimension(CENTER_WIDTH / VIEW_SIZE, HEIGHT / VIEW_SIZE));
+                button.setEnabled(realX >= 0 && realX < size && realY >= 0 && realY < size);
                 middlePanel.add(button);
             }
         }
     }
+
 
     public static void createTitleLevelAndClassIcon(Hero hero, JPanel rightPanel)
     {

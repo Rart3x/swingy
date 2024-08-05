@@ -31,11 +31,9 @@ public class Main {
             Map map = MapFactory.createMap(hero.getLevel());
             SwingWindow window = new SwingWindow(hero, map);
 
-
-            while (isRunning)
-            {
-                isRunning = map.move(hero);
-                map = MapFactory.createMap(hero.getLevel());
+            window.createWindow(hero, map);
+//            while (isRunning)
+//            {
 //                if (hero.getMode() != currentMode)
 //                {
 //                    currentMode = hero.getMode();
@@ -53,7 +51,7 @@ public class Main {
 //                    isRunning = map.move(hero);
 //                    map = MapFactory.createMap(hero.getLevel());
 //                }
-            }
+//            }
             SaveUtils.saveHero(hero);
             Database.closeDB();
         }
