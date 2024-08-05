@@ -16,7 +16,7 @@ public class MoveUtils {
         if (map[y - 1][x] == 1)
         {
             PrintUtils.printGreen("You have survived this level.");
-            return true;
+            return false;
         }
 
         if (map[y - 1][x] == 3)
@@ -25,7 +25,7 @@ public class MoveUtils {
         map[y][x] = 0;
         map[y - 1][x] = 2;
 
-        return false;
+        return true;
     }
 
     public static boolean moveDown(Hero hero, int[][] map)
@@ -37,7 +37,7 @@ public class MoveUtils {
         if (map[y + 1][x] == 1)
         {
             PrintUtils.printGreen("You have survived this level.");
-            return true;
+            return false;
         }
 
         if (map[y + 1][x] == 3)
@@ -46,7 +46,7 @@ public class MoveUtils {
         map[y][x] = 0;
         map[y + 1][x] = 2;
 
-        return false;
+        return true;
     }
 
     public static boolean moveLeft(Hero hero, int[][] map)
@@ -58,7 +58,7 @@ public class MoveUtils {
         if (map[y][x - 1] == 1)
         {
             PrintUtils.printGreen("You have survived this level.");
-            return true;
+            return false;
         }
 
         if (map[y][x - 1] == 3)
@@ -67,7 +67,7 @@ public class MoveUtils {
         map[y][x] = 0;
         map[y][x - 1] = 2;
 
-        return false;
+        return true;
     }
 
     public static boolean moveRight(Hero hero, int[][] map)
@@ -79,7 +79,7 @@ public class MoveUtils {
         if (map[y][x + 1] == 1)
         {
             PrintUtils.printGreen("You have survived this level.");
-            return true;
+            return false;
         }
 
         if (map[y][x + 1] == 3)
@@ -88,6 +88,6 @@ public class MoveUtils {
         map[y][x] = 0;
         map[y][x + 1] = 2;
 
-        return false;
+        return true;
     }
 }

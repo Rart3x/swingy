@@ -46,19 +46,45 @@ public class Map {
 
             if (direction.equals("NORTH") || direction.equals("SOUTH") || direction.equals("WEST") || direction.equals("EAST"))
             {
+                boolean result = false;
+
                 switch (direction)
                 {
                     case "NORTH":
-                        return MoveUtils.moveUp(hero, map);
+                        result = MoveUtils.moveUp(hero, map);
+
+                        if (!result && hero.getIsDead())
+                            return false;
+                        else if (!result)
+                            return true;
+                        break;
 
                     case "SOUTH":
-                        return MoveUtils.moveDown(hero, map);
+                        result = MoveUtils.moveDown(hero, map);
+
+                        if (!result && hero.getIsDead())
+                            return false;
+                        else if (!result)
+                            return true;
+                        break;
 
                     case "WEST":
-                        return MoveUtils.moveLeft(hero, map);
+                        result = MoveUtils.moveLeft(hero, map);
+
+                        if (!result && hero.getIsDead())
+                            return false;
+                        else if (!result)
+                            return true;
+                        break;
 
                     case "EAST":
-                        return MoveUtils.moveRight(hero, map);
+                        result = MoveUtils.moveRight(hero, map);
+
+                        if (!result && hero.getIsDead())
+                            return false;
+                        else if (!result)
+                            return true;
+                        break;
                 }
                 printMapCensured();
             }

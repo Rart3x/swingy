@@ -35,7 +35,7 @@ public class FightUtils {
             return true;
     }
 
-    static boolean fightOrRunResult(Hero hero)
+    public static boolean fightOrRunResult(Hero hero)
     {
         if (fightOrRun())
         {
