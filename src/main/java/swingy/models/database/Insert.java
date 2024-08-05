@@ -3,11 +3,9 @@ package swingy.models.database;
 import swingy.models.artefacts.Artefact;
 import swingy.models.characters.heroes.Hero;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-public class Insert {
+public class Insert extends Database {
     public static void insertArtefact(Artefact artefact, int heroIdInDB)
     {
         try
@@ -15,7 +13,6 @@ public class Insert {
             int artefactIdInDB = Get.getArtefactIdInDB(artefact.getName());
 
             Class.forName("org.sqlite.JDBC");
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 
             if (connection != null)
             {
@@ -42,8 +39,6 @@ public class Insert {
                     preparedStatement.setInt(6, heroIdInDB);
                 }
                 preparedStatement.executeUpdate();
-                preparedStatement.close();
-                connection.close();
             }
         }
         catch (Exception e) {
@@ -56,7 +51,6 @@ public class Insert {
         try
         {
             Class.forName("org.sqlite.JDBC");
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 
             int heroIdInDB = Get.getHeroIdInDB(hero.getName());
 
@@ -73,8 +67,6 @@ public class Insert {
 
             if (connection != null)
             {
-                PreparedStatement preparedStatement;
-
                 if (heroIdInDB != -1)
                 {
                     preparedStatement = connection.prepareStatement("UPDATE heroes SET level = ?, experience = ?, attack = ?, defense = ?, hitPoints = ?, currentHitPoints = ? WHERE name = ?");
@@ -99,11 +91,10 @@ public class Insert {
                     preparedStatement.setInt(8, hero.getCurrentHitPoints());
                 }
                 preparedStatement.executeUpdate();
-                preparedStatement.close();
-                connection.close();
             }
 
             heroIdInDB = Get.getHeroIdInDB(hero.getName());
+
             if (armor != null)
                 insertArtefact(armor, heroIdInDB);
             if (helm != null)

@@ -21,7 +21,9 @@ public class SwingWindow extends JFrame {
     private JPanel rightPanel = new JPanel();
 
 
-    public SwingWindow(Hero hero, Map map) {}
+    public SwingWindow(Hero hero, Map map) {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 
     public void createWindow(Hero hero, Map map)
     {

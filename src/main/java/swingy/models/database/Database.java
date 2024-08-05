@@ -4,18 +4,30 @@ import java.sql.* ;
 
 public class Database {
 
+    public static Connection connection = null;
+    public static PreparedStatement preparedStatement = null;
+    public static Statement statement = null;
+
     public static void createDB() throws Exception
     {
         Class.forName("org.sqlite.JDBC");
-        Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+        connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 
         if (connection != null)
         {
-            Statement statement = connection.createStatement();
+            statement = connection.createStatement();
             statement.execute("CREATE TABLE IF NOT EXISTS heroes (id INTEGER PRIMARY KEY, name TEXT, subClass TEXT, level INTEGER, experience INTEGER, attack INTEGER, defense INTEGER, hitPoints INTEGER, currentHitPoints INTEGER)");
             statement.execute("CREATE TABLE IF NOT EXISTS artefacts (id INTEGER PRIMARY KEY, name TEXT, type TEXT, attack INTEGER, defense INTEGER, hitPoints INTEGER, heroId INTEGER, FOREIGN KEY(heroId) REFERENCES heroes(id) )");
-            statement.close();
+        }
+    }
+
+    public static void closeDB() throws Exception
+    {
+        if (connection != null)
+        {
             connection.close();
+            preparedStatement.close();
+            statement.close();
         }
     }
 }

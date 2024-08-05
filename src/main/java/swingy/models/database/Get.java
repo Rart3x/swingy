@@ -4,12 +4,9 @@ import swingy.models.artefacts.Artefact;
 import swingy.models.characters.heroes.Hero;
 import swingy.models.characters.heroes.HeroFactory;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Get {
+public class Get extends Database {
     public static int getArtefactIdInDB(String artefactName)
     {
         int artefactId = -1;
@@ -17,19 +14,15 @@ public class Get {
         try
         {
             Class.forName("org.sqlite.JDBC");
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 
             if (connection != null)
             {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM artefacts WHERE name = ?");
+                preparedStatement = connection.prepareStatement("SELECT id FROM artefacts WHERE name = ?");
                 preparedStatement.setString(1, artefactName);
 
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.getInt("id") != 0)
                     artefactId = resultSet.getInt("id");
-
-                preparedStatement.close();
-                connection.close();
 
                 return artefactId;
             }
@@ -48,19 +41,15 @@ public class Get {
         try
         {
             Class.forName("org.sqlite.JDBC");
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 
             if (connection != null)
             {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM heroes WHERE name = ?");
+                preparedStatement = connection.prepareStatement("SELECT id FROM heroes WHERE name = ?");
                 preparedStatement.setString(1, heroName);
 
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.getInt("id") != 0)
                     heroId = resultSet.getInt("id");
-
-                preparedStatement.close();
-                connection.close();
 
                 return heroId;
             }
@@ -79,11 +68,10 @@ public class Get {
         try
         {
             Class.forName("org.sqlite.JDBC");
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 
             if (connection != null)
             {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM heroes");
+                preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM heroes");
 
                 ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -110,9 +98,9 @@ public class Get {
 
                     int heroId = getHeroIdInDB(name);
 
-                    PreparedStatement newPrepareStatement = connection.prepareStatement("SELECT * FROM artefacts WHERE heroId = ?");
-                    newPrepareStatement.setInt(1, heroId);
-                    ResultSet newResultSet = newPrepareStatement.executeQuery();
+                    preparedStatement = connection.prepareStatement("SELECT * FROM artefacts WHERE heroId = ?");
+                    preparedStatement.setInt(1, heroId);
+                    ResultSet newResultSet = preparedStatement.executeQuery();
 
                     Artefact armor = null;
                     Artefact helm = null;
@@ -160,9 +148,6 @@ public class Get {
 
                     i++;
                 }
-
-                preparedStatement.close();
-                connection.close();
             }
         }
         catch (Exception e) {
@@ -181,11 +166,10 @@ public class Get {
             try
             {
                 Class.forName("org.sqlite.JDBC");
-                Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 
                 if (connection != null)
                 {
-                    PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM heroes WHERE id = ?");
+                    preparedStatement = connection.prepareStatement("SELECT * FROM heroes WHERE id = ?");
                     preparedStatement.setInt(1, heroId);
 
                     ResultSet resultSet = preparedStatement.executeQuery();
@@ -199,10 +183,10 @@ public class Get {
                     int hitPoints = resultSet.getInt("hitPoints");
                     int currentHitPoints = resultSet.getInt("currentHitPoints");
 
-                    PreparedStatement newPrepareStatement = connection.prepareStatement("SELECT * FROM artefacts WHERE heroId = ?");
-                    newPrepareStatement.setInt(1, heroId);
+                    preparedStatement = connection.prepareStatement("SELECT * FROM artefacts WHERE heroId = ?");
+                    preparedStatement.setInt(1, heroId);
 
-                    ResultSet newResultSet = newPrepareStatement.executeQuery();
+                    ResultSet newResultSet = preparedStatement.executeQuery();
 
                     Artefact armor = null;
                     Artefact helm = null;
@@ -245,9 +229,6 @@ public class Get {
                         hero.equipArtefact(helm);
                     if (weapon != null)
                         hero.equipArtefact(weapon);
-
-                    preparedStatement.close();
-                    connection.close();
                 }
 
             }

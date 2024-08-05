@@ -25,7 +25,9 @@ public class SelectHeroUtils {
 
         if (answer.equalsIgnoreCase("load"))
         {
-            selectDBHeroPrint();
+            if (!selectDBHeroPrint())
+                return SelectHeroUtils.selectHero();
+
             PrintUtils.printYellow("\nEnter the name of the hero you want to load");
             String heroName = System.console().readLine();
 
@@ -62,17 +64,21 @@ public class SelectHeroUtils {
         return instance;
     }
 
-    public static void selectDBHeroPrint() throws Exception
+    public static boolean selectDBHeroPrint() throws Exception
     {
         Hero[] heros = Get.getHerosInDB();
 
         if (heros.length == 0)
+        {
             PrintUtils.printRed("No heroes found in the database.");
+            return false;
+        }
         else
         {
             PrintUtils.printYellow("Select a hero to load:\n");
             for (Hero hero : heros)
                 PrintUtils.printYellow(hero.getName() + " the " + hero.getSubClass() + " level " + hero.getLevel() + " attack " + hero.getAttack() + " defense " + hero.getDefense() + " hit points " + hero.getHitPoints());
         }
+        return true;
     }
 }

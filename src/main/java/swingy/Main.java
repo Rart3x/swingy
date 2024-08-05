@@ -31,28 +31,30 @@ public class Main {
             Map map = MapFactory.createMap(hero.getLevel());
             SwingWindow window = new SwingWindow(hero, map);
 
-            while (isRunning)
-            {
-                if (hero.getMode() != currentMode)
-                {
-                    currentMode = hero.getMode();
-
-                    if (currentMode)
-                    {
-                        window.createWindow(hero, map);
-                    }
-                }
-
-                PrintUtils.printBlue("qweqe");
-
-                if (!currentMode)
-                {
-                    isRunning = map.move(hero);
-                    map = MapFactory.createMap(hero.getLevel());
-                }
-            }
-
+            window.createWindow(hero, map);
+            window.closeWindow();
+//            while (isRunning)
+//            {
+//                if (hero.getMode() != currentMode)
+//                {
+//                    currentMode = hero.getMode();
+//
+//                    if (currentMode)
+//                    {
+//                        window.createWindow(hero, map);
+//                    }
+//                }
+//
+//                PrintUtils.printBlue("qweqe");
+//
+//                if (!currentMode)
+//                {
+//                    isRunning = map.move(hero);
+//                    map = MapFactory.createMap(hero.getLevel());
+//                }
+//            }
             SaveUtils.saveHero(hero);
+            Database.closeDB();
         }
         catch (Exception e) {
             PrintUtils.printError(e.getMessage());
