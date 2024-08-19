@@ -24,6 +24,7 @@ public class Main {
 
         ArgsUtils.checkArgs(args);
         String  currentMode = args[0];
+        String  previousMode = "";
 
         try
         {
@@ -39,20 +40,19 @@ public class Main {
 
             while (isRunning)
             {
-                if (!Objects.equals(hero.getMode(), currentMode))
+                if (Objects.equals(currentMode, "gui"))
                 {
-                    currentMode = hero.getMode();
-
-                    if (Objects.equals(currentMode, "gui"))
-                    {
+                    if (!Objects.equals(currentMode, previousMode))
                         window.createWindow(hero, map);
-                    }
+                    previousMode = currentMode;
+                    currentMode = hero.getMode();
                 }
 
                 if (Objects.equals(currentMode, "console"))
                 {
                     isRunning = map.move(hero);
                     map = MapFactory.createMap(hero.getLevel());
+                    currentMode = hero.getMode();
                 }
             }
             SaveUtils.saveHero(hero);
