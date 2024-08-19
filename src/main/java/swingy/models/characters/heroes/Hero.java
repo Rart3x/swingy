@@ -45,7 +45,7 @@ public class Hero extends AIndividual {
     protected Artefact weapon;
 
     protected boolean isDead = false;
-    protected boolean mode   = false;
+    protected String  mode   = "";
 
     public Hero(String name, String className, int attack, int defense, int hitPoints)
     {
@@ -190,7 +190,7 @@ public class Hero extends AIndividual {
     public Artefact getWeapon() { return weapon; }
 
     public boolean  getIsDead() { return isDead; }
-    public boolean  getMode() { return mode; }
+    public String   getMode() { return mode; }
 
     public void setSubClass(String subClass) { this.subClass = subClass; }
     public void setExperience(int experience) { this.experience = experience; }
@@ -206,5 +206,5 @@ public class Hero extends AIndividual {
     public void setWeapon(Artefact weapon) { this.weapon = weapon; }
 
     public void setIsDead(boolean isDead) { this.isDead = isDead; }
-    public void setMode(boolean mode) { this.mode = mode; }
+    public void setMode(String mode) { this.mode = mode; }
 }

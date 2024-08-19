@@ -90,7 +90,7 @@ public class Map {
             }
             else if (direction.equalsIgnoreCase("S"))
             {
-                hero.setMode(!hero.getMode());
+                hero.setMode("gui");
                 return true;
             }
             else if (direction.equalsIgnoreCase("Q"))

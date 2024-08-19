@@ -68,7 +68,7 @@ public class SwingListener {
     {
         return e ->
         {
-            hero.setMode(!hero.getMode());
+            hero.setMode("console");
             window.closeWindow();
         };
     }
