@@ -5,6 +5,7 @@ import swingy.models.maps.Map;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class SwingListener {
@@ -31,28 +32,24 @@ public class SwingListener {
         };
     }
 
-    public static KeyListener createKeyListener(Hero hero, Map map, JPanel middlePanel)
-    {
+    public static KeyListener createKeyListener(Hero hero, Map map, JPanel middlePanel) {
         return new KeyListener()
         {
             @Override
-            public void keyTyped(java.awt.event.KeyEvent e) {}
-
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent e)
+            public void keyPressed(KeyEvent e)
             {
                 switch (e.getKeyCode())
                 {
-                    case java.awt.event.KeyEvent.VK_UP:
+                    case KeyEvent.VK_UP:
                         SwingMove.moveUp(hero, Map.getMap());
                         break;
-                    case java.awt.event.KeyEvent.VK_DOWN:
+                    case KeyEvent.VK_DOWN:
                         SwingMove.moveDown(hero, Map.getMap());
                         break;
-                    case java.awt.event.KeyEvent.VK_LEFT:
+                    case KeyEvent.VK_LEFT:
                         SwingMove.moveLeft(hero, Map.getMap());
                         break;
-                    case java.awt.event.KeyEvent.VK_RIGHT:
+                    case KeyEvent.VK_RIGHT:
                         SwingMove.moveRight(hero, Map.getMap());
                         break;
                 }
@@ -60,7 +57,10 @@ public class SwingListener {
             }
 
             @Override
-            public void keyReleased(java.awt.event.KeyEvent e) {}
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {}
         };
     }
 

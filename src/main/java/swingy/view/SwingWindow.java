@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 
 
 public class SwingWindow extends JFrame {
@@ -118,7 +119,7 @@ public class SwingWindow extends JFrame {
 
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        textArea.setEditable(true);
+        textArea.setEditable(false);
 
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setPreferredSize(new Dimension(middleBottomPanel.getWidth(), middleBottomPanel.getHeight()));

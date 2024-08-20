@@ -178,5 +178,6 @@ public class SwingElement {
         containerPanel.add(progressBar);
 
         rightPanel.add(containerPanel);
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Add more vertical spacing
     }
 }
