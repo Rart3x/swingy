@@ -77,37 +77,49 @@ public class SwingElement {
 
         middlePanel.setLayout(new GridLayout(VIEW_SIZE, VIEW_SIZE));
 
-        for (int i = -VIEW_DISTANCE; i <= VIEW_DISTANCE; i++)
+        int startX = Math.max(0, heroX - VIEW_DISTANCE);
+        int startY = Math.max(0, heroY - VIEW_DISTANCE);
+
+        int buttonWidth = CENTER_WIDTH / VIEW_SIZE;
+        int buttonHeight = HEIGHT / VIEW_SIZE;
+
+        for (int i = 0; i < VIEW_SIZE; i++)
         {
-            for (int j = -VIEW_DISTANCE; j <= VIEW_DISTANCE; j++)
+            for (int j = 0; j < VIEW_SIZE; j++)
             {
-                int realX = heroX + i;
-                int realY = heroY + j;
+                int realX = startX + i;
+                int realY = startY + j;
 
-                Image image = null;
+                Image image = WindowUtils.createImageIcon("src/main/resources/icons/grass1.png").getImage();
 
-                if (realX >= 0 && realX < size && realY >= 0 && realY < size)
+                if (realX == heroX && realY == heroY)
                 {
-                    if (i == 0 && j == 0)
-                    {
-                        if (Objects.equals(hero.getSubClass(), "Archer"))
-                            image = WindowUtils.createImageIcon("src/main/resources/icons/bow1.png").getImage();
-                        else if (Objects.equals(hero.getSubClass(), "Mage"))
-                            image = WindowUtils.createImageIcon("src/main/resources/icons/staff1.png").getImage();
-                        else if (Objects.equals(hero.getSubClass(), "Warrior"))
-                            image = WindowUtils.createImageIcon("src/main/resources/icons/sword1.png").getImage();
-                    }
-                    else {
-                        image = WindowUtils.createImageIcon("src/main/resources/icons/defaultCase.png").getImage();
-                    }
+                    if (Objects.equals(hero.getSubClass(), "Archer"))
+                        image = WindowUtils.createImageIcon("src/main/resources/icons/bow1.png").getImage();
+                    else if (Objects.equals(hero.getSubClass(), "Mage"))
+                        image = WindowUtils.createImageIcon("src/main/resources/icons/staff1.png").getImage();
+                    else if (Objects.equals(hero.getSubClass(), "Warrior"))
+                        image = WindowUtils.createImageIcon("src/main/resources/icons/sword1.png").getImage();
+                }
+                else
+                {
+                    // TODO: Add villains icons
+                    if (Map.isWalkedTile(realX, realY))
+                        image = WindowUtils.createImageIcon("src/main/resources/icons/mob.png").getImage();
+                    // TODO: Add walls icons
+                    if (Map.getMap()[realY][realX] == 1)
+                        image = WindowUtils.createImageIcon("src/main/resources/icons/wall.png").getImage();
                 }
 
                 JButton button = new JButton(new ImageIcon(image));
-                button.setPreferredSize(new Dimension(CENTER_WIDTH / VIEW_SIZE, HEIGHT / VIEW_SIZE));
+                button.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
                 button.setEnabled(realX >= 0 && realX < size && realY >= 0 && realY < size);
                 middlePanel.add(button);
             }
         }
+
+        middlePanel.revalidate();
+        middlePanel.repaint();
     }
 
     public static void createTitleLevelAndClassIcon(Hero hero, JPanel rightPanel) {

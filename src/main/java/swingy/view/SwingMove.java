@@ -13,7 +13,8 @@ public class SwingMove {
         if (map[y - 1][x] == 1)
             return true;
 
-//        if (map[y - 1][x] == 3)
+        if (map[y - 1][x] == 3)
+            Map.addWalkedTile(x, y - 1);
 //            if (fightOrRunResult(hero)) return false;
 
         map[y][x] = 0;
@@ -31,7 +32,8 @@ public class SwingMove {
         if (map[y + 1][x] == 1)
             return true;
 
-//        if (map[y + 1][x] == 3)
+        if (map[y + 1][x] == 3)
+            Map.addWalkedTile(x, y + 1);
 //            if (fightOrRunResult(hero)) return false;
 
         map[y][x] = 0;
@@ -49,7 +51,8 @@ public class SwingMove {
         if (map[y][x - 1] == 1)
             return true;
 
-//        if (map[y][x - 1] == 3)
+        if (map[y][x - 1] == 3)
+            Map.addWalkedTile(x - 1, y);
 //            if (fightOrRunResult(hero)) return false;
 
         map[y][x] = 0;
@@ -67,7 +70,8 @@ public class SwingMove {
         if (map[y][x + 1] == 1)
             return true;
 
-//        if (map[y][x + 1] == 3)
+        if (map[y][x + 1] == 3)
+            Map.addWalkedTile(x + 1, y);
 //            if (fightOrRunResult(hero)) return false;
 
         map[y][x] = 0;

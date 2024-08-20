@@ -7,7 +7,10 @@ import swingy.utils.PrintUtils;
 
 public class Map {
     private static int[][] map;
+    private static int[][] walkedTiles = new int[1000][2];
+
     private static int     size;
+    private static int     walkedTilesIndex = 0;
 
     public Map(int size)
     {
@@ -138,5 +141,26 @@ public class Map {
         return position;
     }
 
+    public static void    addWalkedTile(int x, int y)
+    {
+        walkedTiles[walkedTilesIndex][0] = x;
+        walkedTiles[walkedTilesIndex][1] = y;
+        walkedTilesIndex++;
+    }
+
+    public static boolean isWalkedTile(int x, int y)
+    {
+        for (int i = 0; i < walkedTilesIndex; i++)
+        {
+            if (walkedTiles[i][0] == x && walkedTiles[i][1] == y)
+                return true;
+        }
+        return false;
+    }
+
     public static int[][] getMap() { return map; }
+    public static int[][] getWalkedTiles() { return walkedTiles; }
+
+    public static void    setWalkedTiles(int[][] walkedTiles) { Map.walkedTiles = walkedTiles; }
+
 }

@@ -32,38 +32,6 @@ public class SwingListener {
         };
     }
 
-    public static KeyListener createKeyListener(Hero hero, Map map, JPanel middlePanel) {
-        return new KeyListener()
-        {
-            @Override
-            public void keyPressed(KeyEvent e)
-            {
-                switch (e.getKeyCode())
-                {
-                    case KeyEvent.VK_UP:
-                        SwingMove.moveUp(hero, Map.getMap());
-                        break;
-                    case KeyEvent.VK_DOWN:
-                        SwingMove.moveDown(hero, Map.getMap());
-                        break;
-                    case KeyEvent.VK_LEFT:
-                        SwingMove.moveLeft(hero, Map.getMap());
-                        break;
-                    case KeyEvent.VK_RIGHT:
-                        SwingMove.moveRight(hero, Map.getMap());
-                        break;
-                }
-                SwingElement.createMap(hero, map, middlePanel);
-            }
-
-            @Override
-            public void keyTyped(KeyEvent e) {}
-
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        };
-    }
-
     public static ActionListener createSwitchListener(Hero hero, SwingWindow window)
     {
         return e ->
