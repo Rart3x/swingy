@@ -1,4 +1,4 @@
-package swingy;
+package swingy.controllers;
 
 import swingy.models.database.Database;
 
