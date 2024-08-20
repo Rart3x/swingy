@@ -17,12 +17,16 @@ import swingy.view.SwingWindow;
 
 import java.util.Objects;
 
+import static java.lang.System.exit;
+
 public class Main {
     public static void main(String[] args)
     {
         boolean isRunning = true;
+        SwingWindow window = null;
 
         ArgsUtils.checkArgs(args);
+
         String  currentMode = args[0];
         String  previousMode = "";
 
@@ -36,30 +40,39 @@ public class Main {
                 return;
 
             Map map = MapFactory.createMap(hero.getLevel());
-            SwingWindow window = new SwingWindow(hero, map);
 
             while (isRunning)
             {
                 if (Objects.equals(currentMode, "gui"))
                 {
                     if (!Objects.equals(currentMode, previousMode))
+                    {
+                        window = new SwingWindow(hero, map);
                         window.createWindow(hero, map);
+                    }
                     previousMode = currentMode;
                     currentMode = hero.getMode();
+                    Thread.sleep(50);
                 }
 
                 if (Objects.equals(currentMode, "console"))
                 {
                     isRunning = map.move(hero);
                     map = MapFactory.createMap(hero.getLevel());
+                    previousMode = currentMode;
                     currentMode = hero.getMode();
                 }
             }
+
+            assert window != null;
+            window.closeWindow();
+
             SaveUtils.saveHero(hero);
             Database.closeDB();
         }
         catch (Exception e) {
             PrintUtils.printError(e.getMessage());
         }
+        exit(0);
     }
 }
