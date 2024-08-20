@@ -20,8 +20,10 @@ public class SwingElement {
         rightPanel.add(switchButton);
     }
 
-    public static void createDirectionButtons(Hero hero, Map map, JPanel middlePanel, JPanel rightPanel)
-    {
+    public static void createDirectionButtons(Hero hero, Map map, JPanel middlePanel, JPanel rightBottomPanel) {
+        rightBottomPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
         JButton northButton = new JButton("NORTH");
         JButton westButton = new JButton("WEST");
         JButton eastButton = new JButton("EAST");
@@ -32,10 +34,35 @@ public class SwingElement {
         eastButton.addActionListener(SwingListener.createDirectionListener(hero, map,"EAST", middlePanel));
         southButton.addActionListener(SwingListener.createDirectionListener(hero, map,"SOUTH", middlePanel));
 
-        rightPanel.add(northButton);
-        rightPanel.add(westButton);
-        rightPanel.add(eastButton);
-        rightPanel.add(southButton);
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        gbc.gridx = 1; gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        rightBottomPanel.add(northButton, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        rightBottomPanel.add(westButton, gbc);
+
+        gbc.gridx = 2; gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        rightBottomPanel.add(eastButton, gbc);
+
+        gbc.gridx = 1; gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        rightBottomPanel.add(southButton, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 0;
+        rightBottomPanel.add(new JLabel(), gbc);
+
+        gbc.gridx = 2; gbc.gridy = 0;
+        rightBottomPanel.add(new JLabel(), gbc);
+
+        gbc.gridx = 0; gbc.gridy = 2;
+        rightBottomPanel.add(new JLabel(), gbc);
+
+        gbc.gridx = 2; gbc.gridy = 2;
+        rightBottomPanel.add(new JLabel(), gbc);
     }
 
     public static void createMap(Hero hero, Map map, JPanel middlePanel) {
@@ -83,49 +110,38 @@ public class SwingElement {
         }
     }
 
-
-    public static void createTitleLevelAndClassIcon(Hero hero, JPanel rightPanel)
-    {
-        JPanel containerPanel = new JPanel();
-        containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.Y_AXIS));
-        containerPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    public static void createTitleLevelAndClassIcon(Hero hero, JPanel rightPanel) {
+        JPanel titleIconPanel = new JPanel();
+        titleIconPanel.setLayout(new BoxLayout(titleIconPanel, BoxLayout.X_AXIS));
+        titleIconPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel titleLabel = new JLabel(hero.getName());
         titleLabel.setFont(new Font("Arial", Font.PLAIN, 30));
-        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        titleLabel.setVerticalAlignment(SwingConstants.TOP);
-
-        JLabel levelLabel = new JLabel(" Level " + String.valueOf(hero.getLevel()));
-        levelLabel.setFont(new Font("Arial", Font.PLAIN, 30));
-        levelLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        levelLabel.setVerticalAlignment(SwingConstants.TOP);
 
         ImageIcon icon = WindowUtils.createImageIconDependingOnClass(hero.getSubClass());
         JLabel iconLabel = new JLabel(icon);
 
-        Box titleBox = Box.createHorizontalBox();
-        Box levelBox = Box.createHorizontalBox();
-        Box buttonBox = Box.createHorizontalBox();
+        titleIconPanel.add(titleLabel);
+        titleIconPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Space between title and icon
+        titleIconPanel.add(iconLabel);
 
-        titleBox.add(titleLabel);
-        titleBox.add(Box.createRigidArea(new Dimension(10, 0)));
+        JLabel levelLabel = new JLabel("Level " + hero.getLevel());
+        levelLabel.setFont(new Font("Arial", Font.PLAIN, 30));
+        levelLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        levelBox.add(levelLabel);
-        buttonBox.add(iconLabel);
-
-        rightPanel.add(titleBox);
-        rightPanel.add(buttonBox);
+        rightPanel.add(titleIconPanel);
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add some vertical spacing
+        rightPanel.add(levelLabel);
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Add more vertical spacing
     }
 
-
-    public static void createHPBar(Hero hero, JPanel rightPanel)
-    {
-        JLabel titleLabel = new JLabel("HP");
+    public static void createHPBar(Hero hero, JPanel rightPanel) {
         JPanel containerPanel = new JPanel();
-        JProgressBar progressBar = new JProgressBar();
-
         containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.Y_AXIS));
         containerPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel titleLabel = new JLabel("HP");
+        JProgressBar progressBar = new JProgressBar();
 
         progressBar.setMaximum(hero.getHitPoints());
         progressBar.setValue(hero.getCurrentHitPoints());
@@ -135,21 +151,22 @@ public class SwingElement {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         containerPanel.add(titleLabel);
+        containerPanel.add(Box.createRigidArea(new Dimension(0, 5))); // Add some vertical spacing
         containerPanel.add(progressBar);
 
         rightPanel.add(containerPanel);
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Add more vertical spacing
     }
 
-    public static void createXPBar(Hero hero, JPanel rightPanel)
-    {
-        JLabel titleLabel = new JLabel("XP");
+    public static void createXPBar(Hero hero, JPanel rightPanel) {
         JPanel containerPanel = new JPanel();
-        JProgressBar progressBar = new JProgressBar();
-
         containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.Y_AXIS));
         containerPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        progressBar.setMaximum((int)hero.getMaxExperience());
+        JLabel titleLabel = new JLabel("XP");
+        JProgressBar progressBar = new JProgressBar();
+
+        progressBar.setMaximum((int) hero.getMaxExperience());
         progressBar.setValue(hero.getExperience());
         progressBar.setStringPainted(true);
 
@@ -157,6 +174,7 @@ public class SwingElement {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         containerPanel.add(titleLabel);
+        containerPanel.add(Box.createRigidArea(new Dimension(0, 5))); // Add some vertical spacing
         containerPanel.add(progressBar);
 
         rightPanel.add(containerPanel);

@@ -10,45 +10,66 @@ import java.awt.event.ActionListener;
 
 
 public class SwingWindow extends JFrame {
-    private static final int WIDTH = 1200;
-    private static final int HEIGHT = 800;
-    private static final int CENTER_WIDTH = WIDTH / 2;
-
     private static final String TITLE = "Swingy";
 
-    private JPanel leftPanel = new JPanel();
+    // -------------------- Sizes -------------------- //
+    private static final int WIDTH = 1200;
+    private static final int HEIGHT = 800;
+
+    private static final int HALF_WIDTH = WIDTH / 2;
+    private static final int HALF_HEIGHT = HEIGHT / 2;
+    private static final int QUARTER_WIDTH = WIDTH / 4;
+    private static final int QUARTER_HEIGHT = HEIGHT / 4;
+
+    // -------------------- Panels -------------------- //
+    private JPanel middleParentPanel = new JPanel();
     private JPanel middlePanel = new JPanel();
+    private JPanel middleBottomPanel = new JPanel();
+
+    private JPanel rightParentPanel = new JPanel();
     private JPanel rightPanel = new JPanel();
+    private JPanel rightBottomPanel = new JPanel();
+
+    // -------------------- Panel Sizes -------------------- //
+    private Dimension middlePanelSize = new Dimension(WIDTH, HALF_HEIGHT); // Adjusted size
+    private Dimension middleBottomPanelSize = new Dimension(WIDTH, QUARTER_HEIGHT); // Adjusted size
+    private Dimension rightPanelSize = new Dimension(QUARTER_WIDTH, HEIGHT);
+    private Dimension rightBottomPanelSize = new Dimension(QUARTER_WIDTH, QUARTER_HEIGHT);
+
+    // -------------------- Text Area -------------------- //
+    private JTextArea textArea = new JTextArea();
 
 
     public SwingWindow(Hero hero, Map map) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void createWindow(Hero hero, Map map)
-    {
+    public void createWindow(Hero hero, Map map) {
         setTitle(TITLE);
         setSize(WIDTH, HEIGHT);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        leftPanel.setBackground(Color.BLUE);
-        rightPanel.setBackground(Color.RED);
-
-        Dimension leftPanelSize = new Dimension(WIDTH / 4, HEIGHT);
-        Dimension middlePanelSize = new Dimension(WIDTH / 2, HEIGHT);
-        Dimension rightPanelSize = new Dimension(WIDTH / 4, HEIGHT);
-
-        leftPanel.setPreferredSize(leftPanelSize);
+        middlePanel.setPreferredSize(middlePanelSize);
+        middleBottomPanel.setPreferredSize(middleBottomPanelSize);
         rightPanel.setPreferredSize(rightPanelSize);
+        rightBottomPanel.setPreferredSize(rightBottomPanelSize);
+
+        middleParentPanel.setLayout(new BorderLayout());
+        middleParentPanel.add(middlePanel, BorderLayout.CENTER);
+        middleParentPanel.add(middleBottomPanel, BorderLayout.SOUTH);
+
+        rightParentPanel.setLayout(new BorderLayout());
+        rightParentPanel.add(rightPanel, BorderLayout.CENTER);
+        rightParentPanel.add(rightBottomPanel, BorderLayout.SOUTH);
 
         setLayout(new BorderLayout());
 
         updateCenterPanelContent(hero, map);
+        updateCenterPanelBottomContent(hero, map);
         updateRightPanelContent(hero, map);
+        updateRightPanelBottomContent(hero, map);
 
-        add(leftPanel, BorderLayout.WEST);
-        add(middlePanel, BorderLayout.CENTER);
-        add(rightPanel, BorderLayout.EAST);
+        add(middleParentPanel, BorderLayout.CENTER); // Now occupies the center
+        add(rightParentPanel, BorderLayout.EAST);
 
         Timer timer = new Timer(250, new ActionListener()
         {
@@ -91,6 +112,24 @@ public class SwingWindow extends JFrame {
         repaint();
     }
 
+    public void updateCenterPanelBottomContent(Hero hero, Map map)
+    {
+        middleBottomPanel.removeAll();
+
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(true);
+
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setPreferredSize(new Dimension(middleBottomPanel.getWidth(), middleBottomPanel.getHeight()));
+
+        middleBottomPanel.setLayout(new BorderLayout());
+        middleBottomPanel.add(scrollPane, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+    }
+
     public void updateRightPanelContent(Hero hero, Map map)
     {
         rightPanel.removeAll();
@@ -98,8 +137,17 @@ public class SwingWindow extends JFrame {
         SwingElement.createTitleLevelAndClassIcon(hero, rightPanel);
         SwingElement.createHPBar(hero, rightPanel);
         SwingElement.createXPBar(hero, rightPanel);
-        SwingElement.createDirectionButtons(hero, map, middlePanel,  rightPanel);
-        SwingElement.createSwitchButton(hero, rightPanel, this);
+//        SwingElement.createSwitchButton(hero, rightPanel, this);
+
+        revalidate();
+        repaint();
+    }
+
+    public void updateRightPanelBottomContent(Hero hero, Map map)
+    {
+        rightBottomPanel.removeAll();
+
+        SwingElement.createDirectionButtons(hero, map, middlePanel,  rightBottomPanel);
 
         revalidate();
         repaint();
