@@ -2,6 +2,7 @@ package swingy.view;
 
 import swingy.models.characters.heroes.Hero;
 import swingy.models.maps.Map;
+import swingy.view.modals.SwingAcceptFightModal;
 
 public class SwingMove {
     public static boolean moveUp(Hero hero, int[][] map)
@@ -14,8 +15,10 @@ public class SwingMove {
             return true;
 
         if (map[y - 1][x] == 3)
+        {
+            SwingAcceptFightModal.createAndShowModal(hero);
             Map.addWalkedTile(x, y - 1);
-//            if (fightOrRunResult(hero)) return false;
+        }
 
         map[y][x] = 0;
         map[y - 1][x] = 2;
@@ -33,8 +36,10 @@ public class SwingMove {
             return true;
 
         if (map[y + 1][x] == 3)
+        {
+            SwingAcceptFightModal.createAndShowModal(hero);
             Map.addWalkedTile(x, y + 1);
-//            if (fightOrRunResult(hero)) return false;
+        }
 
         map[y][x] = 0;
         map[y + 1][x] = 2;
@@ -52,9 +57,10 @@ public class SwingMove {
             return true;
 
         if (map[y][x - 1] == 3)
+        {
+            SwingAcceptFightModal.createAndShowModal(hero);
             Map.addWalkedTile(x - 1, y);
-//            if (fightOrRunResult(hero)) return false;
-
+        }
         map[y][x] = 0;
         map[y][x - 1] = 2;
 
@@ -71,8 +77,10 @@ public class SwingMove {
             return true;
 
         if (map[y][x + 1] == 3)
+        {
+            SwingAcceptFightModal.createAndShowModal(hero);
             Map.addWalkedTile(x + 1, y);
-//            if (fightOrRunResult(hero)) return false;
+        }
 
         map[y][x] = 0;
         map[y][x + 1] = 2;

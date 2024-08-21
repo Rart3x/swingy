@@ -8,6 +8,7 @@ import swingy.models.database.Delete;
 import swingy.models.database.Get;
 import swingy.models.database.Insert;
 import swingy.utils.PrintUtils;
+import swingy.view.SwingWindow;
 
 public class Hero extends AIndividual {
     @NotNull(message = "Name cannot be empty")
@@ -60,9 +61,12 @@ public class Hero extends AIndividual {
         this.currentHitPoints = hitPoints;
     }
 
-    public void gainExperience(int experience)
+    public void gainExperience(int experience, boolean mode)
     {
-        PrintUtils.printGreen("\n" + this.name + " wins the fight and gains " + experience + " experience");
+        if (!mode)
+            PrintUtils.printGreen("\n" + this.name + " wins the fight and gains " + experience + " experience");
+        else
+            SwingWindow.addText("\n" + this.name + " wins the fight and gains " + experience + " experience");
 
         if ((this.experience + experience) >= maxExperience)
         {
@@ -74,19 +78,29 @@ public class Hero extends AIndividual {
             this.hitPoints += 50;
             this.currentHitPoints += 50;
 
-            PrintUtils.printGreen(this.name + " leveled up to level " + this.level);
+            if (!mode)
+                PrintUtils.printGreen(this.name + " leveled up to level " + this.level);
+            else
+                SwingWindow.addText(this.name + " leveled up to level " + this.level + "\n");
         }
         else
             this.experience += experience;
     }
 
-    public void looseHitPoints(int hitPoints, String villainName)
+    public void looseHitPoints(int hitPoints, String villainName, boolean mode)
     {
-        PrintUtils.printBlue(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
+        if (!mode)
+            PrintUtils.printBlue(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
+        else
+            SwingWindow.addText(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
 
         if (this.currentHitPoints - hitPoints <= 0)
         {
-            PrintUtils.printRed(this.name + " looses the fight and died");
+            if (!mode)
+                PrintUtils.printRed(this.name + " looses the fight and died");
+            else
+                SwingWindow.addText(this.name + " looses the fight and died");
+
             this.currentHitPoints = 0;
             this.isDead = true;
         }

@@ -64,9 +64,6 @@ public class Main {
                 }
             }
 
-            assert window != null;
-            window.closeWindow();
-
             SaveUtils.saveHero(hero);
             Database.closeDB();
         }

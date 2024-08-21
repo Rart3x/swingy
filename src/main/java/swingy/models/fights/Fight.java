@@ -25,22 +25,22 @@ public class Fight {
 
         while (hero.getCurrentHitPoints() > 0 || villain.getHitPoints() > 0)
         {
-            villain.looseHitPoints(heroDamage, hero.getName());
+            villain.looseHitPoints(heroDamage, hero.getName(), false);
 
             if (villain.getHitPoints() == 0)
             {
-                hero.gainExperience(hero.getExperience() + villain.getLevel() * 1000);
+                hero.gainExperience(hero.getExperience() + villain.getLevel() * 1000, false);
 
                 double successProbability = Math.min(1.0, 0.05 * villain.getLevel());
                 double randomValue = Math.random();
 
                 if (randomValue < successProbability)
-                    LootUtils.lootRandomArtefact(randomArtefact, hero);
+                    LootUtils.lootRandomArtefact(randomArtefact, hero, false);
                 break;
             }
             else
             {
-                hero.looseHitPoints(villainDamage, villain.getName());
+                hero.looseHitPoints(villainDamage, villain.getName(), false);
                 if (hero.getCurrentHitPoints() == 0)
                     break;
             }

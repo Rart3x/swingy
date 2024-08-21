@@ -1,46 +1,86 @@
 package swingy.utils;
 
 import swingy.models.artefacts.Artefact;
+import swingy.view.SwingWindow;
 
 public class PrintUtils {
 
-    public static void printArtefactCompare(Artefact artefact, Artefact currentArtefact)
+    public static void printArtefactCompare(Artefact artefact, Artefact currentArtefact, boolean mode)
     {
         switch (artefact.getType())
         {
             case "Armor":
-                printBlue("\nYou found a " + artefact.getName() + " armor!");
+                if (!mode)
+                    printBlue("\nYou found a " + artefact.getName() + " armor!");
+                else
+                    SwingWindow.addText("You found a " + artefact.getName() + " armor!");
                 break;
             case "Helm":
-                printBlue("\nYou found a " + artefact.getName() + " helmet!");
+                if (!mode)
+                    printBlue("\nYou found a " + artefact.getName() + " helmet!");
+                else
+                    SwingWindow.addText("You found a " + artefact.getName() + " helmet!");
                 break;
             case "Weapon":
-                printBlue("\nYou found " + artefact.getName() + "!");
+                if (!mode)
+                    printBlue("\nYou found a " + artefact.getName() + " weapon!");
+                else
+                    SwingWindow.addText("You found a " + artefact.getName() + " weapon!");
                 break;
         }
 
         if (artefact.getAttack() > 0)
         {
-            if (currentArtefact.getAttack() < artefact.getAttack())
-                printGreen("Att: " + artefact.getAttack() + " (+" + (artefact.getAttack() - currentArtefact.getAttack()) + ")");
+            if (!mode)
+            {
+                if (currentArtefact.getAttack() < artefact.getAttack())
+                    printGreen("Att: " + artefact.getAttack() + " (+" + (artefact.getAttack() - currentArtefact.getAttack()) + ")");
+                else
+                    printRed("Att: " + artefact.getAttack() + " (" + (artefact.getAttack() - currentArtefact.getAttack()) + ")");
+            }
             else
-                printRed("Att: " + artefact.getAttack() + " (" + (artefact.getAttack() - currentArtefact.getAttack()) + ")");
+            {
+                if (currentArtefact.getAttack() < artefact.getAttack())
+                    SwingWindow.addText("Att: " + artefact.getAttack() + " (+" + (artefact.getAttack() - currentArtefact.getAttack()) + ")");
+                else
+                    SwingWindow.addText("Att: " + artefact.getAttack() + " (" + (artefact.getAttack() - currentArtefact.getAttack()) + ")");
+            }
         }
 
         if (artefact.getDefense() > 0)
         {
-            if (currentArtefact.getDefense() < artefact.getDefense())
-                printGreen("Def: " + artefact.getDefense() + " (+" + (artefact.getDefense() - currentArtefact.getDefense()) + ")");
+            if (!mode)
+            {
+                if (currentArtefact.getDefense() < artefact.getDefense())
+                    printGreen("Def: " + artefact.getDefense() + " (+" + (artefact.getDefense() - currentArtefact.getDefense()) + ")");
+                else
+                    printRed("Def: " + artefact.getDefense() + " (" + (artefact.getDefense() - currentArtefact.getDefense()) + ")");
+            }
             else
-                printRed("Def: " + artefact.getDefense() + " (" + (artefact.getDefense() - currentArtefact.getDefense()) + ")");
+            {
+                if (currentArtefact.getDefense() < artefact.getDefense())
+                    SwingWindow.addText("Def: " + artefact.getDefense() + " (+" + (artefact.getDefense() - currentArtefact.getDefense()) + ")");
+                else
+                    SwingWindow.addText("Def: " + artefact.getDefense() + " (" + (artefact.getDefense() - currentArtefact.getDefense()) + ")");
+            }
         }
 
         if (artefact.getHitPoints() > 0)
         {
-            if (currentArtefact.getHitPoints() < artefact.getHitPoints())
-                printGreen("HP: " + artefact.getHitPoints() + " (+" + (artefact.getHitPoints() - currentArtefact.getHitPoints()) + ")");
+            if (!mode)
+            {
+                if (currentArtefact.getHitPoints() < artefact.getHitPoints())
+                    printGreen("HP: " + artefact.getHitPoints() + " (+" + (artefact.getHitPoints() - currentArtefact.getHitPoints()) + ")");
+                else
+                    printRed("HP: " + artefact.getHitPoints() + " (" + (artefact.getHitPoints() - currentArtefact.getHitPoints()) + ")");
+            }
             else
-                printRed("HP: " + artefact.getHitPoints() + " (" + (artefact.getHitPoints() - currentArtefact.getHitPoints()) + ")");
+            {
+                if (currentArtefact.getHitPoints() < artefact.getHitPoints())
+                    SwingWindow.addText("HP: " + artefact.getHitPoints() + " (+" + (artefact.getHitPoints() - currentArtefact.getHitPoints()) + ")");
+                else
+                    SwingWindow.addText("HP: " + artefact.getHitPoints() + " (" + (artefact.getHitPoints() - currentArtefact.getHitPoints()) + ")");
+            }
         }
     }
 

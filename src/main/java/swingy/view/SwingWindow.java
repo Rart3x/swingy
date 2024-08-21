@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 
 
 public class SwingWindow extends JFrame {
@@ -38,7 +37,7 @@ public class SwingWindow extends JFrame {
     private Dimension rightBottomPanelSize = new Dimension(QUARTER_WIDTH, QUARTER_HEIGHT);
 
     // -------------------- Text Area -------------------- //
-    private JTextArea textArea = new JTextArea();
+    private static JTextArea textArea = new JTextArea();
 
 
     public SwingWindow(Hero hero, Map map) {
@@ -152,5 +151,10 @@ public class SwingWindow extends JFrame {
 
         revalidate();
         repaint();
+    }
+
+    public static void addText(String text)
+    {
+        textArea.append(text + "\n");
     }
 }
