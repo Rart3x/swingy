@@ -5,27 +5,26 @@ import swingy.models.maps.Map;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class SwingListener {
-    public static ActionListener createDirectionListener(Hero hero, Map map, String direction, JPanel middlePanel)
+    public static ActionListener createDirectionListener(Hero hero, Map map, String direction, JPanel middlePanel, SwingWindow window)
     {
         return e ->
         {
             switch (direction)
             {
+                //TODO: Fix the move methods
                 case "NORTH":
-                    SwingMove.moveUp(hero, Map.getMap());
+                    SwingMove.moveLeft(hero, map.getMap(), window);
                     break;
                 case "SOUTH":
-                    SwingMove.moveDown(hero, Map.getMap());
+                    SwingMove.moveRight(hero, map.getMap(), window);
                     break;
                 case "WEST":
-                    SwingMove.moveLeft(hero, Map.getMap());
+                    SwingMove.moveUp(hero, map.getMap(), window);
                     break;
                 case "EAST":
-                    SwingMove.moveRight(hero, Map.getMap());
+                    SwingMove.moveDown(hero, map.getMap(), window);
                     break;
             }
             SwingElement.createMap(hero, map, middlePanel);

@@ -162,5 +162,5 @@ public class Map {
     public static int[][] getWalkedTiles() { return walkedTiles; }
 
     public static void    setWalkedTiles(int[][] walkedTiles) { Map.walkedTiles = walkedTiles; }
-
+    public static void    setIndex(int y, int x, int value) { map[y][x] = value; }
 }

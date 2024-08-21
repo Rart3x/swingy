@@ -20,7 +20,7 @@ public class SwingElement {
         rightPanel.add(switchButton);
     }
 
-    public static void createDirectionButtons(Hero hero, Map map, JPanel middlePanel, JPanel rightBottomPanel) {
+    public static void createDirectionButtons(Hero hero, Map map, JPanel middlePanel, JPanel rightBottomPanel, SwingWindow window) {
         rightBottomPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -29,10 +29,10 @@ public class SwingElement {
         JButton eastButton = new JButton("EAST");
         JButton southButton = new JButton("SOUTH");
 
-        northButton.addActionListener(SwingListener.createDirectionListener(hero, map, "NORTH", middlePanel));
-        westButton.addActionListener(SwingListener.createDirectionListener(hero, map,"WEST", middlePanel));
-        eastButton.addActionListener(SwingListener.createDirectionListener(hero, map,"EAST", middlePanel));
-        southButton.addActionListener(SwingListener.createDirectionListener(hero, map,"SOUTH", middlePanel));
+        northButton.addActionListener(SwingListener.createDirectionListener(hero, map, "NORTH", middlePanel, window));
+        westButton.addActionListener(SwingListener.createDirectionListener(hero, map,"WEST", middlePanel, window));
+        eastButton.addActionListener(SwingListener.createDirectionListener(hero, map,"EAST", middlePanel, window));
+        southButton.addActionListener(SwingListener.createDirectionListener(hero, map,"SOUTH", middlePanel, window));
 
         gbc.insets = new Insets(5, 5, 5, 5);
 
@@ -103,12 +103,12 @@ public class SwingElement {
                 }
                 else
                 {
-                    // TODO: Add villains icons
-                    if (Map.isWalkedTile(realX, realY))
-                        image = WindowUtils.createImageIcon("src/main/resources/icons/mob.png").getImage();
-                    // TODO: Add walls icons
+                    if (Map.getMap()[realY][realX] == 0 || (Map.getMap()[realY][realX] == 3 && !Map.isWalkedTile(realX, realY)))
+                        image = WindowUtils.createImageIcon("src/main/resources/icons/grass.png").getImage();
                     if (Map.getMap()[realY][realX] == 1)
                         image = WindowUtils.createImageIcon("src/main/resources/icons/wall.png").getImage();
+                    if (Map.isWalkedTile(realX, realY))
+                        image = WindowUtils.createImageIcon("src/main/resources/icons/death.png").getImage();
                 }
 
                 JButton button = new JButton(new ImageIcon(image));

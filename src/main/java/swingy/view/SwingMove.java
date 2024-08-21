@@ -5,7 +5,7 @@ import swingy.models.maps.Map;
 import swingy.view.modals.SwingAcceptFightModal;
 
 public class SwingMove {
-    public static boolean moveUp(Hero hero, int[][] map)
+    public static boolean moveUp(Hero hero, int[][] map, SwingWindow window)
     {
         int[] position = Map.getPlayerPosition();
         int x = position[0];
@@ -16,7 +16,7 @@ public class SwingMove {
 
         if (map[y - 1][x] == 3)
         {
-            SwingAcceptFightModal.createAndShowModal(hero);
+            SwingAcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x, y - 1);
         }
 
@@ -26,7 +26,7 @@ public class SwingMove {
         return false;
     }
 
-    public static boolean moveDown(Hero hero, int[][] map)
+    public static boolean moveDown(Hero hero, int[][] map, SwingWindow window)
     {
         int[] position = Map.getPlayerPosition();
         int x = position[0];
@@ -37,7 +37,7 @@ public class SwingMove {
 
         if (map[y + 1][x] == 3)
         {
-            SwingAcceptFightModal.createAndShowModal(hero);
+            SwingAcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x, y + 1);
         }
 
@@ -47,7 +47,7 @@ public class SwingMove {
         return false;
     }
 
-    public static boolean moveLeft(Hero hero, int[][] map)
+    public static boolean moveLeft(Hero hero, int[][] map, SwingWindow window)
     {
         int[] position = Map.getPlayerPosition();
         int x = position[0];
@@ -58,7 +58,7 @@ public class SwingMove {
 
         if (map[y][x - 1] == 3)
         {
-            SwingAcceptFightModal.createAndShowModal(hero);
+            SwingAcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x - 1, y);
         }
         map[y][x] = 0;
@@ -67,7 +67,7 @@ public class SwingMove {
         return false;
     }
 
-    public static boolean moveRight(Hero hero, int[][] map)
+    public static boolean moveRight(Hero hero, int[][] map, SwingWindow window)
     {
         int[] position = Map.getPlayerPosition();
         int x = position[0];
@@ -78,7 +78,7 @@ public class SwingMove {
 
         if (map[y][x + 1] == 3)
         {
-            SwingAcceptFightModal.createAndShowModal(hero);
+            SwingAcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x + 1, y);
         }
 

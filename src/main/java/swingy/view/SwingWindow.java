@@ -27,7 +27,7 @@ public class SwingWindow extends JFrame {
     private JPanel middleBottomPanel = new JPanel();
 
     private JPanel rightParentPanel = new JPanel();
-    private JPanel rightPanel = new JPanel();
+    private static JPanel rightPanel = new JPanel();
     private JPanel rightBottomPanel = new JPanel();
 
     // -------------------- Panel Sizes -------------------- //
@@ -65,7 +65,7 @@ public class SwingWindow extends JFrame {
 
         updateCenterPanelContent(hero, map);
         updateCenterPanelBottomContent(hero, map);
-        updateRightPanelContent(hero, map);
+        updateRightPanelContent(hero);
         updateRightPanelBottomContent(hero, map);
 
         add(middleParentPanel, BorderLayout.CENTER); // Now occupies the center
@@ -130,7 +130,7 @@ public class SwingWindow extends JFrame {
         repaint();
     }
 
-    public void updateRightPanelContent(Hero hero, Map map)
+    public void updateRightPanelContent(Hero hero)
     {
         rightPanel.removeAll();
 
@@ -147,7 +147,7 @@ public class SwingWindow extends JFrame {
     {
         rightBottomPanel.removeAll();
 
-        SwingElement.createDirectionButtons(hero, map, middlePanel,  rightBottomPanel);
+        SwingElement.createDirectionButtons(hero, map, middlePanel,  rightBottomPanel, this);
 
         revalidate();
         repaint();

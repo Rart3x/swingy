@@ -4,6 +4,7 @@ import swingy.models.characters.heroes.Hero;
 import swingy.models.characters.villains.Villain;
 import swingy.models.characters.villains.VillainFactory;
 import swingy.view.SwingFight;
+import swingy.view.SwingWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SwingAcceptFightModal {
-    public static void createAndShowModal(Hero hero)
+    public static void createAndShowModal(Hero hero, SwingWindow window)
     {
         JFrame frame = new JFrame("You encountered an villain!");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -40,7 +41,7 @@ public class SwingAcceptFightModal {
                 Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
                 SwingFight fight = new SwingFight(hero, randomVillain);
                 fight.fight();
-
+                window.updateRightPanelContent(hero);
                 frame.dispose();
             }
         });
@@ -51,7 +52,15 @@ public class SwingAcceptFightModal {
             public void actionPerformed(ActionEvent e)
             {
                 int randomNumber = (int)(Math.random() * 100);
-
+                if (randomNumber < 50)
+                {
+                    frame.dispose();
+                    SwingWindow.addText("You failed to run away.");
+                    Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
+                    SwingFight fight = new SwingFight(hero, randomVillain);
+                    fight.fight();
+                    window.updateRightPanelContent(hero);
+                }
                 frame.dispose();
             }
         });
