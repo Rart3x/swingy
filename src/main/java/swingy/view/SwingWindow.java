@@ -160,4 +160,6 @@ public class SwingWindow extends JFrame {
 
     public void lockWindow() { setEnabled(false); }
     public void unlockWindow() { setEnabled(true); }
+
+    public void updateMap(Hero hero, Map map) { updateCenterPanelContent(hero, map); }
 }

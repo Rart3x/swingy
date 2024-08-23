@@ -46,6 +46,7 @@ public class Hero extends AIndividual {
     protected Artefact weapon;
 
     protected boolean isDead = false;
+    public    boolean newMap = false;
     protected String  mode   = "";
 
     public Hero(String name, String className, int attack, int defense, int hitPoints)
@@ -72,6 +73,7 @@ public class Hero extends AIndividual {
         {
             this.experience = (this.experience + experience) - (int)maxExperience;
             this.level += 1;
+            this.maxExperience = (this.level * 1000) + Math.pow((this.level - 1), 2) * 450;
 
             this.attack += 5;
             this.defense += 5;

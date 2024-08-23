@@ -3,6 +3,7 @@ package swingy.view;
 import swingy.models.characters.heroes.Hero;
 import swingy.models.maps.Map;
 import swingy.view.modals.SwingAcceptFightModal;
+import swingy.view.modals.SwingWinLevel;
 
 public class SwingMove {
     public static boolean moveUp(Hero hero, int[][] map, SwingWindow window)
@@ -12,7 +13,11 @@ public class SwingMove {
         int y = position[1];
 
         if (map[y - 1][x] == 1)
+        {
+            SwingWinLevel.createWinLevelModal();
+            hero.newMap = true;
             return true;
+        }
 
         if (map[y - 1][x] == 3)
         {
@@ -34,7 +39,11 @@ public class SwingMove {
         int y = position[1];
 
         if (map[y + 1][x] == 1)
+        {
+            SwingWinLevel.createWinLevelModal();
+            hero.newMap = true;
             return true;
+        }
 
         if (map[y + 1][x] == 3)
         {
@@ -56,7 +65,11 @@ public class SwingMove {
         int y = position[1];
 
         if (map[y][x - 1] == 1)
+        {
+            SwingWinLevel.createWinLevelModal();
+            hero.newMap = true;
             return true;
+        }
 
         if (map[y][x - 1] == 3)
         {
@@ -77,7 +90,11 @@ public class SwingMove {
         int y = position[1];
 
         if (map[y][x + 1] == 1)
+        {
+            SwingWinLevel.createWinLevelModal();
+            hero.newMap = true;
             return true;
+        }
 
         if (map[y][x + 1] == 3)
         {

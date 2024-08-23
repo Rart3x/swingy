@@ -50,6 +50,14 @@ public class Main {
                         window = new SwingWindow(hero, map);
                         window.createWindow(hero, map);
                     }
+
+                    if (hero.newMap)
+                    {
+                        map = MapFactory.createMap(hero.getLevel());
+                        hero.newMap = false;
+                        window.updateMap(hero, map);
+                    }
+
                     previousMode = currentMode;
                     currentMode = hero.getMode();
                     Thread.sleep(50);
