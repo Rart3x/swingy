@@ -16,8 +16,13 @@ public class SwingElement {
     public static void createSwitchButton(Hero hero, JPanel rightPanel, SwingWindow window)
     {
         JButton switchButton = new JButton("Switch");
+        JButton quitButton = new JButton("Quit");
+
         switchButton.addActionListener(SwingListener.createSwitchListener(hero, window));
+        quitButton.addActionListener(SwingListener.createQuitListener(hero, window));
+
         rightPanel.add(switchButton);
+        rightPanel.add(quitButton);
     }
 
     public static void createDirectionButtons(Hero hero, Map map, JPanel middlePanel, JPanel rightBottomPanel, SwingWindow window) {

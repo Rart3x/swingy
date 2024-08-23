@@ -46,8 +46,10 @@ public class Hero extends AIndividual {
     protected Artefact weapon;
 
     protected boolean isDead = false;
-    public    boolean newMap = false;
     protected String  mode   = "";
+
+    public    boolean newMap = false;
+    public    boolean stop = false;
 
     public Hero(String name, String className, int attack, int defense, int hitPoints)
     {

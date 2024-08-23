@@ -41,7 +41,7 @@ public class Main {
 
             Map map = MapFactory.createMap(hero.getLevel());
 
-            while (isRunning)
+            while (isRunning && !hero.stop)
             {
                 if (Objects.equals(currentMode, "gui"))
                 {

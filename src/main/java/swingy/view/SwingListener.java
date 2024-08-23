@@ -39,4 +39,13 @@ public class SwingListener {
             window.closeWindow();
         };
     }
+
+    public static ActionListener createQuitListener(Hero hero, SwingWindow window)
+    {
+        return e ->
+        {
+            hero.stop = true;
+            window.closeWindow();
+        };
+    }
 }
