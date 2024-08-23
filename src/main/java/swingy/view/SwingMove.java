@@ -16,6 +16,7 @@ public class SwingMove {
 
         if (map[y - 1][x] == 3)
         {
+            window.lockWindow();
             SwingAcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x, y - 1);
         }
@@ -37,6 +38,7 @@ public class SwingMove {
 
         if (map[y + 1][x] == 3)
         {
+            window.lockWindow();
             SwingAcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x, y + 1);
         }
@@ -58,6 +60,7 @@ public class SwingMove {
 
         if (map[y][x - 1] == 3)
         {
+            window.lockWindow();
             SwingAcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x - 1, y);
         }
@@ -78,6 +81,7 @@ public class SwingMove {
 
         if (map[y][x + 1] == 3)
         {
+            window.lockWindow();
             SwingAcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x + 1, y);
         }

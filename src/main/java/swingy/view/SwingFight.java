@@ -16,7 +16,7 @@ public class SwingFight {
         this.villain = villain;
     }
 
-    public void fight()
+    public void fight(SwingWindow window)
     {
         int heroDamage = hero.getAttack() * (1 - (villain.getDefense() / 100));
         int villainDamage = villain.getAttack() * (1 - (hero.getDefense() / 100));
@@ -35,7 +35,7 @@ public class SwingFight {
                 double randomValue = Math.random();
 
                 if (randomValue < successProbability)
-                    LootUtils.lootRandomArtefact(randomArtefact, hero, true);
+                    LootUtils.lootRandomArtefact(randomArtefact, hero, true, window);
                 break;
             }
             else

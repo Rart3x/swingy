@@ -134,7 +134,7 @@ public class SwingElement {
         JLabel iconLabel = new JLabel(icon);
 
         titleIconPanel.add(iconLabel);
-        titleIconPanel.add(Box.createRigidArea(new Dimension(10, 0)));
+        titleIconPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         titleIconPanel.add(titleLabel);
 
         rightPanel.add(titleIconPanel);

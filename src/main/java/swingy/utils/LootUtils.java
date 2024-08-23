@@ -6,7 +6,7 @@ import swingy.view.SwingWindow;
 import swingy.view.modals.SwingAcceptArtefactModal;
 
 public class LootUtils {
-    public static void lootRandomArtefact(Artefact randomArtefact, Hero hero, boolean mode)
+    public static void lootRandomArtefact(Artefact randomArtefact, Hero hero, boolean mode, SwingWindow window)
     {
         Artefact currentArtefact = null;
         String artefactType = randomArtefact.getType();
@@ -77,6 +77,9 @@ public class LootUtils {
                 PrintUtils.printBlue("You decided not to equip the " + randomArtefact.getName() + " artefact.");
         }
         else
-            SwingAcceptArtefactModal.createAcceptArtefactModal(hero, randomArtefact);
+        {
+            window.lockWindow();
+            SwingAcceptArtefactModal.createAcceptArtefactModal(hero, randomArtefact, window);
+        }
     }
 }

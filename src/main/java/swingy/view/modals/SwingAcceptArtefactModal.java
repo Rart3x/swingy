@@ -2,6 +2,7 @@ package swingy.view.modals;
 
 import swingy.models.artefacts.Artefact;
 import swingy.models.characters.heroes.Hero;
+import swingy.view.SwingWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SwingAcceptArtefactModal {
-    public static void createAcceptArtefactModal(Hero hero, Artefact randomArtefact)
+    public static void createAcceptArtefactModal(Hero hero, Artefact randomArtefact, SwingWindow window)
     {
         JFrame frame = new JFrame("You found an artefact!");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -36,6 +37,7 @@ public class SwingAcceptArtefactModal {
             public void actionPerformed(ActionEvent e)
             {
                 hero.equipArtefact(randomArtefact);
+                window.unlockWindow();
                 frame.dispose();
             }
         });

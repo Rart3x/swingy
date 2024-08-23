@@ -35,7 +35,7 @@ public class Fight {
                 double randomValue = Math.random();
 
                 if (randomValue < successProbability)
-                    LootUtils.lootRandomArtefact(randomArtefact, hero, false);
+                    LootUtils.lootRandomArtefact(randomArtefact, hero, false, null);
                 break;
             }
             else

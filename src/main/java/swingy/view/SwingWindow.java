@@ -157,4 +157,7 @@ public class SwingWindow extends JFrame {
     {
         textArea.append(text + "\n");
     }
+
+    public void lockWindow() { setEnabled(false); }
+    public void unlockWindow() { setEnabled(true); }
 }
