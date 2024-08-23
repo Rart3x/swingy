@@ -47,6 +47,8 @@ public class Map {
             Print.printYellow("Enter a direction (NORTH, SOUTH, WEST, EAST): Switch mode with S, Quit with Q");
             String direction = System.console().readLine();
 
+            direction = direction.toUpperCase();
+
             if (direction.equals("NORTH") || direction.equals("SOUTH") || direction.equals("WEST") || direction.equals("EAST"))
             {
                 boolean result = false;

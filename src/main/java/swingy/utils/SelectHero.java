@@ -50,6 +50,8 @@ public class SelectHero {
         Print.printYellow("Archer: Attack 10, Defense 5, Hit Points 40\nMage: Attack 8, Defense 3, Hit Points 30\nWarrior: Attack 10, Defense 5, Hit Points 50");
         String heroClass = System.console().readLine();
 
+        heroClass = heroClass.substring(0, 1).toUpperCase() + heroClass.substring(1).toLowerCase();
+
         while (!heroClass.equals("Archer") && !heroClass.equals("Mage") && !heroClass.equals("Warrior"))
         {
             Print.printRed("Invalid hero class. Please enter 'Archer', 'Mage' or 'Warrior'.");

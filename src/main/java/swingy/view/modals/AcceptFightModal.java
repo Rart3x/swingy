@@ -40,11 +40,15 @@ public class AcceptFightModal {
             {
                 Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
                 SwingFight fight = new SwingFight(hero, randomVillain);
-                try {
+
+                try
+                {
                     fight.fight(window);
-                } catch (InterruptedException ex) {
+                }
+                catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
+
                 window.updateRightPanelContent(hero);
                 frame.dispose();
                 window.unlockWindow();
@@ -63,11 +67,15 @@ public class AcceptFightModal {
                     SwingWindow.addText("You failed to run away.");
                     Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
                     SwingFight fight = new SwingFight(hero, randomVillain);
-                    try {
+
+                    try
+                    {
                         fight.fight(window);
-                    } catch (InterruptedException ex) {
+                    }
+                    catch (InterruptedException ex) {
                         throw new RuntimeException(ex);
                     }
+
                     window.updateRightPanelContent(hero);
                 }
                 window.unlockWindow();
