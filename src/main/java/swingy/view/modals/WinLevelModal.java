@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WinLevelModal {
-    public static void createWinLevelModal(SwingWindow window)
+    public static void modal(SwingWindow window)
     {
         JFrame frame = new JFrame("Congratulations!");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -103,8 +103,11 @@ public class Hero extends AIndividual {
             if (!mode)
                 Print.printRed(this.name + " looses the fight and died");
             else
+            {
                 SwingWindow.addText(this.name + " looses the fight and died");
-
+                Print.printRed(this.name + " looses the fight and died");
+                this.stop = true;
+            }
             this.currentHitPoints = 0;
             this.isDead = true;
         }

@@ -79,7 +79,7 @@ public class Loot {
         else
         {
             window.lockWindow();
-            AcceptArtefactModal.createAcceptArtefactModal(hero, randomArtefact, window);
+            AcceptArtefactModal.modal(hero, randomArtefact, window);
         }
     }
 }

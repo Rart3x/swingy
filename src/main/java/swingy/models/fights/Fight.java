@@ -40,7 +40,7 @@ public class Fight {
             }
             else
             {
-                hero.looseHitPoints(villainDamage, villain.getName(), false);
+                hero.looseHitPoints(villainDamage, villain.getName(),false);
                 if (hero.getCurrentHitPoints() == 0)
                     break;
             }

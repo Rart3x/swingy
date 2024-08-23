@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AcceptArtefactModal {
-    public static void createAcceptArtefactModal(Hero hero, Artefact randomArtefact, SwingWindow window)
+    public static void modal(Hero hero, Artefact randomArtefact, SwingWindow window)
     {
         JFrame frame = new JFrame("You found an artefact!");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

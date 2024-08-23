@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AcceptFightModal {
-    public static void createAndShowModal(Hero hero, SwingWindow window)
+    public static void modal(Hero hero, SwingWindow window)
     {
         JFrame frame = new JFrame("You encountered an villain!");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -40,7 +40,11 @@ public class AcceptFightModal {
             {
                 Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
                 SwingFight fight = new SwingFight(hero, randomVillain);
-                fight.fight(window);
+                try {
+                    fight.fight(window);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
                 window.updateRightPanelContent(hero);
                 frame.dispose();
                 window.unlockWindow();
@@ -59,7 +63,11 @@ public class AcceptFightModal {
                     SwingWindow.addText("You failed to run away.");
                     Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
                     SwingFight fight = new SwingFight(hero, randomVillain);
-                    fight.fight(window);
+                    try {
+                        fight.fight(window);
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     window.updateRightPanelContent(hero);
                 }
                 window.unlockWindow();

@@ -16,8 +16,7 @@ public class SwingFight {
         this.villain = villain;
     }
 
-    public void fight(SwingWindow window)
-    {
+    public void fight(SwingWindow window) throws InterruptedException {
         int heroDamage = hero.getAttack() * (1 - (villain.getDefense() / 100));
         int villainDamage = villain.getAttack() * (1 - (hero.getDefense() / 100));
 
@@ -39,11 +38,7 @@ public class SwingFight {
                 break;
             }
             else
-            {
                 hero.looseHitPoints(villainDamage, villain.getName(), true);
-                if (hero.getCurrentHitPoints() == 0)
-                    break;
-            }
         }
     }
 }
