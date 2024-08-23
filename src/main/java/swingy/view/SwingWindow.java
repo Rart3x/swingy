@@ -137,7 +137,7 @@ public class SwingWindow extends JFrame {
         SwingElement.createTitleAndClassIcon(hero, rightPanel);
         SwingElement.createHPBar(hero, rightPanel);
         SwingElement.createXPBar(hero, rightPanel);
-//        SwingElement.createSwitchButton(hero, rightPanel, this);
+        SwingElement.createSwitchButton(hero, rightPanel, this);
 
         revalidate();
         repaint();

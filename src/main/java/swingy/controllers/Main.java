@@ -66,7 +66,11 @@ public class Main {
                 if (Objects.equals(currentMode, "console"))
                 {
                     isRunning = map.move(hero);
-                    map = MapFactory.createMap(hero.getLevel());
+                    if (hero.newMap)
+                    {
+                        map = MapFactory.createMap(hero.getLevel());
+                        hero.newMap = false;
+                    }
                     previousMode = currentMode;
                     currentMode = hero.getMode();
                 }

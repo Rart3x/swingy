@@ -15,16 +15,16 @@ public class SwingListener {
             {
                 //TODO: Fix the move methods
                 case "NORTH":
-                    SwingMove.moveLeft(hero, map.getMap(), window);
-                    break;
-                case "SOUTH":
-                    SwingMove.moveRight(hero, map.getMap(), window);
-                    break;
-                case "WEST":
                     SwingMove.moveUp(hero, map.getMap(), window);
                     break;
-                case "EAST":
+                case "SOUTH":
                     SwingMove.moveDown(hero, map.getMap(), window);
+                    break;
+                case "WEST":
+                    SwingMove.moveLeft(hero, map.getMap(), window);
+                    break;
+                case "EAST":
+                    SwingMove.moveRight(hero, map.getMap(), window);
                     break;
             }
             SwingElement.createMap(hero, map, middlePanel);

@@ -16,6 +16,7 @@ public class Move {
         if (map[y - 1][x] == 1)
         {
             Print.printGreen("You have survived this level.");
+            hero.newMap = true;
             return false;
         }
 
@@ -37,6 +38,7 @@ public class Move {
         if (map[y + 1][x] == 1)
         {
             Print.printGreen("You have survived this level.");
+            hero.newMap = true;
             return false;
         }
 
@@ -58,6 +60,7 @@ public class Move {
         if (map[y][x - 1] == 1)
         {
             Print.printGreen("You have survived this level.");
+            hero.newMap = true;
             return false;
         }
 
@@ -79,6 +82,7 @@ public class Move {
         if (map[y][x + 1] == 1)
         {
             Print.printGreen("You have survived this level.");
+            hero.newMap = true;
             return false;
         }
 
