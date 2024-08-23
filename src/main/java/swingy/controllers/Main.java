@@ -53,6 +53,7 @@ public class Main {
 
                     if (hero.newMap)
                     {
+                        Map.resetWalkedTiles();
                         map = MapFactory.createMap(hero.getLevel());
                         hero.newMap = false;
                         window.updateMap(hero, map);
@@ -68,6 +69,7 @@ public class Main {
                     isRunning = map.move(hero);
                     if (hero.newMap)
                     {
+                        Map.resetWalkedTiles();
                         map = MapFactory.createMap(hero.getLevel());
                         hero.newMap = false;
                     }

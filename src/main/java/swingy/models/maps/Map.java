@@ -158,6 +158,12 @@ public class Map {
         return false;
     }
 
+    public static void   resetWalkedTiles()
+    {
+        walkedTiles = new int[1000][2];
+        walkedTilesIndex = 0;
+    }
+
     public static int[][] getMap() { return map; }
     public static int[][] getWalkedTiles() { return walkedTiles; }
 

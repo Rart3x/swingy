@@ -21,6 +21,7 @@ public class SwingElement {
         switchButton.addActionListener(SwingListener.createSwitchListener(hero, window));
         quitButton.addActionListener(SwingListener.createQuitListener(hero, window));
 
+
         rightPanel.add(switchButton);
         rightPanel.add(quitButton);
     }
