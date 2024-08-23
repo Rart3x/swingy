@@ -127,7 +127,7 @@ public class SwingElement {
         titleIconPanel.setLayout(new BoxLayout(titleIconPanel, BoxLayout.X_AXIS));
         titleIconPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel titleLabel = new JLabel(hero.getName());
+        JLabel titleLabel = new JLabel(" " + hero.getName());
         titleLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 
         ImageIcon icon = WindowUtils.createImageIconDependingOnClass(hero.getSubClass());

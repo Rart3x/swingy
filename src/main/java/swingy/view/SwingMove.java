@@ -14,7 +14,8 @@ public class SwingMove {
 
         if (map[y - 1][x] == 1)
         {
-            SwingWinLevel.createWinLevelModal();
+            window.lockWindow();
+            SwingWinLevel.createWinLevelModal(window);
             hero.newMap = true;
             return true;
         }
@@ -40,7 +41,8 @@ public class SwingMove {
 
         if (map[y + 1][x] == 1)
         {
-            SwingWinLevel.createWinLevelModal();
+            window.lockWindow();
+            SwingWinLevel.createWinLevelModal(window);
             hero.newMap = true;
             return true;
         }
@@ -66,7 +68,8 @@ public class SwingMove {
 
         if (map[y][x - 1] == 1)
         {
-            SwingWinLevel.createWinLevelModal();
+            window.lockWindow();
+            SwingWinLevel.createWinLevelModal(window);
             hero.newMap = true;
             return true;
         }
@@ -91,7 +94,8 @@ public class SwingMove {
 
         if (map[y][x + 1] == 1)
         {
-            SwingWinLevel.createWinLevelModal();
+            window.lockWindow();
+            SwingWinLevel.createWinLevelModal(window);
             hero.newMap = true;
             return true;
         }

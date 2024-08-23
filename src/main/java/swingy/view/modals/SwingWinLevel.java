@@ -1,12 +1,14 @@
 package swingy.view.modals;
 
+import swingy.view.SwingWindow;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SwingWinLevel {
-    public static void createWinLevelModal()
+    public static void createWinLevelModal(SwingWindow window)
     {
         JFrame frame = new JFrame("Congratulations!");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -31,6 +33,7 @@ public class SwingWinLevel {
             public void actionPerformed(ActionEvent e)
             {
                 frame.dispose();
+                window.unlockWindow();
             }
         });
 
