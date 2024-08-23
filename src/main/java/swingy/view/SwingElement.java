@@ -122,29 +122,22 @@ public class SwingElement {
         middlePanel.repaint();
     }
 
-    public static void createTitleLevelAndClassIcon(Hero hero, JPanel rightPanel) {
+    public static void createTitleAndClassIcon(Hero hero, JPanel rightPanel) {
         JPanel titleIconPanel = new JPanel();
         titleIconPanel.setLayout(new BoxLayout(titleIconPanel, BoxLayout.X_AXIS));
         titleIconPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel titleLabel = new JLabel(hero.getName());
-        titleLabel.setFont(new Font("Arial", Font.PLAIN, 30));
+        titleLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 
         ImageIcon icon = WindowUtils.createImageIconDependingOnClass(hero.getSubClass());
         JLabel iconLabel = new JLabel(icon);
 
-        titleIconPanel.add(titleLabel);
-        titleIconPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Space between title and icon
         titleIconPanel.add(iconLabel);
-
-        JLabel levelLabel = new JLabel("Level " + hero.getLevel());
-        levelLabel.setFont(new Font("Arial", Font.PLAIN, 30));
-        levelLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        titleIconPanel.add(Box.createRigidArea(new Dimension(10, 0)));
+        titleIconPanel.add(titleLabel);
 
         rightPanel.add(titleIconPanel);
-        rightPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add some vertical spacing
-        rightPanel.add(levelLabel);
-        rightPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Add more vertical spacing
     }
 
     public static void createHPBar(Hero hero, JPanel rightPanel) {
@@ -163,11 +156,11 @@ public class SwingElement {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         containerPanel.add(titleLabel);
-        containerPanel.add(Box.createRigidArea(new Dimension(0, 5))); // Add some vertical spacing
+        containerPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         containerPanel.add(progressBar);
 
         rightPanel.add(containerPanel);
-        rightPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Add more vertical spacing
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 20)));
     }
 
     public static void createXPBar(Hero hero, JPanel rightPanel) {
@@ -175,7 +168,7 @@ public class SwingElement {
         containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.Y_AXIS));
         containerPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel titleLabel = new JLabel("XP");
+        JLabel titleLabel = new JLabel("Lv. " + hero.getLevel());
         JProgressBar progressBar = new JProgressBar();
 
         progressBar.setMaximum((int) hero.getMaxExperience());
@@ -186,10 +179,10 @@ public class SwingElement {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         containerPanel.add(titleLabel);
-        containerPanel.add(Box.createRigidArea(new Dimension(0, 5))); // Add some vertical spacing
+        containerPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         containerPanel.add(progressBar);
 
         rightPanel.add(containerPanel);
-        rightPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Add more vertical spacing
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 20)));
     }
 }
