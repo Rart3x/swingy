@@ -3,7 +3,7 @@ package swingy.utils;
 import swingy.models.artefacts.Artefact;
 import swingy.view.SwingWindow;
 
-public class PrintUtils {
+public class Print {
 
     public static void printArtefactCompare(Artefact artefact, Artefact currentArtefact, boolean mode)
     {

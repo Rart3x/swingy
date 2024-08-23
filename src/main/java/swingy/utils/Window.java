@@ -2,7 +2,7 @@ package swingy.utils;
 
 import javax.swing.*;
 
-public class WindowUtils {
+public class Window {
     public static ImageIcon createImageIcon(String path)
     {
         return new ImageIcon(path);

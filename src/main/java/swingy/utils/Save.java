@@ -3,7 +3,7 @@ package swingy.utils;
 import swingy.models.characters.heroes.Hero;
 import swingy.models.database.Insert;
 
-public class SaveUtils {
+public class Save {
     public static void saveHero(Hero hero)
     {
         if (!hero.getIsDead())
@@ -11,10 +11,10 @@ public class SaveUtils {
             try
             {
                 Insert.insertHero(hero);
-                PrintUtils.printGreen("Hero saved successfully.");
+                Print.printGreen("Hero saved successfully.");
             }
             catch (Exception e) {
-                PrintUtils.printError(e.getMessage());
+                Print.printError(e.getMessage());
             }
         }
     }

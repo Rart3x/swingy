@@ -1,7 +1,7 @@
 package swingy.controllers.validation;
 
 import swingy.models.characters.heroes.Hero;
-import swingy.utils.PrintUtils;
+import swingy.utils.Print;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -30,7 +30,7 @@ public class Validation {
         if (!constraintViolations.isEmpty())
         {
             for (ConstraintViolation<Hero> violation : constraintViolations)
-                PrintUtils.printError(violation.getMessage());
+                Print.printError(violation.getMessage());
 
             return false;
         }

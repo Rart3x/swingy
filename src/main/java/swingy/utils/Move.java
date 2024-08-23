@@ -4,9 +4,9 @@ import swingy.models.characters.heroes.Hero;
 
 import swingy.models.maps.Map;
 
-import static swingy.utils.FightUtils.fightOrRunResult;
+import static swingy.utils.Fight.fightOrRunResult;
 
-public class MoveUtils {
+public class Move {
     public static boolean moveUp(Hero hero, int[][] map)
     {
         int[] position = Map.getPlayerPosition();
@@ -15,7 +15,7 @@ public class MoveUtils {
 
         if (map[y - 1][x] == 1)
         {
-            PrintUtils.printGreen("You have survived this level.");
+            Print.printGreen("You have survived this level.");
             return false;
         }
 
@@ -36,7 +36,7 @@ public class MoveUtils {
 
         if (map[y + 1][x] == 1)
         {
-            PrintUtils.printGreen("You have survived this level.");
+            Print.printGreen("You have survived this level.");
             return false;
         }
 
@@ -57,7 +57,7 @@ public class MoveUtils {
 
         if (map[y][x - 1] == 1)
         {
-            PrintUtils.printGreen("You have survived this level.");
+            Print.printGreen("You have survived this level.");
             return false;
         }
 
@@ -78,7 +78,7 @@ public class MoveUtils {
 
         if (map[y][x + 1] == 1)
         {
-            PrintUtils.printGreen("You have survived this level.");
+            Print.printGreen("You have survived this level.");
             return false;
         }
 

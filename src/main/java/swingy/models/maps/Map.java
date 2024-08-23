@@ -2,8 +2,8 @@ package swingy.models.maps;
 
 import swingy.models.characters.heroes.Hero;
 
-import swingy.utils.MoveUtils;
-import swingy.utils.PrintUtils;
+import swingy.utils.Move;
+import swingy.utils.Print;
 
 public class Map {
     private static int[][] map;
@@ -44,7 +44,7 @@ public class Map {
 
         while (true)
         {
-            PrintUtils.printYellow("Enter a direction (NORTH, SOUTH, WEST, EAST): Switch mode with S, Quit with Q");
+            Print.printYellow("Enter a direction (NORTH, SOUTH, WEST, EAST): Switch mode with S, Quit with Q");
             String direction = System.console().readLine();
 
             if (direction.equals("NORTH") || direction.equals("SOUTH") || direction.equals("WEST") || direction.equals("EAST"))
@@ -54,7 +54,7 @@ public class Map {
                 switch (direction)
                 {
                     case "NORTH":
-                        result = MoveUtils.moveUp(hero, map);
+                        result = Move.moveUp(hero, map);
 
                         if (!result && hero.getIsDead())
                             return false;
@@ -63,7 +63,7 @@ public class Map {
                         break;
 
                     case "SOUTH":
-                        result = MoveUtils.moveDown(hero, map);
+                        result = Move.moveDown(hero, map);
 
                         if (!result && hero.getIsDead())
                             return false;
@@ -72,7 +72,7 @@ public class Map {
                         break;
 
                     case "WEST":
-                        result = MoveUtils.moveLeft(hero, map);
+                        result = Move.moveLeft(hero, map);
 
                         if (!result && hero.getIsDead())
                             return false;
@@ -81,7 +81,7 @@ public class Map {
                         break;
 
                     case "EAST":
-                        result = MoveUtils.moveRight(hero, map);
+                        result = Move.moveRight(hero, map);
 
                         if (!result && hero.getIsDead())
                             return false;
@@ -99,7 +99,7 @@ public class Map {
             else if (direction.equalsIgnoreCase("Q"))
                 return false;
             else
-                PrintUtils.printRed("Invalid direction.");
+                Print.printRed("Invalid direction.");
         }
     }
 

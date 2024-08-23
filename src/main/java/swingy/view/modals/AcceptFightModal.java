@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SwingAcceptFightModal {
+public class AcceptFightModal {
     public static void createAndShowModal(Hero hero, SwingWindow window)
     {
         JFrame frame = new JFrame("You encountered an villain!");

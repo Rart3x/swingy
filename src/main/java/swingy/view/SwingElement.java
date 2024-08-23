@@ -2,7 +2,7 @@ package swingy.view;
 
 import swingy.models.characters.heroes.Hero;
 import swingy.models.maps.Map;
-import swingy.utils.WindowUtils;
+import swingy.utils.Window;
 
 import javax.swing.*;
 import java.awt.*;
@@ -90,25 +90,25 @@ public class SwingElement {
                 int realX = startX + i;
                 int realY = startY + j;
 
-                Image image = WindowUtils.createImageIcon("src/main/resources/icons/grass1.png").getImage();
+                Image image = Window.createImageIcon("src/main/resources/icons/grass1.png").getImage();
 
                 if (realX == heroX && realY == heroY)
                 {
                     if (Objects.equals(hero.getSubClass(), "Archer"))
-                        image = WindowUtils.createImageIcon("src/main/resources/icons/bow1.png").getImage();
+                        image = Window.createImageIcon("src/main/resources/icons/bow1.png").getImage();
                     else if (Objects.equals(hero.getSubClass(), "Mage"))
-                        image = WindowUtils.createImageIcon("src/main/resources/icons/staff1.png").getImage();
+                        image = Window.createImageIcon("src/main/resources/icons/staff1.png").getImage();
                     else if (Objects.equals(hero.getSubClass(), "Warrior"))
-                        image = WindowUtils.createImageIcon("src/main/resources/icons/sword1.png").getImage();
+                        image = Window.createImageIcon("src/main/resources/icons/sword1.png").getImage();
                 }
                 else
                 {
                     if (Map.getMap()[realY][realX] == 0 || (Map.getMap()[realY][realX] == 3 && !Map.isWalkedTile(realX, realY)))
-                        image = WindowUtils.createImageIcon("src/main/resources/icons/grass.png").getImage();
+                        image = Window.createImageIcon("src/main/resources/icons/grass.png").getImage();
                     if (Map.getMap()[realY][realX] == 1)
-                        image = WindowUtils.createImageIcon("src/main/resources/icons/wall.png").getImage();
+                        image = Window.createImageIcon("src/main/resources/icons/wall.png").getImage();
                     if (Map.isWalkedTile(realX, realY))
-                        image = WindowUtils.createImageIcon("src/main/resources/icons/death.png").getImage();
+                        image = Window.createImageIcon("src/main/resources/icons/death.png").getImage();
                 }
 
                 JButton button = new JButton(new ImageIcon(image));
@@ -130,7 +130,7 @@ public class SwingElement {
         JLabel titleLabel = new JLabel(" " + hero.getName());
         titleLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 
-        ImageIcon icon = WindowUtils.createImageIconDependingOnClass(hero.getSubClass());
+        ImageIcon icon = Window.createImageIconDependingOnClass(hero.getSubClass());
         JLabel iconLabel = new JLabel(icon);
 
         titleIconPanel.add(iconLabel);

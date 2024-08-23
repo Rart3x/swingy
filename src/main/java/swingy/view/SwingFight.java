@@ -4,7 +4,7 @@ import swingy.models.artefacts.Artefact;
 import swingy.models.artefacts.ArtefactFactory;
 import swingy.models.characters.heroes.Hero;
 import swingy.models.characters.villains.Villain;
-import swingy.utils.LootUtils;
+import swingy.utils.Loot;
 
 public class SwingFight {
     private final Hero hero;
@@ -35,7 +35,7 @@ public class SwingFight {
                 double randomValue = Math.random();
 
                 if (randomValue < successProbability)
-                    LootUtils.lootRandomArtefact(randomArtefact, hero, true, window);
+                    Loot.lootRandomArtefact(randomArtefact, hero, true, window);
                 break;
             }
             else

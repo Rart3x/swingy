@@ -2,8 +2,8 @@ package swingy.view;
 
 import swingy.models.characters.heroes.Hero;
 import swingy.models.maps.Map;
-import swingy.view.modals.SwingAcceptFightModal;
-import swingy.view.modals.SwingWinLevel;
+import swingy.view.modals.AcceptFightModal;
+import swingy.view.modals.WinLevelModal;
 
 public class SwingMove {
     public static boolean moveUp(Hero hero, int[][] map, SwingWindow window)
@@ -15,7 +15,7 @@ public class SwingMove {
         if (map[y - 1][x] == 1)
         {
             window.lockWindow();
-            SwingWinLevel.createWinLevelModal(window);
+            WinLevelModal.createWinLevelModal(window);
             hero.newMap = true;
             return true;
         }
@@ -23,7 +23,7 @@ public class SwingMove {
         if (map[y - 1][x] == 3)
         {
             window.lockWindow();
-            SwingAcceptFightModal.createAndShowModal(hero, window);
+            AcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x, y - 1);
         }
 
@@ -42,7 +42,7 @@ public class SwingMove {
         if (map[y + 1][x] == 1)
         {
             window.lockWindow();
-            SwingWinLevel.createWinLevelModal(window);
+            WinLevelModal.createWinLevelModal(window);
             hero.newMap = true;
             return true;
         }
@@ -50,7 +50,7 @@ public class SwingMove {
         if (map[y + 1][x] == 3)
         {
             window.lockWindow();
-            SwingAcceptFightModal.createAndShowModal(hero, window);
+            AcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x, y + 1);
         }
 
@@ -69,7 +69,7 @@ public class SwingMove {
         if (map[y][x - 1] == 1)
         {
             window.lockWindow();
-            SwingWinLevel.createWinLevelModal(window);
+            WinLevelModal.createWinLevelModal(window);
             hero.newMap = true;
             return true;
         }
@@ -77,7 +77,7 @@ public class SwingMove {
         if (map[y][x - 1] == 3)
         {
             window.lockWindow();
-            SwingAcceptFightModal.createAndShowModal(hero, window);
+            AcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x - 1, y);
         }
         map[y][x] = 0;
@@ -95,7 +95,7 @@ public class SwingMove {
         if (map[y][x + 1] == 1)
         {
             window.lockWindow();
-            SwingWinLevel.createWinLevelModal(window);
+            WinLevelModal.createWinLevelModal(window);
             hero.newMap = true;
             return true;
         }
@@ -103,7 +103,7 @@ public class SwingMove {
         if (map[y][x + 1] == 3)
         {
             window.lockWindow();
-            SwingAcceptFightModal.createAndShowModal(hero, window);
+            AcceptFightModal.createAndShowModal(hero, window);
             Map.addWalkedTile(x + 1, y);
         }
 

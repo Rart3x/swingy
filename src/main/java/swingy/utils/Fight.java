@@ -3,19 +3,18 @@ package swingy.utils;
 import swingy.models.characters.heroes.Hero;
 import swingy.models.characters.villains.Villain;
 import swingy.models.characters.villains.VillainFactory;
-import swingy.models.fights.Fight;
 import swingy.models.fights.FightFactory;
 
-public class FightUtils {
+public class Fight {
     public static boolean fightOrRun()
     {
-        PrintUtils.printYellow("You hear a noise and turn around to see a villain. Do you want to fight or run? (fight/run)");
+        Print.printYellow("You hear a noise and turn around to see a villain. Do you want to fight or run? (fight/run)");
 
         String answer = System.console().readLine();
 
         while (!answer.equalsIgnoreCase("fight") && !answer.equalsIgnoreCase("run"))
         {
-            PrintUtils.printRed("Invalid input. Please enter 'fight' or 'run'.");
+            Print.printRed("Invalid input. Please enter 'fight' or 'run'.");
             answer = System.console().readLine();
         }
 
@@ -27,7 +26,7 @@ public class FightUtils {
                 return false;
             else
             {
-                PrintUtils.printRed("\nYou failed to run away.");
+                Print.printRed("\nYou failed to run away.");
                 return true;
             }
         }
@@ -40,8 +39,8 @@ public class FightUtils {
         if (fightOrRun())
         {
             Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
-            PrintUtils.printYellow("\nYou have encountered a " + randomVillain.getName() + " villain.\n");
-            Fight fight = FightFactory.createFight(hero, randomVillain);
+            Print.printYellow("\nYou have encountered a " + randomVillain.getName() + " villain.\n");
+            swingy.models.fights.Fight fight = FightFactory.createFight(hero, randomVillain);
             fight.fight();
         }
 

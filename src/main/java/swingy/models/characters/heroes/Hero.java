@@ -7,7 +7,7 @@ import swingy.models.characters.AIndividual;
 import swingy.models.database.Delete;
 import swingy.models.database.Get;
 import swingy.models.database.Insert;
-import swingy.utils.PrintUtils;
+import swingy.utils.Print;
 import swingy.view.SwingWindow;
 
 public class Hero extends AIndividual {
@@ -65,7 +65,7 @@ public class Hero extends AIndividual {
     public void gainExperience(int experience, boolean mode)
     {
         if (!mode)
-            PrintUtils.printGreen("\n" + this.name + " wins the fight and gains " + experience + " experience");
+            Print.printGreen("\n" + this.name + " wins the fight and gains " + experience + " experience");
         else
             SwingWindow.addText("\n" + this.name + " wins the fight and gains " + experience + " experience");
 
@@ -81,7 +81,7 @@ public class Hero extends AIndividual {
             this.currentHitPoints += 50;
 
             if (!mode)
-                PrintUtils.printGreen(this.name + " leveled up to level " + this.level);
+                Print.printGreen(this.name + " leveled up to level " + this.level);
             else
                 SwingWindow.addText(this.name + " leveled up to level " + this.level + "\n");
         }
@@ -92,14 +92,14 @@ public class Hero extends AIndividual {
     public void looseHitPoints(int hitPoints, String villainName, boolean mode)
     {
         if (!mode)
-            PrintUtils.printBlue(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
+            Print.printBlue(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
         else
             SwingWindow.addText(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
 
         if (this.currentHitPoints - hitPoints <= 0)
         {
             if (!mode)
-                PrintUtils.printRed(this.name + " looses the fight and died");
+                Print.printRed(this.name + " looses the fight and died");
             else
                 SwingWindow.addText(this.name + " looses the fight and died");
 
@@ -183,13 +183,13 @@ public class Hero extends AIndividual {
 
     public void     printHeroInfos()
     {
-        PrintUtils.printBlue("Name: " + name);
-        PrintUtils.printBlue("Level: " + level);
-        PrintUtils.printBlue("Experience: " + experience);
-        PrintUtils.printBlue("Attack: " + attack);
-        PrintUtils.printBlue("Defense: " + defense);
-        PrintUtils.printBlue("Hit Points: " + hitPoints);
-        PrintUtils.printBlue("Current Hit Points: " + currentHitPoints);
+        Print.printBlue("Name: " + name);
+        Print.printBlue("Level: " + level);
+        Print.printBlue("Experience: " + experience);
+        Print.printBlue("Attack: " + attack);
+        Print.printBlue("Defense: " + defense);
+        Print.printBlue("Hit Points: " + hitPoints);
+        Print.printBlue("Current Hit Points: " + currentHitPoints);
     }
 
     public String   getSubClass() { return subClass; }

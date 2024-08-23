@@ -7,10 +7,10 @@ import swingy.models.characters.heroes.Hero;
 import swingy.models.maps.Map;
 import swingy.models.maps.MapFactory;
 
-import swingy.utils.ArgsUtils;
-import swingy.utils.PrintUtils;
-import swingy.utils.SaveUtils;
-import swingy.utils.SelectHeroUtils;
+import swingy.utils.Args;
+import swingy.utils.Print;
+import swingy.utils.Save;
+import swingy.utils.SelectHero;
 
 import swingy.controllers.validation.Validation;
 import swingy.view.SwingWindow;
@@ -25,7 +25,7 @@ public class Main {
         boolean isRunning = true;
         SwingWindow window = null;
 
-        ArgsUtils.checkArgs(args);
+        Args.checkArgs(args);
 
         String  currentMode = args[0];
         String  previousMode = "";
@@ -33,7 +33,7 @@ public class Main {
         try
         {
             Database.createDB();
-            Hero hero = SelectHeroUtils.selectHero();
+            Hero hero = SelectHero.selectHero();
             hero.setMode(currentMode);
 
             if (!Validation.validateHero(hero))
@@ -72,11 +72,11 @@ public class Main {
                 }
             }
 
-            SaveUtils.saveHero(hero);
+            Save.saveHero(hero);
             Database.closeDB();
         }
         catch (Exception e) {
-            PrintUtils.printError(e.getMessage());
+            Print.printError(e.getMessage());
         }
         exit(0);
     }
