@@ -21,8 +21,4 @@ public class Artefact {
     public int getHitPoints() { return hitPoints; }
 
     public void setName(String name) { this.name = name; }
-    public void setType(String type) { this.type = type; }
-    public void setAttack(int attack) { this.attack = attack; }
-    public void setDefense(int defense) { this.defense = defense; }
-    public void setHitPoints(int hitPoints) { this.hitPoints = hitPoints; }
 }

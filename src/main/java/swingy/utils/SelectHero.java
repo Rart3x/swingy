@@ -19,7 +19,7 @@ public class SelectHero {
             if (answer.equalsIgnoreCase("exit"))
                 System.exit(0);
 
-            Print.printRed("Invalid input. Please enter 'new' or 'load'.");
+            Print.printRed("Invalid input. Please enter 'new', 'load' or 'exit'");
             answer = System.console().readLine();
         }
 
@@ -36,7 +36,7 @@ public class SelectHero {
                 instance = Get.getHeroFromDB(heroName);
                 if (instance == null)
                 {
-                    Print.printError("Hero not found.");
+                    Print.printError("Hero not found");
                     return selectHero();
                 }
                 return instance;
@@ -46,15 +46,14 @@ public class SelectHero {
             }
         }
 
-        Print.printYellow("Select a hero class: Archer, Mage, Warrior\n");
-        Print.printYellow("Archer: Attack 10, Defense 5, Hit Points 40\nMage: Attack 8, Defense 3, Hit Points 30\nWarrior: Attack 10, Defense 5, Hit Points 50");
-        String heroClass = System.console().readLine();
+        Print.printYellow("Select a hero class: Archer, Mage, Warrior\nArcher: Attack 10, Defense 5, Hit Points 40\nMage: Attack 8, Defense 3, Hit Points 30\nWarrior: Attack 10, Defense 5, Hit Points 50");
 
+        String heroClass = System.console().readLine();
         heroClass = heroClass.substring(0, 1).toUpperCase() + heroClass.substring(1).toLowerCase();
 
         while (!heroClass.equals("Archer") && !heroClass.equals("Mage") && !heroClass.equals("Warrior"))
         {
-            Print.printRed("Invalid hero class. Please enter 'Archer', 'Mage' or 'Warrior'.");
+            Print.printRed("Invalid hero class. Please enter 'Archer', 'Mage' or 'Warrior'");
             heroClass = System.console().readLine();
         }
 
@@ -72,7 +71,7 @@ public class SelectHero {
 
         if (heros.length == 0)
         {
-            Print.printRed("No heroes found in the database.");
+            Print.printRed("No heroes found in the database");
             return false;
         }
         else

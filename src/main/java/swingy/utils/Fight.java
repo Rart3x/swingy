@@ -44,6 +44,6 @@ public class Fight {
             fight.fight();
         }
 
-        return hero.getIsDead();
+        return hero.isDead;
     }
 }

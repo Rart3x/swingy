@@ -10,22 +10,13 @@ public class Print {
         switch (artefact.getType())
         {
             case "Armor":
-                if (!mode)
-                    printBlue("\nYou found a " + artefact.getName() + " armor!");
-                else
-                    SwingWindow.addText("You found a " + artefact.getName() + " armor!");
+                printDependingOnMode("You found a " + artefact.getName() + " armor!", "BLUE", mode);
                 break;
             case "Helm":
-                if (!mode)
-                    printBlue("\nYou found a " + artefact.getName() + " helmet!");
-                else
-                    SwingWindow.addText("You found a " + artefact.getName() + " helmet!");
+                printDependingOnMode("You found a " + artefact.getName() + " helmet!", "BLUE", mode);
                 break;
             case "Weapon":
-                if (!mode)
-                    printBlue("\nYou found a " + artefact.getName() + " weapon!");
-                else
-                    SwingWindow.addText("You found a " + artefact.getName() + " weapon!");
+                printDependingOnMode("You found a " + artefact.getName() + " weapon!", "BLUE", mode);
                 break;
         }
 
@@ -82,6 +73,54 @@ public class Print {
                     SwingWindow.addText("HP: " + artefact.getHitPoints() + " (" + (artefact.getHitPoints() - currentArtefact.getHitPoints()) + ")");
             }
         }
+    }
+
+    public static void printDependingOnArtefact(Artefact artefact, boolean mode)
+    {
+        if (!mode)
+        {
+            Print.printBlue("\nYou found a " + artefact.getName() + " artefact!");
+            if (artefact.getAttack() > 0)
+                Print.printGreen("Att: " + artefact.getAttack());
+            if (artefact.getDefense() > 0)
+                Print.printGreen("Def: " + artefact.getDefense());
+            if (artefact.getHitPoints() > 0)
+                Print.printGreen("HP: " + artefact.getHitPoints());
+        }
+        else
+        {
+            SwingWindow.addText("\nYou found a " + artefact.getName() + " artefact!");
+            if (artefact.getAttack() > 0)
+                SwingWindow.addText("Att: " + artefact.getAttack());
+            if (artefact.getDefense() > 0)
+                SwingWindow.addText("Def: " + artefact.getDefense());
+            if (artefact.getHitPoints() > 0)
+                SwingWindow.addText("HP: " + artefact.getHitPoints());
+        }
+    }
+
+    public static void printDependingOnMode(String message, String color, boolean mode)
+    {
+        if (!mode)
+        {
+            switch (color)
+            {
+                case "BLUE":
+                    printBlue(message);
+                    break;
+                case "GREEN":
+                    printGreen(message);
+                    break;
+                case "RED":
+                    printRed(message);
+                    break;
+                case "YELLOW":
+                    printYellow(message);
+                    break;
+            }
+        }
+        else
+            SwingWindow.addText(message);
     }
 
     public static void printError(String message) { System.out.println("\033[31mError: " + message + "\033[0m"); }

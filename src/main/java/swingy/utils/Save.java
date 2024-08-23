@@ -6,7 +6,7 @@ import swingy.models.database.Insert;
 public class Save {
     public static void saveHero(Hero hero)
     {
-        if (!hero.getIsDead())
+        if (!hero.isDead)
         {
             try
             {

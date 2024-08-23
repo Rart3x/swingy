@@ -45,19 +45,22 @@ public class Hero extends AIndividual {
     protected Artefact helm;
     protected Artefact weapon;
 
-    protected boolean isDead = false;
     protected String  mode   = "";
 
+    public    boolean isDead = false;
     public    boolean newMap = false;
     public    boolean stop = false;
 
     public Hero(String name, String className, int attack, int defense, int hitPoints)
     {
         super(name, "Hero", 1);
+
         this.name = name;
         this.subClass = className;
+
         this.experience = 0;
         this.maxExperience = (this.level * 1000) + Math.pow((this.level - 1), 2) * 450;
+
         this.attack = attack;
         this.defense = defense;
         this.hitPoints = hitPoints;
@@ -66,15 +69,12 @@ public class Hero extends AIndividual {
 
     public void gainExperience(int experience, boolean mode)
     {
-        if (!mode)
-            Print.printGreen("\n" + this.name + " wins the fight and gains " + experience + " experience");
-        else
-            SwingWindow.addText("\n" + this.name + " wins the fight and gains " + experience + " experience");
+        Print.printDependingOnMode("\n" + this.name + " wins the fight and gains " + experience + " experience", "GREEN", mode);
 
         if ((this.experience + experience) >= maxExperience)
         {
-            this.experience = (this.experience + experience) - (int)maxExperience;
             this.level += 1;
+            this.experience = (this.experience + experience) - (int)maxExperience;
             this.maxExperience = (this.level * 1000) + Math.pow((this.level - 1), 2) * 450;
 
             this.attack += 5;
@@ -82,10 +82,7 @@ public class Hero extends AIndividual {
             this.hitPoints += 50;
             this.currentHitPoints += 50;
 
-            if (!mode)
-                Print.printGreen(this.name + " leveled up to level " + this.level);
-            else
-                SwingWindow.addText(this.name + " leveled up to level " + this.level + "\n");
+            Print.printDependingOnMode(this.name + " leveled up to level " + this.level, "GREEN", mode);
         }
         else
             this.experience += experience;
@@ -93,10 +90,7 @@ public class Hero extends AIndividual {
 
     public void looseHitPoints(int hitPoints, String villainName, boolean mode)
     {
-        if (!mode)
-            Print.printBlue(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
-        else
-            SwingWindow.addText(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage");
+        Print.printDependingOnMode(villainName + " attacks " + this.name + " and deals " + hitPoints + " damage", "BLUE", mode);
 
         if (this.currentHitPoints - hitPoints <= 0)
         {
@@ -210,10 +204,8 @@ public class Hero extends AIndividual {
     public Artefact getHelm() { return helm; }
     public Artefact getWeapon() { return weapon; }
 
-    public boolean  getIsDead() { return isDead; }
     public String   getMode() { return mode; }
 
-    public void setSubClass(String subClass) { this.subClass = subClass; }
     public void setExperience(int experience) { this.experience = experience; }
     public void setMaxExperience(int maxExperience) { this.maxExperience = maxExperience; }
 
@@ -226,6 +218,5 @@ public class Hero extends AIndividual {
     public void setHelm(Artefact helm) { this.helm = helm; }
     public void setWeapon(Artefact weapon) { this.weapon = weapon; }
 
-    public void setIsDead(boolean isDead) { this.isDead = isDead; }
     public void setMode(String mode) { this.mode = mode; }
 }

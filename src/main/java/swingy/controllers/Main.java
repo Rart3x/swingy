@@ -77,7 +77,7 @@ public class Main {
                     currentMode = hero.getMode();
                 }
             }
-            if (!hero.getIsDead())
+            if (!hero.isDead)
                 Save.saveHero(hero);
             Database.closeDB();
         }

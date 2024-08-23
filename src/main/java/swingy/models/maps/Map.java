@@ -58,7 +58,7 @@ public class Map {
                     case "NORTH":
                         result = Move.moveUp(hero, map);
 
-                        if (!result && hero.getIsDead())
+                        if (!result && hero.isDead)
                             return false;
                         else if (!result)
                             return true;
@@ -67,7 +67,7 @@ public class Map {
                     case "SOUTH":
                         result = Move.moveDown(hero, map);
 
-                        if (!result && hero.getIsDead())
+                        if (!result && hero.isDead)
                             return false;
                         else if (!result)
                             return true;
@@ -76,7 +76,7 @@ public class Map {
                     case "WEST":
                         result = Move.moveLeft(hero, map);
 
-                        if (!result && hero.getIsDead())
+                        if (!result && hero.isDead)
                             return false;
                         else if (!result)
                             return true;
@@ -85,7 +85,7 @@ public class Map {
                     case "EAST":
                         result = Move.moveRight(hero, map);
 
-                        if (!result && hero.getIsDead())
+                        if (!result && hero.isDead)
                             return false;
                         else if (!result)
                             return true;
@@ -167,8 +167,4 @@ public class Map {
     }
 
     public static int[][] getMap() { return map; }
-    public static int[][] getWalkedTiles() { return walkedTiles; }
-
-    public static void    setWalkedTiles(int[][] walkedTiles) { Map.walkedTiles = walkedTiles; }
-    public static void    setIndex(int y, int x, int value) { map[y][x] = value; }
 }
