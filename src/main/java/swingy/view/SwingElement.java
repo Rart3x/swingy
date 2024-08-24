@@ -74,8 +74,8 @@ public class SwingElement {
     public static void createMap(Hero hero, Map map, JPanel middlePanel) {
         middlePanel.removeAll();
 
-        int heroX = Map.getPlayerPosition()[0];
-        int heroY = Map.getPlayerPosition()[1];
+        int x = Map.getPlayerPosition()[0];
+        int y = Map.getPlayerPosition()[1];
         int size = (hero.getLevel() - 1) * 5 + 10 - (hero.getLevel() % 2);
 
         int VIEW_DISTANCE = 3;
@@ -83,22 +83,22 @@ public class SwingElement {
 
         middlePanel.setLayout(new GridLayout(VIEW_SIZE, VIEW_SIZE));
 
-        int startX = Math.max(0, heroX - VIEW_DISTANCE);
-        int startY = Math.max(0, heroY - VIEW_DISTANCE);
+        int startX = Math.max(0, x - VIEW_DISTANCE);
+        int startY = Math.max(0, y - VIEW_DISTANCE);
 
         int buttonWidth = CENTER_WIDTH / VIEW_SIZE;
         int buttonHeight = HEIGHT / VIEW_SIZE;
 
-        for (int i = 0; i < VIEW_SIZE; i++)
+        for (int j = 0; j < VIEW_SIZE; j++)
         {
-            for (int j = 0; j < VIEW_SIZE; j++)
+            for (int i = 0; i < VIEW_SIZE; i++)
             {
                 int realX = startX + i;
                 int realY = startY + j;
 
                 Image image = Window.createImageIcon("src/main/resources/icons/grass1.png").getImage();
 
-                if (realX == heroX && realY == heroY)
+                if (realX == x && realY == y)
                 {
                     if (Objects.equals(hero.getSubClass(), "Archer"))
                         image = Window.createImageIcon("src/main/resources/icons/bow1.png").getImage();
