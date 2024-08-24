@@ -41,7 +41,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>swingy.controllers.Main</mainClass>
+                            <mainClass>swingy.controller.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

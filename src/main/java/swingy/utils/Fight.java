@@ -1,9 +1,9 @@
 package swingy.utils;
 
-import swingy.models.characters.heroes.Hero;
-import swingy.models.characters.villains.Villain;
-import swingy.models.characters.villains.VillainFactory;
-import swingy.models.fights.FightFactory;
+import swingy.model.characters.heroes.Hero;
+import swingy.model.characters.villains.Villain;
+import swingy.model.characters.villains.VillainFactory;
+import swingy.model.fights.FightFactory;
 
 public class Fight {
     public static boolean fightOrRun()
@@ -40,7 +40,7 @@ public class Fight {
         {
             Villain randomVillain = VillainFactory.createRandomVillain(hero.getLevel());
             Print.printYellow("\nYou have encountered a " + randomVillain.getName() + " villain.\n");
-            swingy.models.fights.Fight fight = FightFactory.createFight(hero, randomVillain);
+            swingy.model.fights.Fight fight = FightFactory.createFight(hero, randomVillain);
             fight.fight();
         }
         return hero.isDead;

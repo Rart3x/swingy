@@ -1,7 +1,7 @@
 package swingy.view;
 
-import swingy.models.characters.heroes.Hero;
-import swingy.models.maps.Map;
+import swingy.model.characters.heroes.Hero;
+import swingy.model.maps.Map;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,7 @@
 package swingy.view;
 
-import swingy.models.characters.heroes.Hero;
-import swingy.models.maps.Map;
+import swingy.model.characters.heroes.Hero;
+import swingy.model.maps.Map;
 import swingy.view.modals.AcceptFightModal;
 import swingy.view.modals.WinLevelModal;
 

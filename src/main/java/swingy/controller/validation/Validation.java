@@ -1,0 +1,39 @@
+package swingy.controller.validation;
+
+import swingy.model.characters.heroes.Hero;
+import swingy.utils.Print;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+import java.util.Set;
+
+import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
+
+public class Validation {
+
+    private static final Validator validator;
+
+    static
+    {
+        ValidatorFactory factory = javax.validation.Validation.byDefaultProvider().configure()
+            .messageInterpolator(new ParameterMessageInterpolator())
+            .buildValidatorFactory();
+        validator = factory.getValidator();
+    }
+
+    public static boolean validateHero(Hero hero)
+    {
+        Set<ConstraintViolation<Hero>> constraintViolations = validator.validate(hero);
+
+        if (!constraintViolations.isEmpty())
+        {
+            for (ConstraintViolation<Hero> violation : constraintViolations)
+                Print.printError(violation.getMessage());
+
+            return false;
+        }
+        return true;
+    }
+}

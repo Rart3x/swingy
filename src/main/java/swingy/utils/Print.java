@@ -1,6 +1,6 @@
 package swingy.utils;
 
-import swingy.models.artefacts.Artefact;
+import swingy.model.artefacts.Artefact;
 import swingy.view.SwingWindow;
 
 public class Print {

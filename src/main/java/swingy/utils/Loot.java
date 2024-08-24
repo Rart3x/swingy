@@ -1,7 +1,7 @@
 package swingy.utils;
 
-import swingy.models.artefacts.Artefact;
-import swingy.models.characters.heroes.Hero;
+import swingy.model.artefacts.Artefact;
+import swingy.model.characters.heroes.Hero;
 import swingy.view.SwingWindow;
 import swingy.view.modals.AcceptArtefactModal;
 

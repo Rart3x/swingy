@@ -1,8 +1,8 @@
 package swingy.utils;
 
-import swingy.models.characters.heroes.Hero;
+import swingy.model.characters.heroes.Hero;
 
-import swingy.models.maps.Map;
+import swingy.model.maps.Map;
 
 import static swingy.utils.Fight.fightOrRunResult;
 

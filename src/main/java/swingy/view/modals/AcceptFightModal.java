@@ -1,8 +1,8 @@
 package swingy.view.modals;
 
-import swingy.models.characters.heroes.Hero;
-import swingy.models.characters.villains.Villain;
-import swingy.models.characters.villains.VillainFactory;
+import swingy.model.characters.heroes.Hero;
+import swingy.model.characters.villains.Villain;
+import swingy.model.characters.villains.VillainFactory;
 import swingy.view.SwingFight;
 import swingy.view.SwingWindow;
 
