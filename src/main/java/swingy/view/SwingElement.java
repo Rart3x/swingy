@@ -2,11 +2,10 @@ package swingy.view;
 
 import swingy.models.characters.heroes.Hero;
 import swingy.models.maps.Map;
-import swingy.utils.Window;
+import swingy.utils.Icon;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 
 public class SwingElement {
     private static final int WIDTH = 1200;
@@ -96,26 +95,7 @@ public class SwingElement {
                 int realX = startX + i;
                 int realY = startY + j;
 
-                Image image = Window.createImageIcon("src/main/resources/icons/grass1.png").getImage();
-
-                if (realX == x && realY == y)
-                {
-                    if (Objects.equals(hero.getSubClass(), "Archer"))
-                        image = Window.createImageIcon("src/main/resources/icons/bow1.png").getImage();
-                    else if (Objects.equals(hero.getSubClass(), "Mage"))
-                        image = Window.createImageIcon("src/main/resources/icons/staff1.png").getImage();
-                    else if (Objects.equals(hero.getSubClass(), "Warrior"))
-                        image = Window.createImageIcon("src/main/resources/icons/sword1.png").getImage();
-                }
-                else
-                {
-                    if (Map.getMap()[realY][realX] == 0 || (Map.getMap()[realY][realX] == 3 && !Map.isWalkedTile(realX, realY)))
-                        image = Window.createImageIcon("src/main/resources/icons/grass.png").getImage();
-                    if (Map.getMap()[realY][realX] == 1)
-                        image = Window.createImageIcon("src/main/resources/icons/wall.png").getImage();
-                    if (Map.isWalkedTile(realX, realY))
-                        image = Window.createImageIcon("src/main/resources/icons/death.png").getImage();
-                }
+                Image image = Icon.createImageIconDependingMapTile(x, y, realX, realY, hero);
 
                 JButton button = new JButton(new ImageIcon(image));
                 button.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
@@ -136,7 +116,7 @@ public class SwingElement {
         JLabel titleLabel = new JLabel(" " + hero.getName());
         titleLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 
-        ImageIcon icon = Window.createImageIconDependingOnClass(hero.getSubClass());
+        ImageIcon icon = Icon.createImageIconDependingOnClass(hero.getSubClass());
         JLabel iconLabel = new JLabel(icon);
 
         titleIconPanel.add(iconLabel);
