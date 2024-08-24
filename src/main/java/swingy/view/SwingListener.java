@@ -13,7 +13,6 @@ public class SwingListener {
         {
             switch (direction)
             {
-                //TODO: Fix the move methods
                 case "NORTH":
                     SwingMove.moveUp(hero, map.getMap(), window);
                     break;

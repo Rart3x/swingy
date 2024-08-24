@@ -109,7 +109,8 @@ public class SwingElement {
         middlePanel.repaint();
     }
 
-    public static void createTitleAndClassIcon(Hero hero, JPanel rightPanel) {
+    public static void createTitleAndClassIcon(Hero hero, JPanel rightPanel)
+    {
         JPanel titleIconPanel = new JPanel();
         titleIconPanel.setLayout(new BoxLayout(titleIconPanel, BoxLayout.X_AXIS));
         titleIconPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -127,7 +128,8 @@ public class SwingElement {
         rightPanel.add(titleIconPanel);
     }
 
-    public static void createHPBar(Hero hero, JPanel rightPanel) {
+    public static void createHPBar(Hero hero, JPanel rightPanel)
+    {
         JPanel containerPanel = new JPanel();
         containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.Y_AXIS));
         containerPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -150,7 +152,8 @@ public class SwingElement {
         rightPanel.add(Box.createRigidArea(new Dimension(0, 20)));
     }
 
-    public static void createXPBar(Hero hero, JPanel rightPanel) {
+    public static void createXPBar(Hero hero, JPanel rightPanel)
+    {
         JPanel containerPanel = new JPanel();
         containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.Y_AXIS));
         containerPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
