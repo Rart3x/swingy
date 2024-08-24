@@ -20,12 +20,12 @@ public class SwingElement {
         switchButton.addActionListener(SwingListener.createSwitchListener(hero, window));
         quitButton.addActionListener(SwingListener.createQuitListener(hero, window));
 
-
         rightPanel.add(switchButton);
         rightPanel.add(quitButton);
     }
 
-    public static void createDirectionButtons(Hero hero, Map map, JPanel middlePanel, JPanel rightBottomPanel, SwingWindow window) {
+    public static void createDirectionButtons(Hero hero, Map map, JPanel middlePanel, JPanel rightBottomPanel, SwingWindow window)
+    {
         rightBottomPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -70,7 +70,8 @@ public class SwingElement {
         rightBottomPanel.add(new JLabel(), gbc);
     }
 
-    public static void createMap(Hero hero, Map map, JPanel middlePanel) {
+    public static void createMap(Hero hero, Map map, JPanel middlePanel)
+    {
         middlePanel.removeAll();
 
         int x = Map.getPlayerPosition()[0];
@@ -82,8 +83,8 @@ public class SwingElement {
 
         middlePanel.setLayout(new GridLayout(VIEW_SIZE, VIEW_SIZE));
 
-        int startX = Math.max(0, x - VIEW_DISTANCE);
-        int startY = Math.max(0, y - VIEW_DISTANCE);
+        int startX = Math.max(0, Math.min(x - VIEW_DISTANCE, size - VIEW_SIZE));
+        int startY = Math.max(0, Math.min(y - VIEW_DISTANCE, size - VIEW_SIZE));
 
         int buttonWidth = CENTER_WIDTH / VIEW_SIZE;
         int buttonHeight = HEIGHT / VIEW_SIZE;

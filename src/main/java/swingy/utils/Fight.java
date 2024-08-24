@@ -43,7 +43,6 @@ public class Fight {
             swingy.models.fights.Fight fight = FightFactory.createFight(hero, randomVillain);
             fight.fight();
         }
-
         return hero.isDead;
     }
 }
