@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AcceptFightModal {
+public class  AcceptFightModal {
     public static void modal(Hero hero, SwingWindow window)
     {
         JFrame frame = new JFrame("You encountered an villain!");
@@ -44,6 +44,7 @@ public class AcceptFightModal {
                 try
                 {
                     fight.fight(window);
+                    hero.deadVillain = true;
                 }
                 catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
@@ -71,11 +72,11 @@ public class AcceptFightModal {
                     try
                     {
                         fight.fight(window);
+                        hero.deadVillain = true;
                     }
                     catch (InterruptedException ex) {
                         throw new RuntimeException(ex);
                     }
-
                     window.updateRightPanelContent(hero);
                 }
                 window.unlockWindow();

@@ -44,7 +44,7 @@ public class Map {
 
         while (true)
         {
-            Print.printYellow("Enter a direction (NORTH, SOUTH, WEST, EAST): Switch mode with S, Quit with Q");
+            Print.printYellow("Enter a direction (NORTH, SOUTH, WEST, EAST): Change mode with C, Quit with Q");
             String direction = System.console().readLine();
 
             direction = direction.toUpperCase();
@@ -100,7 +100,7 @@ public class Map {
                 }
                 printMapCensured();
             }
-            else if (direction.equalsIgnoreCase("S"))
+            else if (direction.equalsIgnoreCase("C"))
             {
                 hero.setMode("gui");
                 return true;

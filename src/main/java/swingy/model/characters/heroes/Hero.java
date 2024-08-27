@@ -49,7 +49,8 @@ public class Hero extends AIndividual {
 
     public    boolean isDead = false;
     public    boolean newMap = false;
-    public    boolean stop = false;
+    public    boolean stop   = false;
+    public    boolean deadVillain = false;
 
     public Hero(String name, String className, int attack, int defense, int hitPoints)
     {

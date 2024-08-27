@@ -24,7 +24,11 @@ public class SwingMove {
         {
             window.lockWindow();
             AcceptFightModal.modal(hero, window);
-            Map.addWalkedTile(x, y - 1);
+            if (hero.deadVillain)
+            {
+                Map.addWalkedTile(x, y - 1);
+                hero.deadVillain = false;
+            }
         }
 
         map[y][x] = 0;
@@ -51,7 +55,11 @@ public class SwingMove {
         {
             window.lockWindow();
             AcceptFightModal.modal(hero, window);
-            Map.addWalkedTile(x, y + 1);
+            if (hero.deadVillain)
+            {
+                Map.addWalkedTile(x, y + 1);
+                hero.deadVillain = false;
+            }
         }
 
         map[y][x] = 0;
@@ -78,7 +86,11 @@ public class SwingMove {
         {
             window.lockWindow();
             AcceptFightModal.modal(hero, window);
-            Map.addWalkedTile(x - 1, y);
+            if (hero.deadVillain)
+            {
+                Map.addWalkedTile(x, y - 1);
+                hero.deadVillain = false;
+            }
         }
         map[y][x] = 0;
         map[y][x - 1] = 2;
@@ -104,7 +116,11 @@ public class SwingMove {
         {
             window.lockWindow();
             AcceptFightModal.modal(hero, window);
-            Map.addWalkedTile(x + 1, y);
+            if (hero.deadVillain)
+            {
+                Map.addWalkedTile(x, y + 1);
+                hero.deadVillain = false;
+            }
         }
 
         map[y][x] = 0;
