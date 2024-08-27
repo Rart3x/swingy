@@ -49,12 +49,16 @@ public class Map {
 
             direction = direction.toUpperCase();
 
-            if (direction.equals("NORTH") || direction.equals("SOUTH") || direction.equals("WEST") || direction.equals("EAST"))
+            if (direction.equals("NORTH") || direction.equals("N")
+                    || direction.equals("SOUTH") || direction.equals("S")
+                    || direction.equals("WEST") || direction.equals("W")
+                    || direction.equals("EAST") || direction.equals("E"))
             {
                 boolean result = false;
 
                 switch (direction)
                 {
+                    case "N":
                     case "NORTH":
                         result = Move.moveUp(hero, map);
 
@@ -64,6 +68,7 @@ public class Map {
                             return true;
                         break;
 
+                    case "S":
                     case "SOUTH":
                         result = Move.moveDown(hero, map);
 
@@ -73,6 +78,7 @@ public class Map {
                             return true;
                         break;
 
+                    case "W":
                     case "WEST":
                         result = Move.moveLeft(hero, map);
 
@@ -82,6 +88,7 @@ public class Map {
                             return true;
                         break;
 
+                    case "E":
                     case "EAST":
                         result = Move.moveRight(hero, map);
 
