@@ -174,4 +174,5 @@ public class Map {
     }
 
     public static int[][] getMap() { return map; }
+    public static int     getSize() { return size; }
 }

@@ -76,7 +76,8 @@ public class SwingElement {
 
         int x = Map.getPlayerPosition()[0];
         int y = Map.getPlayerPosition()[1];
-        int size = (hero.getLevel() - 1) * 5 + 10 - (hero.getLevel() % 2);
+
+        int size = map.getSize();
 
         int VIEW_DISTANCE = 3;
         int VIEW_SIZE = VIEW_DISTANCE * 2 + 1;
