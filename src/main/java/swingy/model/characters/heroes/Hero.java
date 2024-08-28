@@ -4,9 +4,9 @@ import javax.validation.constraints.*;
 
 import swingy.model.artefacts.Artefact;
 import swingy.model.characters.AIndividual;
-import swingy.model.database.Delete;
-import swingy.model.database.Get;
-import swingy.model.database.Insert;
+import swingy.database.Delete;
+import swingy.database.Get;
+import swingy.database.Insert;
 import swingy.utils.Print;
 import swingy.view.SwingWindow;
 

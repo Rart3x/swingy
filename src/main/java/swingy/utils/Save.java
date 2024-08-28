@@ -1,7 +1,7 @@
 package swingy.utils;
 
 import swingy.model.characters.heroes.Hero;
-import swingy.model.database.Insert;
+import swingy.database.Insert;
 
 public class Save {
     public static void saveHero(Hero hero)

@@ -29,8 +29,8 @@ public final class ArtefactFactory {
     {
         String[] artefactTypes = {"Weapon", "Armor", "Helm"};
         String[] weaponNames = {"Excalibur", "Mjolnir", "Merunes Dagon", "Sword of a Thousand Truths", "Enma", "Master Sword"};
-        String[] armorNames = {"Dragonplate", "Daedric", "Elven", "Glass"};
-        String[] helmNames = {"Iron", "Steel", "Leather", "Cloth"};
+        String[] armorNames = {"Dragonplate", "Daedricplate", "Elvenplate", "Glassplate"};
+        String[] helmNames = {"Iron helm", "Steel helm", "Leather helm", "Cloth helm"};
 
         String type = artefactTypes[(int)(Math.random() * 3)];
         String name;

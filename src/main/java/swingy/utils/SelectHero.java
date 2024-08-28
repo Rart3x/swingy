@@ -2,7 +2,7 @@ package swingy.utils;
 
 import swingy.model.characters.heroes.Hero;
 import swingy.model.characters.heroes.HeroFactory;
-import swingy.model.database.Get;
+import swingy.database.Get;
 
 public class SelectHero {
     public static Hero selectHero() throws Exception {

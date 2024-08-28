@@ -1,6 +1,6 @@
 package swingy.controller;
 
-import swingy.model.database.Database;
+import swingy.database.Database;
 
 import swingy.model.characters.heroes.Hero;
 

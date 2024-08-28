@@ -1,4 +1,4 @@
-package swingy.model.database;
+package swingy.database;
 
 import java.sql.* ;
 
