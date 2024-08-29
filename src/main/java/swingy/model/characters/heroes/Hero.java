@@ -12,6 +12,7 @@ import swingy.view.SwingWindow;
 
 public class Hero extends AIndividual {
     @NotNull(message = "Name cannot be empty")
+    @Size(min = 1, max = 20, message = "Name length must be between 3 and 20 characters")
     protected String name;
 
     @NotNull(message = "Subclass cannot be empty")
@@ -41,18 +42,22 @@ public class Hero extends AIndividual {
     @Min(value = 0, message = "Current Hit Points cannot be negative")
     protected int currentHitPoints;
 
-    protected Artefact armor;
-    protected Artefact helm;
-    protected Artefact weapon;
+    protected Artefact armor    = null;
+    protected Artefact helm     = null;
+    protected Artefact weapon   = null;
 
-    protected String  mode   = "";
+    protected String  mode      = "";
 
-    public    boolean isDead = false;
-    public    boolean newMap = false;
-    public    boolean stop   = false;
-    public    boolean deadVillain = false;
+    public    boolean equipedArmor  = false;
+    public    boolean equipedHelm   = false;
+    public    boolean equipedWeapon = false;
 
-    public Hero(String name, String className, int attack, int defense, int hitPoints)
+    public    boolean isDead        = false;
+    public    boolean newMap        = false;
+    public    boolean stop          = false;
+    public    boolean deadVillain   = false;
+
+    public Hero(String name, String className, int attack, int defense, int hitPoints, int currentHitPoints)
     {
         super(name, "Hero", 1);
 
@@ -65,7 +70,11 @@ public class Hero extends AIndividual {
         this.attack = attack;
         this.defense = defense;
         this.hitPoints = hitPoints;
-        this.currentHitPoints = hitPoints;
+        this.currentHitPoints = currentHitPoints;
+
+        this.armor = null;
+        this.helm = null;
+        this.weapon = null;
     }
 
     public void gainExperience(int experience, boolean mode)
@@ -80,8 +89,8 @@ public class Hero extends AIndividual {
 
             this.attack += 5;
             this.defense += 5;
-            this.hitPoints += 50;
-            this.currentHitPoints += 50;
+            this.hitPoints += 25;
+            this.currentHitPoints += 25;
 
             Print.printDependingOnMode(this.name + " leveled up to level " + this.level, "GREEN", mode);
         }
@@ -118,35 +127,39 @@ public class Hero extends AIndividual {
         {
             case "Armor":
             {
-                if (this.armor != null)
+                if (this.armor != null && this.equipedArmor)
                 {
                     this.defense -= this.armor.getDefense();
                     Delete.deleteArtefact(this.armor.getName());
                 }
                 this.armor = artefact;
                 this.defense += artefact.getDefense();
+                this.equipedArmor = true;
                 break;
             }
             case "Helm":
             {
-                if (this.helm != null)
+                if (this.helm != null && this.equipedHelm)
                 {
                     this.hitPoints -= this.helm.getHitPoints();
                     Delete.deleteArtefact(this.helm.getName());
                 }
                 this.helm = artefact;
                 this.hitPoints += artefact.getHitPoints();
+                this.currentHitPoints += artefact.getHitPoints();
+                this.equipedHelm = true;
                 break;
             }
             case "Weapon":
             {
-                if (this.weapon != null)
+                if (this.weapon != null && this.equipedWeapon)
                 {
                     this.attack -= this.weapon.getAttack();
                     Delete.deleteArtefact(this.weapon.getName());
                 }
                 this.weapon = artefact;
                 this.attack += artefact.getAttack();
+                this.equipedWeapon = true;
                 break;
             }
         }
@@ -163,18 +176,22 @@ public class Hero extends AIndividual {
             {
                 this.defense -= this.armor.getDefense();
                 this.armor = null;
+                this.equipedArmor = false;
                 break;
             }
             case "Helm":
             {
                 this.hitPoints -= this.helm.getHitPoints();
+                this.currentHitPoints -= this.helm.getHitPoints();
                 this.helm = null;
+                this.equipedHelm = false;
                 break;
             }
             case "Weapon":
             {
                 this.attack -= this.weapon.getAttack();
                 this.weapon = null;
+                this.equipedWeapon = false;
                 break;
             }
         }
