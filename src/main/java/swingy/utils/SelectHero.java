@@ -2,7 +2,7 @@ package swingy.utils;
 
 import swingy.model.characters.heroes.Hero;
 import swingy.model.characters.heroes.HeroFactory;
-import swingy.database.Get;
+import swingy.model.database.Get;
 
 public class SelectHero {
     public static Hero selectHero() throws Exception {
@@ -49,6 +49,7 @@ public class SelectHero {
         Print.printYellow("Select a hero class: Archer, Mage, Warrior\nArcher: Attack 10, Defense 5, Hit Points 40\nMage: Attack 8, Defense 3, Hit Points 30\nWarrior: Attack 10, Defense 5, Hit Points 50");
 
         String heroClass = System.console().readLine();
+
         heroClass = heroClass.substring(0, 1).toUpperCase() + heroClass.substring(1).toLowerCase();
 
         while (!heroClass.equals("Archer") && !heroClass.equals("Mage") && !heroClass.equals("Warrior"))
@@ -59,6 +60,8 @@ public class SelectHero {
 
         Print.printYellow("Select a hero name");
         String heroName = System.console().readLine();
+
+
 
         instance = HeroFactory.createHero(heroName, heroClass);
 

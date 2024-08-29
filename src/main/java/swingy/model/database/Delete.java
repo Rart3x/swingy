@@ -1,4 +1,4 @@
-package swingy.database;
+package swingy.model.database;
 
 public class Delete extends Database {
     public static void deleteArtefact(String artefactName)

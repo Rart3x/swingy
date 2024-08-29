@@ -1,4 +1,4 @@
-package swingy.database;
+package swingy.model.database;
 
 import swingy.model.artefacts.Artefact;
 import swingy.model.characters.heroes.Hero;

@@ -88,7 +88,7 @@ public class SwingMove {
             AcceptFightModal.modal(hero, window);
             if (hero.deadVillain)
             {
-                Map.addWalkedTile(x, y - 1);
+                Map.addWalkedTile(x - 1, y);
                 hero.deadVillain = false;
             }
         }
@@ -118,7 +118,7 @@ public class SwingMove {
             AcceptFightModal.modal(hero, window);
             if (hero.deadVillain)
             {
-                Map.addWalkedTile(x, y + 1);
+                Map.addWalkedTile(x + 1, y);
                 hero.deadVillain = false;
             }
         }
