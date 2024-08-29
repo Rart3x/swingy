@@ -50,7 +50,6 @@ public class SelectHero {
 
         String heroClass = System.console().readLine();
 
-        heroClass = heroClass.substring(0, 1).toUpperCase() + heroClass.substring(1).toLowerCase();
 
         while (!heroClass.equals("Archer") && !heroClass.equals("Mage") && !heroClass.equals("Warrior"))
         {
@@ -61,7 +60,11 @@ public class SelectHero {
         Print.printYellow("Select a hero name");
         String heroName = System.console().readLine();
 
-
+        while (heroName.isEmpty() || heroName.length() > 20)
+        {
+            Print.printRed("Invalid hero name. Please enter a name between 1 and 20 characters");
+            heroName = System.console().readLine();
+        }
 
         instance = HeroFactory.createHero(heroName, heroClass);
 
