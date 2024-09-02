@@ -39,6 +39,8 @@ public class Main {
             if (!Validation.validateHero(hero))
                 return;
 
+            hero.printHeroInfos();
+
             Map map = MapFactory.createMap(hero.getLevel());
 
             while (isRunning && !hero.stop)

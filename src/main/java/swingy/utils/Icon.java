@@ -51,8 +51,6 @@ public class Icon {
                 image = createImageIcon("src/main/resources/icons/grass.png").getImage();
             if (Map.getMap()[realY][realX] == 1)
                 image = createImageIcon("src/main/resources/icons/wall.png").getImage();
-            if (Map.isWalkedTile(realX, realY))
-                image = createImageIcon("src/main/resources/icons/death.png").getImage();
         }
         return image;
     }

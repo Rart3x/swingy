@@ -200,13 +200,13 @@ public class Hero extends AIndividual {
 
     public void     printHeroInfos()
     {
-        Print.printBlue("Name: " + name);
+        Print.printBlue("\nName: " + name);
         Print.printBlue("Level: " + level);
         Print.printBlue("Experience: " + experience);
         Print.printBlue("Attack: " + attack);
         Print.printBlue("Defense: " + defense);
         Print.printBlue("Hit Points: " + hitPoints);
-        Print.printBlue("Current Hit Points: " + currentHitPoints);
+        Print.printBlue("Current Hit Points: " + currentHitPoints + "\n");
     }
 
     public String   getSubClass() { return subClass; }
